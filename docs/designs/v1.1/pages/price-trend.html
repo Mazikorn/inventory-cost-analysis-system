@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>价格趋势分析 - COREONE v2.2</title>
+    <link rel="stylesheet" href="../shared/styles.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="32" height="32" rx="8" fill="#3b82f6"/>
+                <path d="M8 16L14 10L20 16L14 22L8 16Z" fill="white"/>
+                <path d="M14 16L20 10L26 16L20 22L14 16Z" fill="white" opacity="0.6"/>
+            </svg>
+            <span>COREONE</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="inventory-list.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                </svg>
+                <span>库存列表</span>
+            </a>
+            <a href="inbound.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                <span>入库记录</span>
+            </a>
+            <a href="outbound.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                <span>出库记录</span>
+            </a>
+            <a href="scrap.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 6h18"/>
+                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                </svg>
+                <span>报废管理</span>
+            </a>
+            <a href="stocktaking.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 11l3 3L22 4"/>
+                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                </svg>
+                <span>库存盘点</span>
+            </a>
+            <a href="projects.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                </svg>
+                <span>检测服务</span>
+            </a>
+            <a href="bom.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+                <span>BOM清单</span>
+            </a>
+            <a href="cost-analysis.html" class="nav-item active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="20" x2="12" y2="10"/>
+                    <line x1="18" y1="20" x2="18" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="16"/>
+                </svg>
+                <span>物料成本分析</span>
+            </a>
+            <a href="categories.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="8" y1="6" x2="21" y2="6"/>
+                    <line x1="8" y1="12" x2="21" y2="12"/>
+                    <line x1="8" y1="18" x2="21" y2="18"/>
+                    <line x1="3" y1="6" x2="3.01" y2="6"/>
+                    <line x1="3" y1="12" x2="3.01" y2="12"/>
+                    <line x1="3" y1="18" x2="3.01" y2="18"/>
+                </svg>
+                <span>物料分类</span>
+            </a>
+            <a href="consumable-config.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                </svg>
+                <span>耗材配置</span>
+            </a>
+            <a href="rules.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+                <span>规则配置</span>
+            </a>
+            <a href="alerts.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                </svg>
+                <span>预警中心</span>
+            </a>
+            <div class="nav-divider"></div>
+            <a href="suppliers.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                <span>供应商管理</span>
+            </a>
+            <a href="locations.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <span>库位管理</span>
+            </a>
+            <a href="users.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                <span>用户管理</span>
+            </a>
+            <a href="roles.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                <span>角色管理</span>
+            </a>
+            <a href="logs.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+                <span>操作日志</span>
+            </a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">价格趋势分析</h1>
+                <p class="page-subtitle">物料单价变化趋势与采购决策支持</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary" onclick="showModal('export-modal')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    导出报告
+                </button>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <div class="filter-group">
+                <span class="filter-label">物料搜索</span>
+                <input type="text" class="form-input search-input" placeholder="输入物料名称或编号搜索...">
+            </div>
+            <div class="filter-group">
+                <span class="filter-label">时间范围</span>
+                <select class="form-select filter-select">
+                    <option value="12m" selected>近12个月</option>
+                    <option value="6m">近6个月</option>
+                    <option value="3m">近3个月</option>
+                    <option value="custom">自定义</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <span class="filter-label">物料类型</span>
+                <select class="form-select filter-select">
+                    <option value="all" selected>全部</option>
+                    <option value="dye">染色试剂</option>
+                    <option value="immuno">免疫试剂</option>
+                    <option value="molecular">分子试剂</option>
+                    <option value="consumable">耗材</option>
+                </select>
+            </div>
+            <button class="btn btn-secondary btn-sm">查询</button>
+            <button class="btn btn-ghost btn-sm">重置</button>
+        </div>
+
+        <div class="focus-materials">
+            <span style="font-size: 13px; color: var(--text-muted);">关注物料：</span>
+            <span class="focus-tag active">NGS试剂盒</span>
+            <span class="focus-tag">EGFR检测试剂</span>
+            <span class="focus-tag">免疫组化抗体</span>
+            <span class="focus-tag">苏木精染液</span>
+            <span class="add-focus-btn" onclick="showModal('add-material-modal')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"/>
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+                添加关注
+            </span>
+        </div>
+
+        <div class="chart-card">
+            <div class="chart-header">
+                <span class="chart-title">价格趋势图</span>
+                <div style="display: flex; gap: 8px;">
+                    <button class="btn btn-ghost btn-sm active">折线图</button>
+                    <button class="btn btn-ghost btn-sm">面积图</button>
+                </div>
+            </div>
+            <div class="chart-body">
+                <div class="chart-placeholder">
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                        <polyline points="17 6 23 6 23 12"/>
+                    </svg>
+                    <p>价格趋势折线图</p>
+                    <p style="font-size: 12px;">显示选中物料近12个月单价变化趋势</p>
+                </div>
+                <div class="chart-legend">
+                    <div class="legend-item">
+                        <span class="legend-dot" style="background: var(--primary);"></span>
+                        NGS试剂盒
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot" style="background: var(--success);"></span>
+                        EGFR检测试剂
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot" style="background: #9333ea;"></span>
+                        免疫组化抗体
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot" style="background: var(--warning-text);"></span>
+                        苏木精染液
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-card">
+            <div class="chart-header">
+                <span class="chart-title">价格历史明细</span>
+                <span style="font-size: 13px; color: var(--text-muted);">共 156 条记录</span>
+            </div>
+            <div class="chart-body" style="padding: 0;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>物料名称</th>
+                            <th>物料类型</th>
+                            <th style="text-align: right;">当前单价</th>
+                            <th style="text-align: right;">年初单价</th>
+                            <th style="text-align: right;">年内涨幅</th>
+                            <th style="text-align: center;">趋势</th>
+                            <th style="text-align: center;">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>NGS试剂盒</strong></td>
+                            <td><span class="type-badge" style="background: #f3e8ff; color: #9333ea; padding: 2px 8px; border-radius: 12px; font-size: 12px;">分子试剂</span></td>
+                            <td style="text-align: right;">¥680/例</td>
+                            <td style="text-align: right;">¥590/例</td>
+                            <td style="text-align: right;">
+                                <span class="trend-badge up">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                                    </svg>
+                                    +15.2%
+                                </span>
+                            </td>
+                            <td style="text-align: center;"><div class="sparkline">📈</div></td>
+                            <td style="text-align: center;">
+                                <button class="btn btn-ghost btn-sm">详情</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>EGFR检测试剂</strong></td>
+                            <td><span class="type-badge" style="background: #f3e8ff; color: #9333ea; padding: 2px 8px; border-radius: 12px; font-size: 12px;">分子试剂</span></td>
+                            <td style="text-align: right;">¥185/例</td>
+                            <td style="text-align: right;">¥196/例</td>
+                            <td style="text-align: right;">
+                                <span class="trend-badge down">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/>
+                                    </svg>
+                                    -5.8%
+                                </span>
+                            </td>
+                            <td style="text-align: center;"><div class="sparkline">📉</div></td>
+                            <td style="text-align: center;">
+                                <button class="btn btn-ghost btn-sm">详情</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>免疫组化抗体</strong></td>
+                            <td><span class="type-badge" style="background: var(--success-bg); color: var(--success); padding: 2px 8px; border-radius: 12px; font-size: 12px;">免疫试剂</span></td>
+                            <td style="text-align: right;">¥35/例</td>
+                            <td style="text-align: right;">¥34/例</td>
+                            <td style="text-align: right;">
+                                <span class="trend-badge up">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                                    </svg>
+                                    +3.2%
+                                </span>
+                            </td>
+                            <td style="text-align: center;"><div class="sparkline">📈</div></td>
+                            <td style="text-align: center;">
+                                <button class="btn btn-ghost btn-sm">详情</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>苏木精染液</strong></td>
+                            <td><span class="type-badge" style="background: var(--primary-light); color: var(--primary); padding: 2px 8px; border-radius: 12px; font-size: 12px;">染色试剂</span></td>
+                            <td style="text-align: right;">¥0.08/ml</td>
+                            <td style="text-align: right;">¥0.07/ml</td>
+                            <td style="text-align: right;">
+                                <span class="trend-badge up">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                                    </svg>
+                                    +14.3%
+                                </span>
+                            </td>
+                            <td style="text-align: center;"><div class="sparkline">📈</div></td>
+                            <td style="text-align: center;">
+                                <button class="btn btn-ghost btn-sm">详情</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>封片剂</strong></td>
+                            <td><span class="type-badge" style="background: var(--primary-light); color: var(--primary); padding: 2px 8px; border-radius: 12px; font-size: 12px;">染色试剂</span></td>
+                            <td style="text-align: right;">¥0.15/ml</td>
+                            <td style="text-align: right;">¥0.15/ml</td>
+                            <td style="text-align: right;">
+                                <span class="trend-badge stable">稳定</span>
+                            </td>
+                            <td style="text-align: center;"><div class="sparkline">➡️</div></td>
+                            <td style="text-align: center;">
+                                <button class="btn btn-ghost btn-sm">详情</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>载玻片</strong></td>
+                            <td><span class="type-badge" style="background: var(--warning-bg); color: var(--warning-text); padding: 2px 8px; border-radius: 12px; font-size: 12px;">耗材</span></td>
+                            <td style="text-align: right;">¥0.05/片</td>
+                            <td style="text-align: right;">¥0.05/片</td>
+                            <td style="text-align: right;">
+                                <span class="trend-badge stable">稳定</span>
+                            </td>
+                            <td style="text-align: center;"><div class="sparkline">➡️</div></td>
+                            <td style="text-align: center;">
+                                <button class="btn btn-ghost btn-sm">详情</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer" style="padding: 12px 20px; border-top: 1px solid var(--border-default); display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 13px; color: var(--text-muted);">显示 1-6 / 共 156 条</span>
+                <div class="pagination">
+                    <button class="btn btn-ghost btn-sm" disabled>上一页</button>
+                    <button class="btn btn-ghost btn-sm active">1</button>
+                    <button class="btn btn-ghost btn-sm">2</button>
+                    <button class="btn btn-ghost btn-sm">3</button>
+                    <span style="color: var(--text-muted);">...</span>
+                    <button class="btn btn-ghost btn-sm">26</button>
+                    <button class="btn btn-ghost btn-sm">下一页</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal" id="add-material-modal">
+        <div class="modal-overlay" onclick="hideModal('add-material-modal')"></div>
+        <div class="modal-container modal-lg">
+            <div class="modal-header">
+                <h3 class="modal-title">添加关注物料</h3>
+                <button class="modal-close" onclick="hideModal('add-material-modal')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">搜索物料</label>
+                    <input type="text" class="form-input" placeholder="输入物料名称或编号搜索...">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">已关注物料</label>
+                    <div style="border: 1px solid var(--border-default); border-radius: var(--radius-md); padding: 12px; min-height: 60px;">
+                        <div class="material-tag">
+                            <span class="material-name">NGS试剂盒</span>
+                            <span class="remove-btn">×</span>
+                        </div>
+                        <div class="material-tag">
+                            <span class="material-name">EGFR检测试剂</span>
+                            <span class="remove-btn">×</span>
+                        </div>
+                        <div class="material-tag">
+                            <span class="material-name">免疫组化抗体</span>
+                            <span class="remove-btn">×</span>
+                        </div>
+                        <div class="material-tag">
+                            <span class="material-name">苏木精染液</span>
+                            <span class="remove-btn">×</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">建议关注</label>
+                    <div class="suggestion-item">
+                        <div class="suggestion-info">
+                            <div class="suggestion-name">分化液</div>
+                            <div class="suggestion-reason">近期价格波动较大</div>
+                        </div>
+                        <button class="btn btn-ghost btn-sm">+ 添加</button>
+                    </div>
+                    <div class="suggestion-item">
+                        <div class="suggestion-info">
+                            <div class="suggestion-name">伊红染液</div>
+                            <div class="suggestion-reason">年度消耗金额TOP10</div>
+                        </div>
+                        <button class="btn btn-ghost btn-sm">+ 添加</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideModal('add-material-modal')">取消</button>
+                <button class="btn btn-primary">保存配置</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="export-modal">
+        <div class="modal-overlay" onclick="hideModal('export-modal')"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title">导出价格报告</h3>
+                <button class="modal-close" onclick="hideModal('export-modal')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">报告类型</label>
+                    <select class="form-select">
+                        <option>价格趋势报告</option>
+                        <option>物料价格明细</option>
+                        <option>价格变动汇总</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">时间范围</label>
+                    <div class="form-row">
+                        <input type="date" class="form-input" value="2024-01-01">
+                        <span style="line-height: 40px; color: var(--text-muted);">至</span>
+                        <input type="date" class="form-input" value="2024-12-31">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">导出格式</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="export-format" value="xlsx" checked>
+                            <span>Excel (.xlsx)</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="export-format" value="pdf">
+                            <span>PDF (.pdf)</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideModal('export-modal')">取消</button>
+                <button class="btn btn-primary">导出报告</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+        function hideModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+    </script>
+</body>
+</html>

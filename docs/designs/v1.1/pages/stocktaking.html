@@ -1,0 +1,2165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>库存盘点 - COREONE v2.2</title>
+    <link rel="stylesheet" href="../shared/styles.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="32" height="32" rx="8" fill="#3b82f6"/>
+                <path d="M8 16L14 10L20 16L14 22L8 16Z" fill="white"/>
+                <path d="M14 16L20 10L26 16L20 22L14 16Z" fill="white" opacity="0.6"/>
+            </svg>
+            <span>COREONE</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="inventory-list.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                </svg>
+                <span>库存列表</span>
+            </a>
+            <a href="inbound.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                <span>入库记录</span>
+            </a>
+            <a href="outbound.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                <span>出库记录</span>
+            </a>
+            <a href="scrap.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 6h18"/>
+                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                </svg>
+                <span>报废管理</span>
+            </a>
+            <a href="stocktaking.html" class="nav-item active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 11l3 3L22 4"/>
+                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                </svg>
+                <span>库存盘点</span>
+            </a>
+            <a href="projects.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                </svg>
+                <span>检测服务</span>
+            </a>
+            <a href="bom.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+                <span>BOM清单</span>
+            </a>
+            <a href="cost-analysis.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="20" x2="12" y2="10"/>
+                    <line x1="18" y1="20" x2="18" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="16"/>
+                </svg>
+                <span>物料成本分析</span>
+            </a>
+            <a href="categories.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="8" y1="6" x2="21" y2="6"/>
+                    <line x1="8" y1="12" x2="21" y2="12"/>
+                    <line x1="8" y1="18" x2="21" y2="18"/>
+                    <line x1="3" y1="6" x2="3.01" y2="6"/>
+                    <line x1="3" y1="12" x2="3.01" y2="12"/>
+                    <line x1="3" y1="18" x2="3.01" y2="18"/>
+                </svg>
+                <span>物料分类</span>
+            </a>
+            <a href="consumable-config.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                </svg>
+                <span>耗材配置</span>
+            </a>
+            <a href="rules.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+                <span>规则配置</span>
+            </a>
+            <a href="alerts.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                </svg>
+                <span>预警中心</span>
+            </a>
+            <div class="nav-divider"></div>
+            <a href="suppliers.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                <span>供应商管理</span>
+            </a>
+            <a href="locations.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <span>库位管理</span>
+            </a>
+            <a href="users.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                <span>用户管理</span>
+            </a>
+            <a href="roles.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                <span>角色管理</span>
+            </a>
+            <a href="logs.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10 9 9 9 8 9"/>
+                </svg>
+                <span>操作日志</span>
+            </a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">库存盘点</h1>
+                <p class="page-subtitle">管理库存盘点任务，确保账实相符</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-primary" onclick="showModal('create-stocktaking-modal')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"/>
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                    新建盘点
+                </button>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card stat-card-primary">
+                <div class="stat-value">2</div>
+                <div class="stat-label">进行中</div>
+            </div>
+            <div class="stat-card stat-card-success">
+                <div class="stat-value">2</div>
+                <div class="stat-label">已完成</div>
+            </div>
+            <div class="stat-card stat-card-warning">
+                <div class="stat-value">15</div>
+                <div class="stat-label">待处理差异</div>
+            </div>
+            <div class="stat-card stat-card-primary">
+                <div class="stat-value">96.2%</div>
+                <div class="stat-label">账实相符率</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">盘点记录</span>
+                <div class="filter-bar">
+                    <div class="search-box">
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                        <input type="text" placeholder="搜索盘点编号/盘点名称...">
+                    </div>
+                    <select class="filter-select">
+                        <option>全部状态</option>
+                        <option>进行中</option>
+                        <option>已完成</option>
+                        <option>已取消</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>全部范围</option>
+                        <option>全部物料</option>
+                        <option>指定分类</option>
+                        <option>指定库位</option>
+                    </select>
+                    <input type="date" class="filter-select" placeholder="开始日期">
+                    <span style="color: var(--text-muted);">至</span>
+                    <input type="date" class="filter-select" placeholder="结束日期">
+                    <button class="btn btn-secondary btn-sm">查询</button>
+                    <button class="btn btn-ghost btn-sm">重置</button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>盘点编号</th>
+                            <th>盘点名称</th>
+                            <th>盘点范围</th>
+                            <th>盘点方式</th>
+                            <th>盘点进度</th>
+                            <th>差异数量</th>
+                            <th>负责人</th>
+                            <th>创建时间</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="mono-text">ST-2024-003</td>
+                            <td><strong>2024年第一季度盘点</strong></td>
+                            <td>全部物料</td>
+                            <td>全盘</td>
+                            <td>
+                                <div class="progress-bar">
+                                    <div class="progress-bar-track">
+                                        <div class="progress-bar-fill primary" style="width: 78%;"></div>
+                                    </div>
+                                    <span class="progress-bar-text">156/200</span>
+                                </div>
+                            </td>
+                            <td><span class="diff-count muted">待盘点</span></td>
+                            <td>张三</td>
+                            <td>2024-01-15 10:30</td>
+                            <td><span class="status-badge status-warning">进行中</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-ghost" onclick="showModal('stocktaking-detail-modal')">详情</button>
+                                <button class="btn btn-sm btn-primary" onclick="showModal('continue-stocktaking-modal')">继续盘点</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="mono-text">ST-2024-002</td>
+                            <td><strong>试剂类专项盘点</strong></td>
+                            <td>指定分类</td>
+                            <td>抽盘</td>
+                            <td>
+                                <div class="progress-bar">
+                                    <div class="progress-bar-track">
+                                        <div class="progress-bar-fill success" style="width: 100%;"></div>
+                                    </div>
+                                    <span class="progress-bar-text">50/50</span>
+                                </div>
+                            </td>
+                            <td><span class="diff-count success">0项</span></td>
+                            <td>李四</td>
+                            <td>2024-01-10 14:20</td>
+                            <td><span class="status-badge status-success">已完成</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-ghost" onclick="showModal('stocktaking-detail-modal')">详情</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="mono-text">ST-2024-001</td>
+                            <td><strong>年末大盘点</strong></td>
+                            <td>全部物料</td>
+                            <td>全盘</td>
+                            <td>
+                                <div class="progress-bar">
+                                    <div class="progress-bar-track">
+                                        <div class="progress-bar-fill success" style="width: 100%;"></div>
+                                    </div>
+                                    <span class="progress-bar-text">320/320</span>
+                                </div>
+                            </td>
+                            <td><span class="diff-count warning">3项</span></td>
+                            <td>王五</td>
+                            <td>2023-12-25 09:00</td>
+                            <td><span class="status-badge status-success">已完成</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-ghost" onclick="showModal('stocktaking-detail-modal')">详情</button>
+                                <button class="btn btn-sm btn-secondary" onclick="showModal('stocktaking-adjust-modal')">查看差异</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="mono-text">ST-2023-015</td>
+                            <td><strong>耗材类抽盘</strong></td>
+                            <td>指定分类</td>
+                            <td>抽盘</td>
+                            <td>
+                                <div class="progress-bar">
+                                    <div class="progress-bar-track">
+                                        <div class="progress-bar-fill primary" style="width: 45%;"></div>
+                                    </div>
+                                    <span class="progress-bar-text">45/100</span>
+                                </div>
+                            </td>
+                            <td><span class="diff-count muted">-</span></td>
+                            <td>张三</td>
+                            <td>2023-12-15 11:30</td>
+                            <td><span class="status-badge status-warning">进行中</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-ghost" onclick="showModal('stocktaking-detail-modal')">详情</button>
+                                <button class="btn btn-sm btn-primary" onclick="showModal('continue-stocktaking-modal')">继续盘点</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="mono-text">ST-2023-014</td>
+                            <td><strong>紧急盘点-库位A区</strong></td>
+                            <td>指定库位</td>
+                            <td>全盘</td>
+                            <td>
+                                <div class="progress-bar">
+                                    <div class="progress-bar-track">
+                                        <div class="progress-bar-fill muted" style="width: 100%;"></div>
+                                    </div>
+                                    <span class="progress-bar-text">30/30</span>
+                                </div>
+                            </td>
+                            <td><span class="diff-count muted">-</span></td>
+                            <td>李四</td>
+                            <td>2023-12-10 16:45</td>
+                            <td><span class="status-badge" style="background: #f3f4f6; color: #6b7280;">已取消</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-ghost" onclick="showModal('stocktaking-detail-modal')">详情</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <span class="pagination-info">共 15 条记录，第 1/2 页</span>
+                <div class="pagination-controls">
+                    <button class="btn btn-sm btn-secondary" disabled>上一页</button>
+                    <button class="btn btn-sm btn-primary">1</button>
+                    <button class="btn btn-sm btn-ghost">2</button>
+                    <button class="btn btn-sm btn-secondary">下一页</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 新建盘点弹窗 - 分步流程 -->
+    <div id="create-stocktaking-modal" class="modal">
+        <div class="modal-overlay" onclick="hideModal('create-stocktaking-modal')"></div>
+        <div class="modal-container modal-xl">
+            <div class="modal-header">
+                <h3 class="modal-title">新建盘点</h3>
+                <button class="modal-close" onclick="hideModal('create-stocktaking-modal')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- 步骤指示器 -->
+            <div class="step-indicator-bar">
+                <div class="step-indicator-wrapper">
+                    <div id="step1-indicator" class="step-indicator active">
+                        <span class="step-number">1</span>
+                        <span class="step-label">基本信息</span>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div id="step2-indicator" class="step-indicator">
+                        <span class="step-number">2</span>
+                        <span class="step-label">确认清单</span>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div id="step3-indicator" class="step-indicator">
+                        <span class="step-number">3</span>
+                        <span class="step-label">创建完成</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-body">
+                <!-- 步骤1：基本信息 -->
+                <div id="step1-content" class="step-content">
+                    <form class="form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">盘点名称 <span class="required">*</span></label>
+                                <input type="text" class="form-control" id="stocktaking-name" placeholder="请输入盘点名称">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">盘点方式 <span class="required">*</span></label>
+                                <select class="form-control" id="stocktaking-type">
+                                    <option value="">请选择盘点方式</option>
+                                    <option value="full">全盘</option>
+                                    <option value="sample">抽盘</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">盘点范围 <span class="required">*</span></label>
+                                <select class="form-control" id="stocktaking-scope" onchange="updateScopeDetail()">
+                                    <option value="">请选择盘点范围</option>
+                                    <option value="all">全部物料</option>
+                                    <option value="category">指定分类</option>
+                                    <option value="location">指定库位</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">负责人 <span class="required">*</span></label>
+                                <select class="form-control" id="stocktaking-manager">
+                                    <option value="">请选择负责人</option>
+                                    <option value="zhang">张三</option>
+                                    <option value="li">李四</option>
+                                    <option value="wang">王五</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="scope-detail-section" style="display: none;">
+                            <div class="form-group">
+                                <label class="form-label" id="scope-detail-label">选择具体范围</label>
+                                <div id="scope-detail-options" class="scope-options-container">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">计划开始时间</label>
+                                <input type="datetime-local" class="form-control" id="stocktaking-start">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">计划结束时间</label>
+                                <input type="datetime-local" class="form-control" id="stocktaking-end">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">备注</label>
+                            <textarea class="form-control" rows="3" id="stocktaking-remark" placeholder="请输入备注"></textarea>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- 步骤2：确认物料清单 -->
+                <div id="step2-content" class="step-content" style="display: none;">
+                    <div class="info-alert">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4"/>
+                            <path d="M12 8h.01"/>
+                        </svg>
+                        <div>
+                            <div class="info-alert-title">盘点范围预览</div>
+                            <div class="info-alert-text" id="scope-preview-text">全部物料，共 200 种</div>
+                        </div>
+                    </div>
+                    
+                    <div class="table-container" style="max-height: 320px; overflow-y: auto;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 40px;"><input type="checkbox" checked onchange="toggleAllMaterials(this)"></th>
+                                    <th>物料编码</th>
+                                    <th>物料名称</th>
+                                    <th>分类</th>
+                                    <th>账面数量</th>
+                                    <th>库位</th>
+                                </tr>
+                            </thead>
+                            <tbody id="material-list-tbody">
+                                <tr>
+                                    <td><input type="checkbox" checked></td>
+                                    <td class="mono-text">MAT-001</td>
+                                    <td>Harris苏木素染液</td>
+                                    <td>HE染色试剂</td>
+                                    <td>24</td>
+                                    <td>A-01-01</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" checked></td>
+                                    <td class="mono-text">MAT-002</td>
+                                    <td>Gill苏木素染液</td>
+                                    <td>HE染色试剂</td>
+                                    <td>12</td>
+                                    <td>A-01-02</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" checked></td>
+                                    <td class="mono-text">MAT-011</td>
+                                    <td>伊红Y染液</td>
+                                    <td>HE染色试剂</td>
+                                    <td>36</td>
+                                    <td>A-01-03</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" checked></td>
+                                    <td class="mono-text">MAT-101</td>
+                                    <td>Ki-67抗体</td>
+                                    <td>免疫组化试剂</td>
+                                    <td>15</td>
+                                    <td>B-02-01</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" checked></td>
+                                    <td class="mono-text">MAT-102</td>
+                                    <td>P53抗体</td>
+                                    <td>免疫组化试剂</td>
+                                    <td>12</td>
+                                    <td>B-02-02</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" checked></td>
+                                    <td class="mono-text">MAT-201</td>
+                                    <td>包埋盒（标准型）</td>
+                                    <td>制片耗材</td>
+                                    <td>500</td>
+                                    <td>C-01-01</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" checked></td>
+                                    <td class="mono-text">MAT-202</td>
+                                    <td>载玻片（防脱）</td>
+                                    <td>制片耗材</td>
+                                    <td>1000</td>
+                                    <td>C-01-02</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" checked></td>
+                                    <td class="mono-text">MAT-203</td>
+                                    <td>盖玻片</td>
+                                    <td>制片耗材</td>
+                                    <td>800</td>
+                                    <td>C-01-03</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="table-footer-actions">
+                        <div class="selected-count">
+                            已选择 <strong id="selected-count">200</strong> 种物料
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn btn-secondary btn-sm" onclick="selectAllMaterials()">全选</button>
+                            <button class="btn btn-secondary btn-sm" onclick="deselectAllMaterials()">取消全选</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 步骤3：创建完成 -->
+                <div id="step3-content" class="step-content" style="display: none;">
+                    <div class="success-state">
+                        <div class="success-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                        </div>
+                        <h4 class="success-title">盘点任务创建成功</h4>
+                        <p class="success-subtitle">盘点编号：<strong class="mono-text">ST-2024-004</strong></p>
+                        
+                        <div class="success-details">
+                            <div class="detail-row">
+                                <span class="detail-label">盘点名称</span>
+                                <span class="detail-value" id="confirm-name">2024年第一季度盘点</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">盘点范围</span>
+                                <span class="detail-value" id="confirm-scope">全部物料</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">物料数量</span>
+                                <span class="detail-value" id="confirm-count">200 种</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">负责人</span>
+                                <span class="detail-value" id="confirm-manager">张三</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button id="prev-btn" class="btn btn-secondary" style="display: none;" onclick="prevStep()">上一步</button>
+                <button id="cancel-btn" class="btn btn-secondary" onclick="hideModal('create-stocktaking-modal')">取消</button>
+                <button id="next-btn" class="btn btn-primary" onclick="nextStep()">下一步</button>
+                <button id="create-btn" class="btn btn-primary" style="display: none;" onclick="createStocktaking()">创建盘点</button>
+                <button id="start-btn" class="btn btn-primary" style="display: none;" onclick="hideModal('create-stocktaking-modal'); showModal('continue-stocktaking-modal')">开始盘点</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 盘点详情弹窗 -->
+    <div id="stocktaking-detail-modal" class="modal">
+        <div class="modal-overlay" onclick="hideModal('stocktaking-detail-modal')"></div>
+        <div class="modal-container modal-xl">
+            <div class="modal-header">
+                <h3 class="modal-title">盘点详情 - ST-2024-003</h3>
+                <button class="modal-close" onclick="hideModal('stocktaking-detail-modal')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="stocktaking-detail-section">
+                    <h4 class="detail-title">基本信息</h4>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <div class="detail-label">盘点编号</div>
+                            <div class="detail-value mono-text">ST-2024-003</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">盘点名称</div>
+                            <div class="detail-value">2024年第一季度盘点</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">盘点范围</div>
+                            <div class="detail-value">全部物料</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">盘点方式</div>
+                            <div class="detail-value">全盘</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">负责人</div>
+                            <div class="detail-value">张三</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">创建时间</div>
+                            <div class="detail-value">2024-01-15 10:30</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">盘点进度</div>
+                            <div class="detail-value">
+                                <div class="progress-bar" style="width: 150px;">
+                                    <div class="progress-bar-track">
+                                        <div class="progress-bar-fill primary" style="width: 78%;"></div>
+                                    </div>
+                                    <span class="progress-bar-text">156/200</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">状态</div>
+                            <div class="detail-value"><span class="status-badge status-warning">进行中</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stocktaking-detail-section">
+                    <h4 class="detail-title">盘点明细</h4>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>物料编码</th>
+                                    <th>物料名称</th>
+                                    <th>账面数量</th>
+                                    <th>实盘数量</th>
+                                    <th>差异数量</th>
+                                    <th>状态</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="mono-text">MAT-001</td>
+                                    <td>Harris苏木素染液</td>
+                                    <td>24</td>
+                                    <td>22</td>
+                                    <td><span style="color: #ef4444; font-weight: 600;">-2</span></td>
+                                    <td><span class="status-badge status-error">盘亏</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="mono-text">MAT-011</td>
+                                    <td>伊红Y染液</td>
+                                    <td>36</td>
+                                    <td>38</td>
+                                    <td><span style="color: #10b981; font-weight: 600;">+2</span></td>
+                                    <td><span class="status-badge status-success">盘盈</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="mono-text">MAT-101</td>
+                                    <td>Ki-67抗体</td>
+                                    <td>15</td>
+                                    <td>15</td>
+                                    <td><span style="color: #6b7280;">0</span></td>
+                                    <td><span class="status-badge status-success">相符</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="mono-text">MAT-102</td>
+                                    <td>P53抗体</td>
+                                    <td>12</td>
+                                    <td>10</td>
+                                    <td><span style="color: #ef4444; font-weight: 600;">-2</span></td>
+                                    <td><span class="status-badge status-error">盘亏</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="mono-text">MAT-111</td>
+                                    <td>EnVision二抗试剂盒</td>
+                                    <td>8</td>
+                                    <td>8</td>
+                                    <td><span style="color: #6b7280;">0</span></td>
+                                    <td><span class="status-badge status-success">相符</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideModal('stocktaking-detail-modal')">关闭</button>
+                <button class="btn btn-primary" onclick="hideModal('stocktaking-detail-modal'); showModal('stocktaking-adjust-modal')">处理差异</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 处理差异弹窗 -->
+    <div id="stocktaking-adjust-modal" class="modal">
+        <div class="modal-overlay" onclick="hideModal('stocktaking-adjust-modal')"></div>
+        <div class="modal-container modal-lg">
+            <div class="modal-header">
+                <h3 class="modal-title">处理盘点差异</h3>
+                <button class="modal-close" onclick="hideModal('stocktaking-adjust-modal')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="margin-bottom: 16px; padding: 12px 16px; background: #fef3c7; border-radius: var(--radius-md); display: flex; align-items: center; gap: 12px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 8v4"/>
+                        <path d="M12 16h.01"/>
+                    </svg>
+                    <div>
+                        <div style="font-weight: 500; color: #92400e;">发现 12 项差异需要处理</div>
+                        <div style="font-size: 13px; color: #b45309;">选择差异原因后确认调整，系统将自动更新库存并记录操作日志</div>
+                    </div>
+                </div>
+                <div class="stocktaking-detail-section">
+                    <h4 class="detail-title">差异明细</h4>
+                    <div class="diff-item">
+                        <div class="diff-item-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </div>
+                        <div class="diff-item-content">
+                            <div class="diff-item-name">Harris苏木素染液 (MAT-001)</div>
+                            <div class="diff-item-detail">账面: 24 | 实盘: 22 | 差异: <span style="color: var(--danger);">-2</span> | 金额: <span style="color: var(--danger);">-¥560</span></div>
+                        </div>
+                        <div class="diff-item-action" style="display: flex; gap: 8px; align-items: center;">
+                            <select class="form-control" style="width: 140px;">
+                                <option value="">选择原因</option>
+                                <option value="normal">正常损耗</option>
+                                <option value="record">账务问题</option>
+                                <option value="physical">实物问题</option>
+                                <option value="other">其他</option>
+                            </select>
+                            <div class="tooltip-container">
+                                <span class="tooltip-icon">?</span>
+                                <div class="tooltip-content">
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">正常损耗</span>
+                                        <span class="tooltip-example">例：试剂挥发、干燥失重</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">账务问题</span>
+                                        <span class="tooltip-example">例：出库未登记、数量录错</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">实物问题</span>
+                                        <span class="tooltip-example">例：丢失、损坏、被盗</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">其他</span>
+                                        <span class="tooltip-example">例：盘点错误、特殊情况</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" style="width: 120px;" placeholder="备注（选填）">
+                        </div>
+                    </div>
+                    <div class="diff-item">
+                        <div class="diff-item-icon" style="background: #10b981;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                            </svg>
+                        </div>
+                        <div class="diff-item-content">
+                            <div class="diff-item-name">伊红Y染液 (MAT-011)</div>
+                            <div class="diff-item-detail">账面: 36 | 实盘: 38 | 差异: <span style="color: var(--success);">+2</span> | 金额: <span style="color: var(--success);">+¥120</span></div>
+                        </div>
+                        <div class="diff-item-action" style="display: flex; gap: 8px; align-items: center;">
+                            <select class="form-control" style="width: 140px;">
+                                <option value="">选择原因</option>
+                                <option value="normal">正常损耗</option>
+                                <option value="record">账务问题</option>
+                                <option value="physical">实物问题</option>
+                                <option value="other">其他</option>
+                            </select>
+                            <div class="tooltip-container">
+                                <span class="tooltip-icon">?</span>
+                                <div class="tooltip-content">
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">正常损耗</span>
+                                        <span class="tooltip-example">例：试剂挥发、干燥失重</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">账务问题</span>
+                                        <span class="tooltip-example">例：出库未登记、数量录错</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">实物问题</span>
+                                        <span class="tooltip-example">例：丢失、损坏、被盗</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">其他</span>
+                                        <span class="tooltip-example">例：盘点错误、特殊情况</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" style="width: 120px;" placeholder="备注（选填）">
+                        </div>
+                    </div>
+                    <div class="diff-item">
+                        <div class="diff-item-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </div>
+                        <div class="diff-item-content">
+                            <div class="diff-item-name">P53抗体 (MAT-102)</div>
+                            <div class="diff-item-detail">账面: 12 | 实盘: 10 | 差异: <span style="color: var(--danger);">-2</span> | 金额: <span style="color: var(--danger);">-¥1,100</span></div>
+                        </div>
+                        <div class="diff-item-action" style="display: flex; gap: 8px; align-items: center;">
+                            <select class="form-control" style="width: 140px;">
+                                <option value="">选择原因</option>
+                                <option value="normal">正常损耗</option>
+                                <option value="record">账务问题</option>
+                                <option value="physical">实物问题</option>
+                                <option value="other">其他</option>
+                            </select>
+                            <div class="tooltip-container">
+                                <span class="tooltip-icon">?</span>
+                                <div class="tooltip-content">
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">正常损耗</span>
+                                        <span class="tooltip-example">例：试剂挥发、干燥失重</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">账务问题</span>
+                                        <span class="tooltip-example">例：出库未登记、数量录错</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">实物问题</span>
+                                        <span class="tooltip-example">例：丢失、损坏、被盗</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-label">其他</span>
+                                        <span class="tooltip-example">例：盘点错误、特殊情况</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" style="width: 120px;" placeholder="备注（选填）">
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 16px; padding: 12px 16px; background: var(--bg-page); border-radius: var(--radius-md);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span style="font-size: 13px; color: var(--text-muted);">差异汇总</span>
+                        <span style="font-size: 14px; font-weight: 600;">净差异: <span style="color: var(--danger);">-¥1,540</span></span>
+                    </div>
+                    <div style="display: flex; gap: 16px; font-size: 13px;">
+                        <span>盘亏: <strong style="color: var(--danger);">3项 / ¥1,660</strong></span>
+                        <span>盘盈: <strong style="color: var(--success);">1项 / ¥120</strong></span>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top: 16px;">
+                    <label class="form-label">处理说明</label>
+                    <textarea class="form-control" rows="2" placeholder="请输入处理说明（选填）"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideModal('stocktaking-adjust-modal')">取消</button>
+                <button class="btn btn-primary" onclick="confirmAdjust()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px;">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                    确认调整
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 继续盘点弹窗 -->
+    <div id="continue-stocktaking-modal" class="modal">
+        <div class="modal-overlay" onclick="hideModal('continue-stocktaking-modal')"></div>
+        <div class="modal-container" style="max-width: 1200px; width: 95%;">
+            <div class="modal-header">
+                <h3 class="modal-title">继续盘点 - ST-2023-015</h3>
+                <button class="modal-close" onclick="hideModal('continue-stocktaking-modal')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body" style="padding: 16px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: 16px; margin-bottom: 16px; padding: 16px; background: var(--bg-page); border-radius: var(--radius-md);">
+                    <div>
+                        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">盘点进度</div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div class="progress-bar" style="flex: 1;">
+                                <div class="progress-bar-track">
+                                    <div class="progress-bar-fill primary" style="width: 45%;"></div>
+                                </div>
+                            </div>
+                            <strong style="font-size: 14px;">45/100</strong>
+                        </div>
+                    </div>
+                    <div style="text-align: center; padding: 8px; background: var(--bg-default); border-radius: var(--radius-sm);">
+                        <div style="font-size: 20px; font-weight: 600; color: var(--success);">42</div>
+                        <div style="font-size: 11px; color: var(--text-muted);">相符</div>
+                    </div>
+                    <div style="text-align: center; padding: 8px; background: var(--bg-default); border-radius: var(--radius-sm);">
+                        <div style="font-size: 20px; font-weight: 600; color: var(--danger);">3</div>
+                        <div style="font-size: 11px; color: var(--text-muted);">盘亏</div>
+                    </div>
+                    <div style="text-align: center; padding: 8px; background: var(--bg-default); border-radius: var(--radius-sm);">
+                        <div style="font-size: 20px; font-weight: 600; color: var(--success);">2</div>
+                        <div style="font-size: 11px; color: var(--text-muted);">盘盈</div>
+                    </div>
+                    <div style="text-align: center; padding: 8px; background: var(--bg-default); border-radius: var(--radius-sm);">
+                        <div style="font-size: 20px; font-weight: 600; color: var(--warning);">55</div>
+                        <div style="font-size: 11px; color: var(--text-muted);">待盘</div>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; gap: 12px;">
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <div style="position: relative;">
+                            <svg style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--text-muted);" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            </svg>
+                            <input type="text" class="form-control" id="stocktaking-search" style="padding-left: 36px; width: 220px;" placeholder="搜索物料编码/名称" oninput="filterStocktakingList()">
+                        </div>
+                        <div style="position: relative;">
+                            <svg style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--text-muted);" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="7" height="7"/>
+                                <rect x="14" y="3" width="7" height="7"/>
+                                <rect x="14" y="14" width="7" height="7"/>
+                                <rect x="3" y="14" width="7" height="7"/>
+                            </svg>
+                            <input type="text" class="form-control" id="stocktaking-scan" style="padding-left: 36px; width: 180px;" placeholder="扫描条码">
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <select class="form-control" id="stocktaking-filter-status" style="width: 110px;" onchange="filterStocktakingList()">
+                            <option value="all">全部盈亏</option>
+                            <option value="pending">待盘</option>
+                            <option value="matched">相符</option>
+                            <option value="diff">差异</option>
+                        </select>
+                        <select class="form-control" id="stocktaking-filter-confirm" style="width: 110px;" onchange="filterStocktakingList()">
+                            <option value="all">全部确认</option>
+                            <option value="confirmed">已确认</option>
+                            <option value="unconfirmed">未确认</option>
+                        </select>
+                        <button class="btn btn-secondary btn-sm" onclick="batchConfirmSelected()">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                            确认选中
+                        </button>
+                        <button class="btn btn-primary btn-sm" onclick="batchConfirmMatched()">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                            一键确认相符
+                        </button>
+                    </div>
+                </div>
+                <div class="table-container" style="max-height: 400px; overflow-y: auto;">
+                    <table class="data-table" id="stocktaking-table">
+                        <thead style="position: sticky; top: 0; background: var(--bg-page); z-index: 1;">
+                            <tr>
+                                <th style="width: 40px;"><input type="checkbox" id="select-all-stocktaking" onchange="toggleSelectAll(this)"></th>
+                                <th>物料编码</th>
+                                <th>物料名称</th>
+                                <th>规格型号</th>
+                                <th>账面数量</th>
+                                <th>实盘数量</th>
+                                <th>差异数量</th>
+                                <th>盈亏状态</th>
+                                <th>确认状态</th>
+                                <th style="width: 80px;">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="stocktaking-tbody">
+                            <tr data-status="matched" data-confirmed="true">
+                                <td><input type="checkbox" class="stocktaking-checkbox"></td>
+                                <td class="mono-text">MAT-001</td>
+                                <td>Harris苏木素染液</td>
+                                <td>500ml/瓶</td>
+                                <td>24</td>
+                                <td><input type="number" class="form-control form-control-sm" value="24" style="width: 70px;" data-book="24" onchange="calculateDiff(this)"></td>
+                                <td><span style="color: var(--text-muted);">0</span></td>
+                                <td><span class="status-badge status-success">相符</span></td>
+                                <td><span class="status-badge" style="background: #dcfce7; color: #16a34a;">已确认</span></td>
+                                <td><button class="btn btn-sm btn-ghost" disabled>已确认</button></td>
+                            </tr>
+                            <tr data-status="diff" data-confirmed="true">
+                                <td><input type="checkbox" class="stocktaking-checkbox"></td>
+                                <td class="mono-text">MAT-002</td>
+                                <td>Gill苏木素染液</td>
+                                <td>500ml/瓶</td>
+                                <td>12</td>
+                                <td><input type="number" class="form-control form-control-sm" value="10" style="width: 70px;" data-book="12" onchange="calculateDiff(this)"></td>
+                                <td><span style="color: var(--danger); font-weight: 600;">-2</span></td>
+                                <td><span class="status-badge status-error">盘亏</span></td>
+                                <td><span class="status-badge" style="background: #dcfce7; color: #16a34a;">已确认</span></td>
+                                <td><button class="btn btn-sm btn-ghost" disabled>已确认</button></td>
+                            </tr>
+                            <tr data-status="pending" data-confirmed="false">
+                                <td><input type="checkbox" class="stocktaking-checkbox"></td>
+                                <td class="mono-text">MAT-003</td>
+                                <td>Mayer苏木素染液</td>
+                                <td>500ml/瓶</td>
+                                <td>18</td>
+                                <td><input type="number" class="form-control form-control-sm" placeholder="输入" style="width: 70px;" data-book="18" onchange="calculateDiff(this)"></td>
+                                <td><span style="color: var(--text-muted);">-</span></td>
+                                <td><span class="status-badge status-warning">待盘</span></td>
+                                <td><span class="status-badge" style="background: #fef3c7; color: #d97706;">未确认</span></td>
+                                <td><button class="btn btn-sm btn-primary" onclick="confirmItem(this)">确认</button></td>
+                            </tr>
+                            <tr data-status="pending" data-confirmed="false">
+                                <td><input type="checkbox" class="stocktaking-checkbox"></td>
+                                <td class="mono-text">MAT-004</td>
+                                <td>改良苏木素染液</td>
+                                <td>500ml/瓶</td>
+                                <td>30</td>
+                                <td><input type="number" class="form-control form-control-sm" placeholder="输入" style="width: 70px;" data-book="30" onchange="calculateDiff(this)"></td>
+                                <td><span style="color: var(--text-muted);">-</span></td>
+                                <td><span class="status-badge status-warning">待盘</span></td>
+                                <td><span class="status-badge" style="background: #fef3c7; color: #d97706;">未确认</span></td>
+                                <td><button class="btn btn-sm btn-primary" onclick="confirmItem(this)">确认</button></td>
+                            </tr>
+                            <tr data-status="matched" data-confirmed="false">
+                                <td><input type="checkbox" class="stocktaking-checkbox"></td>
+                                <td class="mono-text">MAT-005</td>
+                                <td>伊红Y染液</td>
+                                <td>100ml/瓶</td>
+                                <td>36</td>
+                                <td><input type="number" class="form-control form-control-sm" value="36" style="width: 70px;" data-book="36" onchange="calculateDiff(this)"></td>
+                                <td><span style="color: var(--text-muted);">0</span></td>
+                                <td><span class="status-badge status-success">相符</span></td>
+                                <td><span class="status-badge" style="background: #fef3c7; color: #d97706;">未确认</span></td>
+                                <td><button class="btn btn-sm btn-primary" onclick="confirmItem(this)">确认</button></td>
+                            </tr>
+                            <tr data-status="diff" data-confirmed="false">
+                                <td><input type="checkbox" class="stocktaking-checkbox"></td>
+                                <td class="mono-text">MAT-006</td>
+                                <td>Ki-67抗体</td>
+                                <td>1ml/瓶</td>
+                                <td>15</td>
+                                <td><input type="number" class="form-control form-control-sm" value="17" style="width: 70px;" data-book="15" onchange="calculateDiff(this)"></td>
+                                <td><span style="color: var(--success); font-weight: 600;">+2</span></td>
+                                <td><span class="status-badge status-success">盘盈</span></td>
+                                <td><span class="status-badge" style="background: #fef3c7; color: #d97706;">未确认</span></td>
+                                <td><button class="btn btn-sm btn-primary" onclick="confirmItem(this)">确认</button></td>
+                            </tr>
+                            <tr data-status="pending" data-confirmed="false">
+                                <td><input type="checkbox" class="stocktaking-checkbox"></td>
+                                <td class="mono-text">MAT-007</td>
+                                <td>P53抗体</td>
+                                <td>1ml/瓶</td>
+                                <td>12</td>
+                                <td><input type="number" class="form-control form-control-sm" placeholder="输入" style="width: 70px;" data-book="12" onchange="calculateDiff(this)"></td>
+                                <td><span style="color: var(--text-muted);">-</span></td>
+                                <td><span class="status-badge status-warning">待盘</span></td>
+                                <td><span class="status-badge" style="background: #fef3c7; color: #d97706;">未确认</span></td>
+                                <td><button class="btn btn-sm btn-primary" onclick="confirmItem(this)">确认</button></td>
+                            </tr>
+                            <tr data-status="pending" data-confirmed="false">
+                                <td><input type="checkbox" class="stocktaking-checkbox"></td>
+                                <td class="mono-text">MAT-008</td>
+                                <td>EnVision二抗试剂盒</td>
+                                <td>100次/盒</td>
+                                <td>8</td>
+                                <td><input type="number" class="form-control form-control-sm" placeholder="输入" style="width: 70px;" data-book="8" onchange="calculateDiff(this)"></td>
+                                <td><span style="color: var(--text-muted);">-</span></td>
+                                <td><span class="status-badge status-warning">待盘</span></td>
+                                <td><span class="status-badge" style="background: #fef3c7; color: #d97706;">未确认</span></td>
+                                <td><button class="btn btn-sm btn-primary" onclick="confirmItem(this)">确认</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideModal('continue-stocktaking-modal')">暂停盘点</button>
+                <button class="btn btn-primary" onclick="finishStocktaking()">完成盘点</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../shared/scripts.js"></script>
+    <script>
+        const mockData = {
+            materials: {
+                '111': [
+                    { id: 'MAT-001', code: 'MAT-001', name: 'Harris苏木素染液', spec: '500ml/瓶', unit: '瓶', price: 168.00, stock: 24, location: 'A区-3-101', supplier: '北京病理科技', status: 'active' },
+                    { id: 'MAT-002', code: 'MAT-002', name: 'Gill苏木素染液', spec: '500ml/瓶', unit: '瓶', price: 185.00, stock: 12, location: 'A区-3-102', supplier: '上海生化试剂', status: 'active' },
+                    { id: 'MAT-003', code: 'MAT-003', name: 'Mayer苏木素染液', spec: '500ml/瓶', unit: '瓶', price: 145.00, stock: 18, location: 'A区-3-103', supplier: '广州医学材料', status: 'active' },
+                    { id: 'MAT-004', code: 'MAT-004', name: '改良苏木素染液', spec: '250ml/瓶', unit: '瓶', price: 98.00, stock: 30, location: 'A区-3-104', supplier: '北京病理科技', status: 'active' },
+                    { id: 'MAT-005', code: 'MAT-005', name: '铁苏木素染液', spec: '100ml/瓶', unit: '瓶', price: 128.00, stock: 8, location: 'A区-3-105', supplier: '上海生化试剂', status: 'active' }
+                ],
+                '112': [
+                    { id: 'MAT-011', code: 'MAT-011', name: '伊红Y染液', spec: '500ml/瓶', unit: '瓶', price: 85.00, stock: 36, location: 'A区-3-201', supplier: '北京病理科技', status: 'active' },
+                    { id: 'MAT-012', code: 'MAT-012', name: '醇溶性伊红', spec: '500ml/瓶', unit: '瓶', price: 92.00, stock: 24, location: 'A区-3-202', supplier: '上海生化试剂', status: 'active' },
+                    { id: 'MAT-013', code: 'MAT-013', name: '水溶性伊红', spec: '500ml/瓶', unit: '瓶', price: 78.00, stock: 20, location: 'A区-3-203', supplier: '广州医学材料', status: 'active' },
+                    { id: 'MAT-014', code: 'MAT-014', name: '伊红醇溶液', spec: '250ml/瓶', unit: '瓶', price: 58.00, stock: 28, location: 'A区-3-204', supplier: '北京病理科技', status: 'active' }
+                ],
+                '121': [
+                    { id: 'MAT-101', code: 'MAT-101', name: 'Ki-67抗体', spec: '1ml/支', unit: '支', price: 680.00, stock: 15, location: 'B区-1-101', supplier: 'DAKO', status: 'active' },
+                    { id: 'MAT-102', code: 'MAT-102', name: 'P53抗体', spec: '1ml/支', unit: '支', price: 520.00, stock: 12, location: 'B区-1-102', supplier: 'DAKO', status: 'active' },
+                    { id: 'MAT-103', code: 'MAT-103', name: 'ER抗体', spec: '1ml/支', unit: '支', price: 450.00, stock: 18, location: 'B区-1-103', supplier: '罗氏诊断', status: 'active' },
+                    { id: 'MAT-104', code: 'MAT-104', name: 'PR抗体', spec: '1ml/支', unit: '支', price: 450.00, stock: 16, location: 'B区-1-104', supplier: '罗氏诊断', status: 'active' }
+                ]
+            },
+            categoryMap: {
+                '111': { name: '苏木素染液', path: '试剂类 > HE染色试剂 > 苏木素染液' },
+                '112': { name: '伊红染液', path: '试剂类 > HE染色试剂 > 伊红染液' },
+                '121': { name: '一抗', path: '试剂类 > 免疫组化试剂 > 一抗' }
+            },
+            leafCategories: [
+                { id: '111', name: '苏木素染液', path: '试剂类 > HE染色试剂 > 苏木素染液' },
+                { id: '112', name: '伊红染液', path: '试剂类 > HE染色试剂 > 伊红染液' },
+                { id: '121', name: '一抗', path: '试剂类 > 免疫组化试剂 > 一抗' }
+            ]
+        };
+        
+        let currentStep = 1;
+        let currentOpenModal = null;
+        let currentStocktakingDetail = null;
+        let currentStocktakingIndex = -1;
+        
+        const allMaterials = [];
+        let selectedMaterialsForStocktaking = [];
+        let currentStocktakingItems = [];
+        
+        function initMaterialsData() {
+            Object.keys(mockData.materials).forEach(categoryId => {
+                mockData.materials[categoryId].forEach(mat => {
+                    allMaterials.push({
+                        ...mat,
+                        categoryId: categoryId,
+                        categoryName: mockData.categoryMap[categoryId]?.name || '未分类'
+                    });
+                });
+            });
+        }
+        
+        function showModal(modalId, data = null) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            currentOpenModal = modalId;
+            
+            if (modalId === 'create-stocktaking-modal') {
+                resetCreateForm();
+            }
+            
+            if (modalId === 'stocktaking-detail-modal' && data) {
+                renderStocktakingDetail(data);
+            }
+            
+            if (modalId === 'continue-stocktaking-modal' && data !== null) {
+                renderContinueStocktaking(data);
+            }
+            
+            setTimeout(() => {
+                const firstInput = modal.querySelector('input:not([type="hidden"]):not([type="checkbox"]), button:not(.modal-close), select, textarea');
+                if (firstInput) {
+                    firstInput.focus();
+                }
+            }, 100);
+        }
+        
+        function hideModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            currentOpenModal = null;
+        }
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && currentOpenModal) {
+                hideModal(currentOpenModal);
+            }
+        });
+        
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.style.cssText = 'position: fixed; top: 20px; right: 20px; padding: 12px 20px; background: white; border-radius: 8px; box-shadow: 0 10px 15px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 8px; font-size: 14px; z-index: 1000; opacity: 0; transform: translateX(100%); transition: all 0.15s ease;';
+            toast.innerHTML = `
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    ${type === 'success' ? '<polyline points="20 6 9 17 4 12"/>' : type === 'error' ? '<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>' : type === 'warning' ? '<circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/>' : '<circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>'}
+                </svg>
+                <span>${message}</span>
+            `;
+            if (type === 'success') toast.style.borderLeft = '4px solid #22c55e';
+            else if (type === 'error') toast.style.borderLeft = '4px solid #ef4444';
+            else if (type === 'warning') toast.style.borderLeft = '4px solid #f59e0b';
+            else toast.style.borderLeft = '4px solid #3b82f6';
+            
+            document.body.appendChild(toast);
+            setTimeout(() => toast.style.cssText += 'opacity: 1; transform: translateX(0);', 10);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+        
+        function resetCreateForm() {
+            currentStep = 1;
+            updateStepUI();
+            document.getElementById('stocktaking-name').value = '';
+            document.getElementById('stocktaking-type').selectedIndex = 0;
+            document.getElementById('stocktaking-scope').selectedIndex = 0;
+            document.getElementById('stocktaking-manager').selectedIndex = 0;
+            document.getElementById('scope-detail-section').style.display = 'none';
+        }
+        
+        function nextStep() {
+            if (currentStep === 1) {
+                if (!validateStep1()) return;
+                loadMaterialsForStep2();
+            }
+            if (currentStep < 3) {
+                currentStep++;
+                updateStepUI();
+            }
+        }
+        
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStepUI();
+            }
+        }
+        
+        function validateStep1() {
+            const name = document.getElementById('stocktaking-name').value;
+            const type = document.getElementById('stocktaking-type').value;
+            const scope = document.getElementById('stocktaking-scope').value;
+            const manager = document.getElementById('stocktaking-manager').value;
+            
+            if (!name) {
+                showToast('请输入盘点名称', 'warning');
+                return false;
+            }
+            if (!type) {
+                showToast('请选择盘点方式', 'warning');
+                return false;
+            }
+            if (!scope) {
+                showToast('请选择盘点范围', 'warning');
+                return false;
+            }
+            if (!manager) {
+                showToast('请选择负责人', 'warning');
+                return false;
+            }
+            return true;
+        }
+        
+        function updateStepUI() {
+            for (let i = 1; i <= 3; i++) {
+                const indicator = document.getElementById(`step${i}-indicator`);
+                const content = document.getElementById(`step${i}-content`);
+                
+                if (i < currentStep) {
+                    indicator.classList.remove('active');
+                    indicator.classList.add('completed');
+                    content.style.display = 'none';
+                } else if (i === currentStep) {
+                    indicator.classList.add('active');
+                    indicator.classList.remove('completed');
+                    content.style.display = 'block';
+                } else {
+                    indicator.classList.remove('active', 'completed');
+                    content.style.display = 'none';
+                }
+            }
+            
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const createBtn = document.getElementById('create-btn');
+            const startBtn = document.getElementById('start-btn');
+            const cancelBtn = document.getElementById('cancel-btn');
+            
+            if (currentStep === 1) {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'inline-flex';
+                createBtn.style.display = 'none';
+                startBtn.style.display = 'none';
+                cancelBtn.style.display = 'inline-flex';
+            } else if (currentStep === 2) {
+                prevBtn.style.display = 'inline-flex';
+                nextBtn.style.display = 'none';
+                createBtn.style.display = 'inline-flex';
+                startBtn.style.display = 'none';
+                cancelBtn.style.display = 'inline-flex';
+            } else if (currentStep === 3) {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+                createBtn.style.display = 'none';
+                startBtn.style.display = 'inline-flex';
+                cancelBtn.style.display = 'none';
+            }
+        }
+        
+        function loadMaterialsForStep2() {
+            const scope = document.getElementById('stocktaking-scope').value;
+            const tbody = document.getElementById('material-list-tbody');
+            
+            let filteredMaterials = [...allMaterials];
+            
+            if (scope === 'category') {
+                const selectedCategories = getSelectedCategories();
+                filteredMaterials = allMaterials.filter(mat => 
+                    selectedCategories.includes(mat.categoryId) || 
+                    selectedCategories.some(catId => mat.categoryId.startsWith(catId))
+                );
+            } else if (scope === 'location') {
+                const selectedLocations = getSelectedLocations();
+                filteredMaterials = allMaterials.filter(mat => 
+                    selectedLocations.some(loc => mat.location && mat.location.startsWith(loc))
+                );
+            }
+            
+            selectedMaterialsForStocktaking = filteredMaterials;
+            
+            document.getElementById('scope-preview-text').textContent = 
+                scope === 'all' ? `全部物料，共 ${filteredMaterials.length} 种` :
+                scope === 'category' ? `指定分类，共 ${filteredMaterials.length} 种` :
+                `指定库位，共 ${filteredMaterials.length} 种`;
+            
+            tbody.innerHTML = filteredMaterials.map(mat => `
+                <tr>
+                    <td><input type="checkbox" checked data-material-id="${mat.id}"></td>
+                    <td class="mono-text">${mat.code || mat.id}</td>
+                    <td>${mat.name}</td>
+                    <td>${mat.categoryName}</td>
+                    <td>${mat.stock}</td>
+                    <td>${mat.location || '-'}</td>
+                </tr>
+            `).join('');
+            
+            updateSelectedCount();
+        }
+        
+        function getSelectedCategories() {
+            const checkboxes = document.querySelectorAll('#scope-detail-options input[type="checkbox"]:checked');
+            const categoryMap = {
+                'HE染色试剂': ['111', '112', '113'],
+                '免疫组化试剂': ['121', '122', '123'],
+                '特殊染色试剂': ['131', '132'],
+                '制片耗材': ['21'],
+                '染色耗材': ['22'],
+                '包装耗材': ['23']
+            };
+            const selected = [];
+            checkboxes.forEach(cb => {
+                const label = cb.parentElement.textContent.trim();
+                if (categoryMap[label]) {
+                    selected.push(...categoryMap[label]);
+                }
+            });
+            return selected;
+        }
+        
+        function getSelectedLocations() {
+            const checkboxes = document.querySelectorAll('#scope-detail-options input[type="checkbox"]:checked');
+            const locationMap = {
+                'A区（试剂）': 'A',
+                'B区（抗体）': 'B',
+                'C区（耗材）': 'C'
+            };
+            const selected = [];
+            checkboxes.forEach(cb => {
+                const label = cb.parentElement.textContent.trim();
+                if (locationMap[label]) {
+                    selected.push(locationMap[label]);
+                }
+            });
+            return selected;
+        }
+        
+        function updateScopeDetail() {
+            const scope = document.getElementById('stocktaking-scope').value;
+            const detailSection = document.getElementById('scope-detail-section');
+            const detailLabel = document.getElementById('scope-detail-label');
+            const detailOptions = document.getElementById('scope-detail-options');
+            
+            if (scope === 'category') {
+                detailSection.style.display = 'block';
+                detailLabel.textContent = '选择分类';
+                const leafCategories = mockData.leafCategories || [];
+                detailOptions.innerHTML = leafCategories.slice(0, 8).map(cat => `
+                    <label style="display: flex; align-items: center; gap: 4px; padding: 6px 12px; background: #f3f4f6; border-radius: 4px; cursor: pointer;">
+                        <input type="checkbox" checked> ${cat.name}
+                    </label>
+                `).join('');
+            } else if (scope === 'location') {
+                detailSection.style.display = 'block';
+                detailLabel.textContent = '选择库位';
+                detailOptions.innerHTML = `
+                    <label style="display: flex; align-items: center; gap: 4px; padding: 6px 12px; background: #f3f4f6; border-radius: 4px; cursor: pointer;">
+                        <input type="checkbox" checked> A区（试剂）
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 4px; padding: 6px 12px; background: #f3f4f6; border-radius: 4px; cursor: pointer;">
+                        <input type="checkbox"> B区（抗体）
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 4px; padding: 6px 12px; background: #f3f4f6; border-radius: 4px; cursor: pointer;">
+                        <input type="checkbox"> C区（耗材）
+                    </label>
+                `;
+            } else {
+                detailSection.style.display = 'none';
+            }
+        }
+        
+        function toggleAllMaterials(checkbox) {
+            const checkboxes = document.querySelectorAll('#material-list-tbody input[type="checkbox"]');
+            checkboxes.forEach(cb => cb.checked = checkbox.checked);
+            updateSelectedCount();
+        }
+        
+        function selectAllMaterials() {
+            const checkboxes = document.querySelectorAll('#material-list-tbody input[type="checkbox"]');
+            checkboxes.forEach(cb => cb.checked = true);
+            updateSelectedCount();
+        }
+        
+        function deselectAllMaterials() {
+            const checkboxes = document.querySelectorAll('#material-list-tbody input[type="checkbox"]');
+            checkboxes.forEach(cb => cb.checked = false);
+            updateSelectedCount();
+        }
+        
+        function updateSelectedCount() {
+            const checkboxes = document.querySelectorAll('#material-list-tbody input[type="checkbox"]:checked');
+            document.getElementById('selected-count').textContent = checkboxes.length;
+        }
+        
+        function generateStocktakingId() {
+            const year = new Date().getFullYear();
+            const count = stocktakingRecords.filter(r => r.id.startsWith(`ST-${year}`)).length + 1;
+            return `ST-${year}-${String(count).padStart(3, '0')}`;
+        }
+        
+        function createStocktaking() {
+            const name = document.getElementById('stocktaking-name').value;
+            const scope = document.getElementById('stocktaking-scope');
+            const scopeText = scope.options[scope.selectedIndex].text;
+            const manager = document.getElementById('stocktaking-manager');
+            const managerText = manager.options[manager.selectedIndex].text;
+            const checkboxes = document.querySelectorAll('#material-list-tbody input[type="checkbox"]:checked');
+            
+            const selectedMaterialIds = Array.from(checkboxes).map(cb => cb.dataset.materialId);
+            const selectedMats = selectedMaterialsForStocktaking.filter(m => selectedMaterialIds.includes(m.id));
+            
+            const newId = generateStocktakingId();
+            
+            document.getElementById('confirm-name').textContent = name;
+            document.getElementById('confirm-scope').textContent = scopeText;
+            document.getElementById('confirm-count').textContent = selectedMats.length + ' 种';
+            document.getElementById('confirm-manager').textContent = managerText;
+            document.querySelector('.success-subtitle strong').textContent = newId;
+            
+            const newRecord = {
+                id: newId,
+                name: name,
+                scope: scopeText,
+                type: document.getElementById('stocktaking-type').value === 'full' ? '全盘' : '抽盘',
+                progress: 0,
+                progressText: `0/${selectedMats.length}`,
+                totalItems: selectedMats.length,
+                diff: '待盘点',
+                diffClass: 'muted',
+                manager: managerText,
+                time: new Date().toLocaleString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(/\//g, '-'),
+                status: '进行中',
+                statusClass: 'warning',
+                materials: selectedMats.map(m => ({
+                    id: m.id,
+                    code: m.code,
+                    name: m.name,
+                    spec: m.spec,
+                    unit: m.unit,
+                    bookQty: m.stock,
+                    actualQty: null,
+                    location: m.location,
+                    price: m.price,
+                    status: 'pending',
+                    confirmed: false
+                }))
+            };
+            stocktakingRecords.unshift(newRecord);
+            
+            currentStep = 3;
+            updateStepUI();
+        }
+        
+        function renderStocktakingDetail(record) {
+            const modal = document.getElementById('stocktaking-detail-modal');
+            if (!modal || !record) return;
+            
+            modal.querySelector('.modal-title').textContent = '盘点详情 - ' + record.id;
+            
+            const detailGrid = modal.querySelector('.detail-grid');
+            detailGrid.innerHTML = `
+                <div class="detail-item">
+                    <div class="detail-label">盘点编号</div>
+                    <div class="detail-value mono-text">${record.id}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">盘点名称</div>
+                    <div class="detail-value">${record.name}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">盘点范围</div>
+                    <div class="detail-value">${record.scope}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">盘点方式</div>
+                    <div class="detail-value">${record.type}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">负责人</div>
+                    <div class="detail-value">${record.manager}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">创建时间</div>
+                    <div class="detail-value">${record.time}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">盘点进度</div>
+                    <div class="detail-value">
+                        <div class="progress-bar" style="width: 150px;">
+                            <div class="progress-bar-track">
+                                <div class="progress-bar-fill ${record.status === '已取消' ? 'muted' : record.status === '已完成' ? 'success' : 'primary'}" style="width: ${record.progress}%;"></div>
+                            </div>
+                            <span class="progress-bar-text">${record.progressText}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">状态</div>
+                    <div class="detail-value"><span class="status-badge status-${record.statusClass}">${record.status}</span></div>
+                </div>
+            `;
+            
+            if (record.materials && record.materials.length > 0) {
+                const detailTbody = modal.querySelector('.stocktaking-detail-section:last-child tbody');
+                if (detailTbody) {
+                    detailTbody.innerHTML = record.materials.map(mat => {
+                        const diff = mat.actualQty !== null ? mat.actualQty - mat.bookQty : null;
+                        const diffDisplay = diff === null ? '-' : 
+                            diff === 0 ? '<span style="color: #6b7280;">0</span>' :
+                            diff > 0 ? `<span style="color: #10b981; font-weight: 600;">+${diff}</span>` :
+                            `<span style="color: #ef4444; font-weight: 600;">${diff}</span>`;
+                        const statusDisplay = mat.status === 'pending' ? '<span class="status-badge status-warning">待盘</span>' :
+                            mat.status === 'matched' ? '<span class="status-badge status-success">相符</span>' :
+                            mat.status === 'surplus' ? '<span class="status-badge status-success">盘盈</span>' :
+                            '<span class="status-badge status-error">盘亏</span>';
+                        
+                        return `
+                            <tr>
+                                <td class="mono-text">${mat.code || mat.id}</td>
+                                <td>${mat.name}</td>
+                                <td>${mat.bookQty}</td>
+                                <td>${mat.actualQty !== null ? mat.actualQty : '-'}</td>
+                                <td>${diffDisplay}</td>
+                                <td>${statusDisplay}</td>
+                            </tr>
+                        `;
+                    }).join('');
+                }
+            }
+        }
+        
+        function renderContinueStocktaking(recordIndex) {
+            const record = stocktakingRecords[recordIndex];
+            if (!record || !record.materials) return;
+            
+            currentStocktakingItems = record.materials;
+            
+            const modal = document.getElementById('continue-stocktaking-modal');
+            modal.querySelector('.modal-title').textContent = '继续盘点 - ' + record.id;
+            
+            updateStocktakingProgress();
+            renderStocktakingItems();
+        }
+        
+        function updateStocktakingProgress() {
+            const total = currentStocktakingItems.length;
+            const confirmed = currentStocktakingItems.filter(m => m.confirmed).length;
+            const matched = currentStocktakingItems.filter(m => m.status === 'matched').length;
+            const deficit = currentStocktakingItems.filter(m => m.status === 'deficit').length;
+            const surplus = currentStocktakingItems.filter(m => m.status === 'surplus').length;
+            const pending = currentStocktakingItems.filter(m => m.status === 'pending').length;
+            
+            const progressDiv = document.querySelector('#continue-stocktaking-modal .modal-body > div:first-child');
+            progressDiv.innerHTML = `
+                <div>
+                    <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">盘点进度</div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <div class="progress-bar" style="flex: 1;">
+                            <div class="progress-bar-track">
+                                <div class="progress-bar-fill primary" style="width: ${total > 0 ? (confirmed / total * 100) : 0}%;"></div>
+                            </div>
+                        </div>
+                        <strong style="font-size: 14px;">${confirmed}/${total}</strong>
+                    </div>
+                </div>
+                <div style="text-align: center; padding: 8px; background: var(--bg-default); border-radius: var(--radius-sm);">
+                    <div style="font-size: 20px; font-weight: 600; color: var(--success);">${matched}</div>
+                    <div style="font-size: 11px; color: var(--text-muted);">相符</div>
+                </div>
+                <div style="text-align: center; padding: 8px; background: var(--bg-default); border-radius: var(--radius-sm);">
+                    <div style="font-size: 20px; font-weight: 600; color: var(--danger);">${deficit}</div>
+                    <div style="font-size: 11px; color: var(--text-muted);">盘亏</div>
+                </div>
+                <div style="text-align: center; padding: 8px; background: var(--bg-default); border-radius: var(--radius-sm);">
+                    <div style="font-size: 20px; font-weight: 600; color: var(--success);">${surplus}</div>
+                    <div style="font-size: 11px; color: var(--text-muted);">盘盈</div>
+                </div>
+                <div style="text-align: center; padding: 8px; background: var(--bg-default); border-radius: var(--radius-sm);">
+                    <div style="font-size: 20px; font-weight: 600; color: var(--warning);">${pending}</div>
+                    <div style="font-size: 11px; color: var(--text-muted);">待盘</div>
+                </div>
+            `;
+        }
+        
+        function renderStocktakingItems() {
+            const tbody = document.getElementById('stocktaking-tbody');
+            
+            tbody.innerHTML = currentStocktakingItems.map((mat, index) => {
+                const diff = mat.actualQty !== null ? mat.actualQty - mat.bookQty : null;
+                const diffDisplay = diff === null ? '<span style="color: var(--text-muted);">-</span>' :
+                    diff === 0 ? '<span style="color: var(--text-muted);">0</span>' :
+                    diff > 0 ? `<span style="color: var(--success); font-weight: 600;">+${diff}</span>` :
+                    `<span style="color: var(--danger); font-weight: 600;">${diff}</span>`;
+                const statusDisplay = mat.status === 'pending' ? '<span class="status-badge status-warning">待盘</span>' :
+                    mat.status === 'matched' ? '<span class="status-badge status-success">相符</span>' :
+                    mat.status === 'surplus' ? '<span class="status-badge status-success">盘盈</span>' :
+                    '<span class="status-badge status-error">盘亏</span>';
+                const confirmDisplay = mat.confirmed ? 
+                    '<span class="status-badge" style="background: #dcfce7; color: #16a34a;">已确认</span>' :
+                    '<span class="status-badge" style="background: #fef3c7; color: #d97706;">未确认</span>';
+                const actionDisplay = mat.confirmed ? 
+                    '<button class="btn btn-sm btn-ghost" disabled>已确认</button>' :
+                    `<button class="btn btn-sm btn-primary" onclick="confirmStocktakingItem(${index})">确认</button>`;
+                
+                return `
+                    <tr data-status="${mat.status}" data-confirmed="${mat.confirmed}">
+                        <td><input type="checkbox" class="stocktaking-checkbox" ${mat.confirmed ? 'disabled' : ''}></td>
+                        <td class="mono-text">${mat.code || mat.id}</td>
+                        <td>${mat.name}</td>
+                        <td>${mat.spec || '-'}</td>
+                        <td>${mat.bookQty}</td>
+                        <td><input type="number" class="form-control form-control-sm" value="${mat.actualQty !== null ? mat.actualQty : ''}" style="width: 70px;" data-book="${mat.bookQty}" data-index="${index}" onchange="calculateStocktakingDiff(this)" placeholder="输入"></td>
+                        <td>${diffDisplay}</td>
+                        <td>${statusDisplay}</td>
+                        <td>${confirmDisplay}</td>
+                        <td>${actionDisplay}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+        
+        function calculateStocktakingDiff(input) {
+            const index = parseInt(input.dataset.index);
+            const bookQty = parseInt(input.dataset.book);
+            const actualQty = parseInt(input.value) || 0;
+            const diff = actualQty - bookQty;
+            
+            currentStocktakingItems[index].actualQty = actualQty;
+            
+            if (input.value === '') {
+                currentStocktakingItems[index].status = 'pending';
+            } else if (diff === 0) {
+                currentStocktakingItems[index].status = 'matched';
+            } else if (diff > 0) {
+                currentStocktakingItems[index].status = 'surplus';
+            } else {
+                currentStocktakingItems[index].status = 'deficit';
+            }
+            
+            renderStocktakingItems();
+            updateStocktakingProgress();
+        }
+        
+        function confirmStocktakingItem(index) {
+            const mat = currentStocktakingItems[index];
+            if (mat.actualQty === null) {
+                showToast('请先输入实盘数量', 'warning');
+                return;
+            }
+            mat.confirmed = true;
+            renderStocktakingItems();
+            updateStocktakingProgress();
+            showToast('盘点确认成功', 'success');
+        }
+        
+        function finishStocktaking() {
+            const pendingCount = currentStocktakingItems.filter(m => !m.confirmed).length;
+            
+            if (pendingCount > 0) {
+                showToast(`还有 ${pendingCount} 项未确认，请先完成盘点`, 'warning');
+                return;
+            }
+            
+            const confirmedCount = currentStocktakingItems.length;
+            const diffCount = currentStocktakingItems.filter(m => m.status === 'deficit' || m.status === 'surplus').length;
+            
+            const record = stocktakingRecords[currentStocktakingIndex];
+            if (record) {
+                record.progress = 100;
+                record.progressText = `${confirmedCount}/${confirmedCount}`;
+                record.diff = diffCount + '项';
+                record.diffClass = diffCount > 0 ? 'warning' : 'success';
+                record.status = '已完成';
+                record.statusClass = 'success';
+                record.materials = currentStocktakingItems;
+            }
+            
+            showToast(`盘点完成！共确认 ${confirmedCount} 项，发现 ${diffCount} 项差异`, 'success');
+            hideModal('continue-stocktaking-modal');
+            renderStocktakingTable(stocktakingRecords);
+            updateStats();
+        }
+        
+        function updateMaterialStockInMock(materialId, newStock) {
+            Object.keys(mockData.materials).forEach(categoryId => {
+                const matIndex = mockData.materials[categoryId].findIndex(m => m.id === materialId);
+                if (matIndex !== -1) {
+                    mockData.materials[categoryId][matIndex].stock = newStock;
+                }
+            });
+        }
+        
+        function confirmAdjust() {
+            if (isAdjusting) return;
+            
+            const reasonSelects = document.querySelectorAll('.diff-reason-select');
+            let allSelected = true;
+            reasonSelects.forEach(select => {
+                if (!select.value) allSelected = false;
+            });
+            
+            if (!allSelected) {
+                showToast('请为所有差异项选择原因', 'warning');
+                return;
+            }
+            
+            isAdjusting = true;
+            const btn = event.target;
+            btn.disabled = true;
+            btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px; animation: spin 1s linear infinite;"><circle cx="12" cy="12" r="10" stroke-dasharray="31.4" stroke-dashoffset="10"/></svg>处理中...';
+            
+            setTimeout(() => {
+                reasonSelects.forEach(select => {
+                    const materialId = select.dataset.materialId;
+                    const mat = currentStocktakingItems.find(m => m.id === materialId);
+                    if (mat && (mat.status === 'deficit' || mat.status === 'surplus')) {
+                        const matInAll = allMaterials.find(m => m.id === materialId);
+                        if (matInAll) {
+                            matInAll.stock = mat.actualQty;
+                            updateMaterialStockInMock(materialId, mat.actualQty);
+                        }
+                    }
+                });
+                
+                if (currentAdjustRecordIndex >= 0) {
+                    const record = stocktakingRecords[currentAdjustRecordIndex];
+                    if (record) {
+                        record.materials.forEach(mat => {
+                            if (mat.status === 'deficit' || mat.status === 'surplus') {
+                                mat.adjusted = true;
+                            }
+                        });
+                        record.diff = '已调整';
+                    }
+                }
+                
+                isAdjusting = false;
+                btn.disabled = false;
+                btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px;"><path d="M20 6L9 17l-5-5"/></svg>确认调整';
+                
+                hideModal('stocktaking-adjust-modal');
+                showToast('差异调整成功，库存已更新', 'success');
+                renderStocktakingTable(stocktakingRecords);
+                updateStats();
+            }, 800);
+        }
+        
+        let isAdjusting = false;
+        let currentAdjustRecordIndex = -1;
+        
+        function showAdjustModal(recordIndex) {
+            const record = stocktakingRecords[recordIndex];
+            if (!record || !record.materials) {
+                showToast('未找到盘点记录或无差异数据', 'error');
+                return;
+            }
+            
+            const diffItems = record.materials.filter(m => m.status === 'deficit' || m.status === 'surplus');
+            if (diffItems.length === 0) {
+                showToast('该盘点记录无差异项', 'warning');
+                return;
+            }
+            
+            currentAdjustRecordIndex = recordIndex;
+            currentStocktakingItems = record.materials;
+            
+            const modal = document.getElementById('stocktaking-adjust-modal');
+            modal.querySelector('.modal-title').textContent = '处理盘点差异 - ' + record.id;
+            
+            const warningDiv = modal.querySelector('.modal-body > div:first-child');
+            warningDiv.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 8v4"/>
+                    <path d="M12 16h.01"/>
+                </svg>
+                <div>
+                    <div style="font-weight: 500; color: #92400e;">发现 ${diffItems.length} 项差异需要处理</div>
+                    <div style="font-size: 13px; color: #b45309;">选择差异原因后确认调整，系统将自动更新库存并记录操作日志</div>
+                </div>
+            `;
+            
+            const detailSection = modal.querySelector('.stocktaking-detail-section');
+            const existingDiffItems = detailSection.querySelectorAll('.diff-item');
+            existingDiffItems.forEach(item => item.remove());
+            
+            diffItems.forEach((mat, idx) => {
+                const diff = mat.actualQty - mat.bookQty;
+                const diffDisplay = diff > 0 ? `+${diff}` : `${diff}`;
+                const diffColor = diff > 0 ? 'var(--success)' : 'var(--danger)';
+                const amountDiff = Math.abs(diff) * (mat.price || 0);
+                const amountDisplay = diff > 0 ? `+¥${amountDiff.toFixed(2)}` : `-¥${amountDiff.toFixed(2)}`;
+                const iconSvg = diff > 0 ? 
+                    '<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>' :
+                    '<line x1="5" y1="12" x2="19" y2="12"/>';
+                
+                const diffItemHtml = `
+                    <div class="diff-item" data-material-id="${mat.id}" data-diff="${diff}">
+                        <div class="diff-item-icon" style="color: ${diffColor};">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                ${iconSvg}
+                            </svg>
+                        </div>
+                        <div class="diff-item-content">
+                            <div class="diff-item-name">${mat.name} (${mat.code || mat.id})</div>
+                            <div class="diff-item-detail">账面: ${mat.bookQty} | 实盘: ${mat.actualQty} | 差异: <span style="color: ${diffColor}; font-weight: 600;">${diffDisplay}</span> | 金额: <span style="color: ${diffColor};">${amountDisplay}</span></div>
+                        </div>
+                        <div class="diff-item-action" style="display: flex; gap: 8px; align-items: center;">
+                            <select class="form-control diff-reason-select" style="width: 140px;" data-material-id="${mat.id}">
+                                <option value="">选择原因</option>
+                                <option value="normal">正常损耗</option>
+                                <option value="record">账务问题</option>
+                                <option value="physical">实物问题</option>
+                                <option value="other">其他原因</option>
+                            </select>
+                        </div>
+                    </div>
+                `;
+                detailSection.insertAdjacentHTML('beforeend', diffItemHtml);
+            });
+            
+            showModal('stocktaking-adjust-modal');
+        }
+        
+        function updateStats() {
+            const inProgress = stocktakingRecords.filter(r => r.status === '进行中').length;
+            const completed = stocktakingRecords.filter(r => r.status === '已完成').length;
+            const pendingDiff = stocktakingRecords.reduce((sum, r) => {
+                if (r.status === '已完成' && r.materials) {
+                    return sum + r.materials.filter(m => m.status === 'deficit' || m.status === 'surplus').length;
+                }
+                return sum;
+            }, 0);
+            
+            document.querySelector('.stat-card-primary .stat-value').textContent = inProgress;
+            document.querySelectorAll('.stat-card')[1].querySelector('.stat-value').textContent = completed;
+            document.querySelector('.stat-card-warning .stat-value').textContent = pendingDiff;
+        }
+        
+        function toggleSelectAll(checkbox) {
+            const checkboxes = document.querySelectorAll('.stocktaking-checkbox');
+            checkboxes.forEach(cb => {
+                const row = cb.closest('tr');
+                if (row.style.display !== 'none' && row.dataset.confirmed === 'false') {
+                    cb.checked = checkbox.checked;
+                }
+            });
+        }
+        
+        function filterStocktakingList() {
+            const search = document.getElementById('stocktaking-search').value.toLowerCase();
+            const statusFilter = document.getElementById('stocktaking-filter-status').value;
+            const confirmFilter = document.getElementById('stocktaking-filter-confirm').value;
+            const rows = document.querySelectorAll('#stocktaking-tbody tr');
+            
+            rows.forEach(row => {
+                const code = row.cells[1].textContent.toLowerCase();
+                const name = row.cells[2].textContent.toLowerCase();
+                const status = row.dataset.status;
+                const confirmed = row.dataset.confirmed;
+                
+                let show = true;
+                if (search && !code.includes(search) && !name.includes(search)) {
+                    show = false;
+                }
+                if (statusFilter === 'pending' && status !== 'pending') show = false;
+                if (statusFilter === 'matched' && status !== 'matched') show = false;
+                if (statusFilter === 'diff' && status !== 'diff') show = false;
+                if (confirmFilter === 'confirmed' && confirmed !== 'true') show = false;
+                if (confirmFilter === 'unconfirmed' && confirmed !== 'false') show = false;
+                
+                row.style.display = show ? '' : 'none';
+            });
+        }
+        
+        function batchConfirmMatched() {
+            let count = 0;
+            currentStocktakingItems.forEach((mat, index) => {
+                if (!mat.confirmed && mat.status === 'pending') {
+                    mat.actualQty = mat.bookQty;
+                    mat.status = 'matched';
+                    mat.confirmed = true;
+                    count++;
+                }
+            });
+            renderStocktakingItems();
+            updateStocktakingProgress();
+            showToast('已批量确认相符 ' + count + ' 项', 'success');
+        }
+        
+        function batchConfirmSelected() {
+            const checkboxes = document.querySelectorAll('.stocktaking-checkbox:checked');
+            if (checkboxes.length === 0) {
+                showToast('请先选择要确认的物料', 'warning');
+                return;
+            }
+            let count = 0;
+            checkboxes.forEach(cb => {
+                const row = cb.closest('tr');
+                if (row.dataset.confirmed === 'false') {
+                    const index = parseInt(row.querySelector('input[type="number"]').dataset.index);
+                    if (currentStocktakingItems[index].actualQty !== null) {
+                        currentStocktakingItems[index].confirmed = true;
+                        count++;
+                    }
+                }
+            });
+            renderStocktakingItems();
+            updateStocktakingProgress();
+            showToast('已批量确认 ' + count + ' 项', 'success');
+        }
+        
+        const stocktakingRecords = [
+            { id: 'ST-2024-003', name: '2024年第一季度盘点', scope: '全部物料', type: '全盘', progress: 78, progressText: '156/200', totalItems: 200, diff: '待盘点', diffClass: 'muted', manager: '张三', time: '2024-01-15 10:30', status: '进行中', statusClass: 'warning', materials: [] },
+            { id: 'ST-2024-002', name: '试剂类专项盘点', scope: '指定分类', type: '抽盘', progress: 100, progressText: '50/50', totalItems: 50, diff: '0项', diffClass: 'success', manager: '李四', time: '2024-01-10 14:20', status: '已完成', statusClass: 'success', materials: [] },
+            { id: 'ST-2024-001', name: '年末大盘点', scope: '全部物料', type: '全盘', progress: 100, progressText: '320/320', totalItems: 320, diff: '3项', diffClass: 'warning', manager: '王五', time: '2023-12-25 09:00', status: '已完成', statusClass: 'success', materials: [] },
+            { id: 'ST-2023-015', name: '耗材类抽盘', scope: '指定分类', type: '抽盘', progress: 45, progressText: '45/100', totalItems: 100, diff: '-', diffClass: 'muted', manager: '张三', time: '2023-12-15 11:30', status: '进行中', statusClass: 'warning', materials: [] },
+            { id: 'ST-2023-014', name: '紧急盘点-库位A区', scope: '指定库位', type: '全盘', progress: 100, progressText: '30/30', totalItems: 30, diff: '-', diffClass: 'muted', manager: '李四', time: '2023-12-10 16:45', status: '已取消', statusClass: 'muted', materials: [] }
+        ];
+        
+        function renderStocktakingTable(data) {
+            const tbody = document.querySelector('.data-table tbody');
+            
+            if (!data || data.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="10" style="text-align: center; padding: 48px 20px;">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" style="margin-bottom: 12px;">
+                                <path d="M9 11l3 3L22 4"/>
+                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                            </svg>
+                            <div style="color: var(--text-muted); font-size: 14px;">暂无盘点记录</div>
+                            <div style="color: var(--text-muted); font-size: 12px; margin-top: 4px;">点击"新建盘点"创建盘点任务</div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            tbody.innerHTML = data.map((record, index) => `
+                <tr>
+                    <td class="mono-text">${record.id}</td>
+                    <td><strong>${record.name}</strong></td>
+                    <td>${record.scope}</td>
+                    <td>${record.type}</td>
+                    <td>
+                        <div class="progress-bar">
+                            <div class="progress-bar-track">
+                                <div class="progress-bar-fill ${record.status === '已取消' ? 'muted' : record.status === '已完成' ? 'success' : 'primary'}" style="width: ${record.progress}%;"></div>
+                            </div>
+                            <span class="progress-bar-text">${record.progressText}</span>
+                        </div>
+                    </td>
+                    <td><span class="diff-count ${record.diffClass}">${record.diff}</span></td>
+                    <td>${record.manager}</td>
+                    <td>${record.time}</td>
+                    <td><span class="status-badge status-${record.statusClass}">${record.status}</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-ghost" onclick="showStocktakingDetail(${index})">详情</button>
+                        ${record.status === '进行中' ? `<button class="btn btn-sm btn-primary" onclick="continueStocktaking(${index})">继续盘点</button>` : ''}
+                        ${record.status === '已完成' && record.diff !== '0项' && record.materials && record.materials.some(m => m.status === 'deficit' || m.status === 'surplus') ? `<button class="btn btn-sm btn-secondary" onclick="showAdjustModal(${index})">查看差异</button>` : ''}
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        window.showStocktakingDetail = function(index) {
+            const record = stocktakingRecords[index];
+            if (record) {
+                currentStocktakingDetail = record;
+                showModal('stocktaking-detail-modal', record);
+            }
+        };
+        
+        window.continueStocktaking = function(index) {
+            currentStocktakingIndex = index;
+            const record = stocktakingRecords[index];
+            if (record) {
+                if (!record.materials || record.materials.length === 0) {
+                    record.materials = allMaterials.slice(0, 10).map(m => ({
+                        id: m.id,
+                        code: m.code,
+                        name: m.name,
+                        spec: m.spec,
+                        unit: m.unit,
+                        bookQty: m.stock,
+                        actualQty: null,
+                        location: m.location,
+                        price: m.price,
+                        status: 'pending',
+                        confirmed: false
+                    }));
+                }
+                showModal('continue-stocktaking-modal', index);
+            }
+        };
+        
+        function filterStocktakingRecords() {
+            const searchInput = document.querySelector('.search-box input');
+            const statusSelect = document.querySelectorAll('.filter-select')[0];
+            const scopeSelect = document.querySelectorAll('.filter-select')[1];
+            
+            const searchTerm = searchInput.value.toLowerCase();
+            const statusFilter = statusSelect.value;
+            const scopeFilter = scopeSelect.value;
+            
+            let filtered = stocktakingRecords.filter(record => {
+                const matchSearch = !searchTerm || 
+                    record.id.toLowerCase().includes(searchTerm) ||
+                    record.name.toLowerCase().includes(searchTerm);
+                
+                const matchStatus = statusFilter === '全部状态' || record.status === statusFilter;
+                const matchScope = scopeFilter === '全部范围' || record.scope === scopeFilter;
+                
+                return matchSearch && matchStatus && matchScope;
+            });
+            
+            renderStocktakingTable(filtered);
+            
+            const paginationInfo = document.querySelector('.pagination-info');
+            if (paginationInfo) {
+                paginationInfo.textContent = `共 ${filtered.length} 条记录`;
+            }
+        }
+        
+        function resetStocktakingFilters() {
+            const searchInput = document.querySelector('.search-box input');
+            const selects = document.querySelectorAll('.filter-select');
+            const dateInputs = document.querySelectorAll('input[type="date"]');
+            
+            searchInput.value = '';
+            selects.forEach(s => s.selectedIndex = 0);
+            dateInputs.forEach(d => d.value = '');
+            
+            renderStocktakingTable(stocktakingRecords);
+            
+            const paginationInfo = document.querySelector('.pagination-info');
+            if (paginationInfo) {
+                paginationInfo.textContent = '共 ' + stocktakingRecords.length + ' 条记录';
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            initMaterialsData();
+            renderStocktakingTable(stocktakingRecords);
+            updateStats();
+            
+            document.querySelector('.search-box input').addEventListener('input', filterStocktakingRecords);
+            document.querySelectorAll('.filter-select')[0].addEventListener('change', filterStocktakingRecords);
+            document.querySelectorAll('.filter-select')[1].addEventListener('change', filterStocktakingRecords);
+            document.querySelector('.btn-secondary.btn-sm').addEventListener('click', filterStocktakingRecords);
+            document.querySelector('.btn-ghost.btn-sm').addEventListener('click', resetStocktakingFilters);
+        });
+        
+        window.showModal = showModal;
+        window.hideModal = hideModal;
+        window.nextStep = nextStep;
+        window.prevStep = prevStep;
+        window.updateScopeDetail = updateScopeDetail;
+        window.toggleAllMaterials = toggleAllMaterials;
+        window.selectAllMaterials = selectAllMaterials;
+        window.deselectAllMaterials = deselectAllMaterials;
+        window.createStocktaking = createStocktaking;
+        window.finishStocktaking = finishStocktaking;
+        window.calculateStocktakingDiff = calculateStocktakingDiff;
+        window.confirmStocktakingItem = confirmStocktakingItem;
+        window.toggleSelectAll = toggleSelectAll;
+        window.filterStocktakingList = filterStocktakingList;
+        window.batchConfirmMatched = batchConfirmMatched;
+        window.batchConfirmSelected = batchConfirmSelected;
+        window.confirmAdjust = confirmAdjust;
+        window.showAdjustModal = showAdjustModal;
+    </script>
+</body>
+</html>

@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>耗材配置 - COREONE v2.2</title>
+    <link rel="stylesheet" href="../shared/styles.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="32" height="32" rx="8" fill="#3b82f6"/>
+                <path d="M8 16L14 10L20 16L14 22L8 16Z" fill="white"/>
+                <path d="M14 16L20 10L26 16L20 22L14 16Z" fill="white" opacity="0.6"/>
+            </svg>
+            <span>COREONE</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="inventory-list.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                </svg>
+                <span>库存列表</span>
+            </a>
+            <a href="inbound.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                <span>入库记录</span>
+            </a>
+            <a href="outbound.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                <span>出库记录</span>
+            </a>
+            <a href="scrap.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 6h18"/>
+                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                </svg>
+                <span>报废管理</span>
+            </a>
+            <a href="stocktaking.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 11l3 3L22 4"/>
+                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                </svg>
+                <span>库存盘点</span>
+            </a>
+            <a href="projects.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                </svg>
+                <span>检测服务</span>
+            </a>
+            <a href="bom.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+                <span>BOM清单</span>
+            </a>
+            <a href="cost-analysis.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="20" x2="12" y2="10"/>
+                    <line x1="18" y1="20" x2="18" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="16"/>
+                </svg>
+                <span>物料成本分析</span>
+            </a>
+            <a href="categories.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="8" y1="6" x2="21" y2="6"/>
+                    <line x1="8" y1="12" x2="21" y2="12"/>
+                    <line x1="8" y1="18" x2="21" y2="18"/>
+                    <line x1="3" y1="6" x2="3.01" y2="6"/>
+                    <line x1="3" y1="12" x2="3.01" y2="12"/>
+                    <line x1="3" y1="18" x2="3.01" y2="18"/>
+                </svg>
+                <span>物料分类</span>
+            </a>
+            <a href="consumable-config.html" class="nav-item active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                </svg>
+                <span>耗材配置</span>
+            </a>
+            <a href="rules.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+                <span>规则配置</span>
+            </a>
+            <a href="alerts.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                </svg>
+                <span>预警中心</span>
+            </a>
+            <div class="nav-divider"></div>
+            <a href="suppliers.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                <span>供应商管理</span>
+            </a>
+            <a href="locations.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <span>库位管理</span>
+            </a>
+            <a href="users.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                <span>用户管理</span>
+            </a>
+            <a href="roles.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                <span>角色管理</span>
+            </a>
+            <a href="logs.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10 9 9 9 8 9"/>
+                </svg>
+                <span>操作日志</span>
+            </a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">耗材配置</h1>
+                <p class="page-subtitle">管理耗材的基础配置信息、规格参数和供应商信息</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-primary" onclick="showModal('create-consumable-modal')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"/>
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                    新建耗材
+                </button>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card stat-card-primary">
+                <div class="stat-value">156</div>
+                <div class="stat-label">耗材总数</div>
+            </div>
+            <div class="stat-card stat-card-success">
+                <div class="stat-value">128</div>
+                <div class="stat-label">已启用</div>
+            </div>
+            <div class="stat-card stat-card-muted">
+                <div class="stat-value">28</div>
+                <div class="stat-label">已停用</div>
+            </div>
+            <div class="stat-card stat-card-primary">
+                <div class="stat-value">42</div>
+                <div class="stat-label">供应商</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">耗材列表</span>
+                <div class="filter-bar">
+                    <div class="search-box">
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                        <input type="text" placeholder="搜索耗材名称、编码或供应商...">
+                    </div>
+                    <select class="filter-select">
+                        <option value="">全部分类</option>
+                        <option value="reagent">试剂</option>
+                        <option value="consumable">耗材</option>
+                        <option value="equipment">设备配件</option>
+                    </select>
+                    <select class="filter-select">
+                        <option value="">全部状态</option>
+                        <option value="active">已启用</option>
+                        <option value="inactive">已停用</option>
+                    </select>
+                    <button class="btn btn-secondary btn-sm">查询</button>
+                    <button class="btn btn-ghost btn-sm">重置</button>
+                </div>
+            </div>
+            <div class="batch-actions-bar" id="batch-actions-bar" style="display: none;">
+                <div class="batch-actions-info">
+                    <input type="checkbox" id="select-all-checkbox" class="checkbox">
+                    <span>已选择 <strong id="selected-count">0</strong> 项</span>
+                </div>
+                <div class="batch-actions-buttons">
+                    <button class="btn btn-sm btn-ghost" onclick="batchEnable()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        批量启用
+                    </button>
+                    <button class="btn btn-sm btn-ghost" onclick="batchDisable()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                        批量停用
+                    </button>
+                    <button class="btn btn-sm btn-danger" onclick="batchDelete()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="3 6 5 6 21 6"/>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                        </svg>
+                        批量删除
+                    </button>
+                    <button class="btn btn-sm btn-ghost" onclick="clearSelection()">取消选择</button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table class="data-table" id="consumable-table">
+                    <thead>
+                        <tr>
+                            <th width="40">
+                                <input type="checkbox" class="checkbox" id="header-checkbox" onchange="toggleSelectAll()">
+                            </th>
+                            <th>耗材编码</th>
+                            <th>耗材名称</th>
+                            <th>分类</th>
+                            <th>规格型号</th>
+                            <th>计量单位</th>
+                            <th>供应商</th>
+                            <th>参考单价</th>
+                            <th>用量/样本</th>
+                            <th>用量单位</th>
+                            <th>状态</th>
+                            <th width="120">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-row" data-id="CON-2024-001">
+                            <td><input type="checkbox" class="checkbox row-checkbox" value="CON-2024-001" onchange="updateSelection()"></td>
+                            <td>
+                                <div class="cell-with-action">
+                                    <span class="code-text">CON-2024-001</span>
+                                    <button class="copy-btn" onclick="copyCode('CON-2024-001')" title="复制编码">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                            <td><strong>PCR试剂盒</strong></td>
+                            <td><span class="badge badge-primary" title="试剂类 > 免疫组化试剂 > 一抗">一抗</span></td>
+                            <td>96孔/盒</td>
+                            <td>盒</td>
+                            <td>赛默飞世尔</td>
+                            <td>¥1,280.00</td>
+                            <td>10</td>
+                            <td>μl</td>
+                            <td>
+                                <div class="table-toggle">
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked onchange="toggleConsumableStatus('CON-2024-001', this)">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="btn btn-ghost btn-sm" onclick="editConsumable('CON-2024-001')">编辑</button>
+                                <button class="btn btn-ghost btn-sm" onclick="viewConsumableDetail('CON-2024-001')">详情</button>
+                            </td>
+                        </tr>
+                        <tr class="table-row" data-id="CON-2024-002">
+                            <td><input type="checkbox" class="checkbox row-checkbox" value="CON-2024-002" onchange="updateSelection()"></td>
+                            <td>
+                                <div class="cell-with-action">
+                                    <span class="code-text">CON-2024-002</span>
+                                    <button class="copy-btn" onclick="copyCode('CON-2024-002')" title="复制编码">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                            <td><strong>离心管</strong></td>
+                            <td><span class="badge badge-secondary" title="耗材类 > 制片耗材">制片耗材</span></td>
+                            <td>1.5ml</td>
+                            <td>包</td>
+                            <td>艾本德</td>
+                            <td>¥45.00</td>
+                            <td>10</td>
+                            <td>支</td>
+                            <td>
+                                <div class="table-toggle">
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked onchange="toggleConsumableStatus('CON-2024-002', this)">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="btn btn-ghost btn-sm" onclick="editConsumable('CON-2024-002')">编辑</button>
+                                <button class="btn btn-ghost btn-sm" onclick="viewConsumableDetail('CON-2024-002')">详情</button>
+                            </td>
+                        </tr>
+                        <tr class="table-row" data-id="CON-2024-003">
+                            <td><input type="checkbox" class="checkbox row-checkbox" value="CON-2024-003" onchange="updateSelection()"></td>
+                            <td>
+                                <div class="cell-with-action">
+                                    <span class="code-text">CON-2024-003</span>
+                                    <button class="copy-btn" onclick="copyCode('CON-2024-003')" title="复制编码">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                            <td><strong>移液器吸头</strong></td>
+                            <td><span class="badge badge-secondary" title="耗材类 > 染色耗材">染色耗材</span></td>
+                            <td>200μl</td>
+                            <td>盒</td>
+                            <td>赛多利斯</td>
+                            <td>¥68.00</td>
+                            <td>20</td>
+                            <td>个</td>
+                            <td>
+                                <div class="table-toggle">
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked onchange="toggleConsumableStatus('CON-2024-003', this)">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="btn btn-ghost btn-sm" onclick="editConsumable('CON-2024-003')">编辑</button>
+                                <button class="btn btn-ghost btn-sm" onclick="viewConsumableDetail('CON-2024-003')">详情</button>
+                            </td>
+                        </tr>
+                        <tr class="table-row" data-id="CON-2024-004">
+                            <td><input type="checkbox" class="checkbox row-checkbox" value="CON-2024-004" onchange="updateSelection()"></td>
+                            <td>
+                                <div class="cell-with-action">
+                                    <span class="code-text">CON-2024-004</span>
+                                    <button class="copy-btn" onclick="copyCode('CON-2024-004')" title="复制编码">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                            <td><strong>培养皿</strong></td>
+                            <td><span class="badge badge-secondary" title="耗材类 > 制片耗材">制片耗材</span></td>
+                            <td>90mm</td>
+                            <td>包</td>
+                            <td>康宁</td>
+                            <td>¥32.00</td>
+                            <td>2</td>
+                            <td>个</td>
+                            <td>
+                                <div class="table-toggle">
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked onchange="toggleConsumableStatus('CON-2024-004', this)">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="btn btn-ghost btn-sm" onclick="editConsumable('CON-2024-004')">编辑</button>
+                                <button class="btn btn-ghost btn-sm" onclick="viewConsumableDetail('CON-2024-004')">详情</button>
+                            </td>
+                        </tr>
+                        <tr class="table-row" data-id="CON-2024-005">
+                            <td><input type="checkbox" class="checkbox row-checkbox" value="CON-2024-005" onchange="updateSelection()"></td>
+                            <td>
+                                <div class="cell-with-action">
+                                    <span class="code-text">CON-2024-005</span>
+                                    <button class="copy-btn" onclick="copyCode('CON-2024-005')" title="复制编码">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                            <td><strong>显微镜载玻片</strong></td>
+                            <td><span class="badge badge-secondary">耗材</span></td>
+                            <td>25x75mm</td>
+                            <td>盒</td>
+                            <td>徕卡</td>
+                            <td>¥28.00</td>
+                            <td>5</td>
+                            <td>片</td>
+                            <td>
+                                <div class="table-toggle">
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" onchange="toggleConsumableStatus('CON-2024-005', this)">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="btn btn-ghost btn-sm" onclick="editConsumable('CON-2024-005')">编辑</button>
+                                <button class="btn btn-ghost btn-sm" onclick="viewConsumableDetail('CON-2024-005')">详情</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <span class="pagination-info">共 156 条记录</span>
+                <div class="pagination-controls">
+                    <button class="btn btn-sm btn-secondary" disabled>上一页</button>
+                    <button class="btn btn-sm btn-primary">1</button>
+                    <button class="btn btn-sm btn-secondary">2</button>
+                    <button class="btn btn-sm btn-secondary">3</button>
+                    <span>...</span>
+                    <button class="btn btn-sm btn-secondary">16</button>
+                    <button class="btn btn-sm btn-secondary">下一页</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 新建耗材弹窗 -->
+    <div id="create-consumable-modal" class="modal">
+        <div class="modal-overlay" onclick="hideModal('create-consumable-modal')"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title">新建耗材</h3>
+                <button class="modal-close" onclick="hideModal('create-consumable-modal')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form" id="create-consumable-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">耗材名称 <span class="required">*</span></label>
+                            <input type="text" class="form-control" id="new-consumable-name" placeholder="请输入耗材名称">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">物料分类 <span class="required">*</span></label>
+                            <div class="category-autocomplete" id="new-category-autocomplete">
+                                <input type="text" class="form-control category-autocomplete-input" id="new-consumable-category-input" placeholder="输入分类名称搜索..." autocomplete="off">
+                                <input type="hidden" id="new-consumable-category">
+                                <div class="category-autocomplete-dropdown" id="new-category-dropdown"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">规格型号</label>
+                            <input type="text" class="form-control" id="new-consumable-spec" placeholder="如：96孔/盒">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">计量单位</label>
+                            <select class="form-control" id="new-consumable-unit">
+                                <option value="">请选择单位</option>
+                                <option value="盒">盒</option>
+                                <option value="瓶">瓶</option>
+                                <option value="包">包</option>
+                                <option value="支">支</option>
+                                <option value="套">套</option>
+                                <option value="把">把</option>
+                                <option value="个">个</option>
+                                <option value="kg">千克</option>
+                                <option value="L">升</option>
+                                <option value="ml">毫升</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">供应商</label>
+                            <select class="form-control" id="new-consumable-supplier">
+                                <option value="">请选择供应商</option>
+                                <option value="赛默飞世尔">赛默飞世尔</option>
+                                <option value="艾本德">艾本德</option>
+                                <option value="赛多利斯">赛多利斯</option>
+                                <option value="康宁">康宁</option>
+                                <option value="徕卡">徕卡</option>
+                                <option value="北京病理科技">北京病理科技</option>
+                                <option value="DAKO">DAKO</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">参考单价</label>
+                            <div style="display: flex; align-items: center;">
+                                <span style="margin-right: 8px; color: var(--text-muted);">¥</span>
+                                <input type="number" class="form-control" id="new-consumable-price" step="0.01" min="0" placeholder="0.00">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">用量/样本</label>
+                            <input type="number" class="form-control" id="new-consumable-usage" step="0.01" min="0" placeholder="单次用量">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">用量单位</label>
+                            <select class="form-control" id="new-consumable-usage-unit">
+                                <option value="">请选择单位</option>
+                                <option value="μl">μl</option>
+                                <option value="ml">ml</option>
+                                <option value="个">个</option>
+                                <option value="片">片</option>
+                                <option value="张">张</option>
+                                <option value="支">支</option>
+                                <option value="滴">滴</option>
+                                <option value="mg">mg</option>
+                                <option value="g">g</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">安全库存</label>
+                            <input type="number" class="form-control" id="new-consumable-min-stock" min="0" placeholder="库存预警阈值">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">状态</label>
+                            <label class="toggle-switch" style="margin-top: 8px;">
+                                <input type="checkbox" id="new-consumable-status" checked>
+                                <span class="toggle-slider"></span>
+                                <span class="toggle-label">启用</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">备注</label>
+                        <textarea class="form-control" id="new-consumable-remark" rows="2" placeholder="请输入备注信息"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideModal('create-consumable-modal')">取消</button>
+                <button class="btn btn-primary" onclick="saveNewConsumable()">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 编辑耗材弹窗 -->
+    <div id="edit-consumable-modal" class="modal">
+        <div class="modal-overlay" onclick="hideModal('edit-consumable-modal')"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title">编辑耗材</h3>
+                <button class="modal-close" onclick="hideModal('edit-consumable-modal')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form" id="edit-consumable-form">
+                    <input type="hidden" id="edit-consumable-id">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">耗材编码</label>
+                            <input type="text" class="form-control" id="edit-consumable-code" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">耗材名称 <span class="required">*</span></label>
+                            <input type="text" class="form-control" id="edit-consumable-name">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">物料分类 <span class="required">*</span></label>
+                            <div class="category-autocomplete" id="edit-category-autocomplete">
+                                <input type="text" class="form-control category-autocomplete-input" id="edit-consumable-category-input" placeholder="输入分类名称搜索..." autocomplete="off">
+                                <input type="hidden" id="edit-consumable-category">
+                                <div class="category-autocomplete-dropdown" id="edit-category-dropdown"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">规格型号</label>
+                            <input type="text" class="form-control" id="edit-consumable-spec" placeholder="如：96孔/盒">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">计量单位</label>
+                            <select class="form-control" id="edit-consumable-unit">
+                                <option value="">请选择单位</option>
+                                <option value="盒">盒</option>
+                                <option value="瓶">瓶</option>
+                                <option value="包">包</option>
+                                <option value="支">支</option>
+                                <option value="套">套</option>
+                                <option value="把">把</option>
+                                <option value="个">个</option>
+                                <option value="kg">千克</option>
+                                <option value="L">升</option>
+                                <option value="ml">毫升</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">供应商</label>
+                            <select class="form-control" id="edit-consumable-supplier">
+                                <option value="">请选择供应商</option>
+                                <option value="赛默飞世尔">赛默飞世尔</option>
+                                <option value="艾本德">艾本德</option>
+                                <option value="赛多利斯">赛多利斯</option>
+                                <option value="康宁">康宁</option>
+                                <option value="徕卡">徕卡</option>
+                                <option value="北京病理科技">北京病理科技</option>
+                                <option value="DAKO">DAKO</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">参考单价</label>
+                            <div style="display: flex; align-items: center;">
+                                <span style="margin-right: 8px; color: var(--text-muted);">¥</span>
+                                <input type="number" class="form-control" id="edit-consumable-price" step="0.01" min="0" placeholder="0.00">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">安全库存</label>
+                            <input type="number" class="form-control" id="edit-consumable-min-stock" min="0" placeholder="库存预警阈值">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">用量/样本</label>
+                            <input type="number" class="form-control" id="edit-consumable-usage" step="0.01" min="0" placeholder="单次用量">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">用量单位</label>
+                            <select class="form-control" id="edit-consumable-usage-unit">
+                                <option value="">请选择单位</option>
+                                <option value="μl">μl</option>
+                                <option value="ml">ml</option>
+                                <option value="个">个</option>
+                                <option value="片">片</option>
+                                <option value="张">张</option>
+                                <option value="支">支</option>
+                                <option value="滴">滴</option>
+                                <option value="mg">mg</option>
+                                <option value="g">g</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">状态</label>
+                            <label class="toggle-switch" style="margin-top: 8px;">
+                                <input type="checkbox" id="edit-consumable-status">
+                                <span class="toggle-slider"></span>
+                                <span class="toggle-label" id="edit-status-label">停用</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">备注</label>
+                        <textarea class="form-control" id="edit-consumable-remark" rows="2" placeholder="请输入备注信息"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideModal('edit-consumable-modal')">取消</button>
+                <button class="btn btn-primary" onclick="saveEditConsumable()">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 耗材详情弹窗 -->
+    <div id="consumable-detail-modal" class="modal">
+        <div class="modal-overlay" onclick="hideModal('consumable-detail-modal')"></div>
+        <div class="modal-container modal-lg">
+            <div class="modal-header">
+                <h3 class="modal-title">耗材详情</h3>
+                <button class="modal-close" onclick="hideModal('consumable-detail-modal')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="detail-section">
+                    <h4 class="detail-title">基本信息</h4>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">耗材编码</span>
+                            <span class="detail-value" id="detail-consumable-code">CON-2024-001</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">耗材名称</span>
+                            <span class="detail-value" id="detail-consumable-name">PCR试剂盒</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">物料分类</span>
+                            <span class="detail-value" id="detail-consumable-category">试剂类 > HE染色试剂 > 苏木素染液</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">规格型号</span>
+                            <span class="detail-value" id="detail-consumable-spec">96孔/盒</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">单位</span>
+                            <span class="detail-value" id="detail-consumable-unit">盒</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">参考单价</span>
+                            <span class="detail-value" id="detail-consumable-price">¥1,280.00</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">供应商</span>
+                            <span class="detail-value" id="detail-consumable-supplier">赛默飞世尔</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">状态</span>
+                            <span class="detail-value"><span class="status-badge status-success" id="detail-consumable-status">已启用</span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <h4 class="detail-title">库存配置</h4>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">当前库存</span>
+                            <span class="detail-value">128 盒</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">安全库存</span>
+                            <span class="detail-value">20 盒</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">临期预警天数</span>
+                            <span class="detail-value">30 天</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">最近入库</span>
+                            <span class="detail-value">2024-01-15</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <h4 class="detail-title">使用记录</h4>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>日期</th>
+                                <th>操作类型</th>
+                                <th>数量</th>
+                                <th>操作人</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2024-01-15 10:30</td>
+                                <td><span class="badge badge-success">入库</span></td>
+                                <td>+50</td>
+                                <td>张三</td>
+                            </tr>
+                            <tr>
+                                <td>2024-01-14 14:20</td>
+                                <td><span class="badge badge-warning">出库</span></td>
+                                <td>-10</td>
+                                <td>李四</td>
+                            </tr>
+                            <tr>
+                                <td>2024-01-13 09:15</td>
+                                <td><span class="badge badge-warning">出库</span></td>
+                                <td>-5</td>
+                                <td>王五</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideModal('consumable-detail-modal')">关闭</button>
+                <button class="btn btn-primary" id="detail-edit-btn">编辑</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../shared/scripts.js"></script>
+    <script>
+        let currentOpenModal = null;
+
+        // ==================== 数据定义（必须放在最前面）====================
+        const categoryTree = {
+            '1': {
+                id: '1',
+                name: '试剂类',
+                children: {
+                    '11': { id: '11', name: 'HE染色试剂', children: {
+                        '111': { id: '111', name: '苏木素染液', isLeaf: true },
+                        '112': { id: '112', name: '伊红染液', isLeaf: true },
+                        '113': { id: '113', name: '分化液/返蓝液', isLeaf: true },
+                        '114': { id: '114', name: '验收专用试剂', isLeaf: true }
+                    }},
+                    '12': { id: '12', name: '免疫组化试剂', children: {
+                        '121': { id: '121', name: '一抗', isLeaf: true },
+                        '122': { id: '122', name: '二抗试剂盒', isLeaf: true },
+                        '123': { id: '123', name: 'DAB显色液', isLeaf: true }
+                    }},
+                    '13': { id: '13', name: '特殊染色试剂', children: {
+                        '131': { id: '131', name: 'PAS染色试剂', isLeaf: true },
+                        '132': { id: '132', name: '抗酸染色试剂', isLeaf: true }
+                    }},
+                    '14': { id: '14', name: '分子检测试剂', children: {
+                        '141': { id: '141', name: 'DNA提取试剂', isLeaf: true },
+                        '142': { id: '142', name: 'PCR试剂', isLeaf: true }
+                    }}
+                }
+            },
+            '2': {
+                id: '2',
+                name: '耗材类',
+                children: {
+                    '21': { id: '21', name: '制片耗材', isLeaf: true },
+                    '22': { id: '22', name: '染色耗材', isLeaf: true },
+                    '23': { id: '23', name: '包装耗材', isLeaf: true }
+                }
+            },
+            '3': {
+                id: '3',
+                name: '设备配件类',
+                children: {
+                    '31': { id: '31', name: '切片机配件', isLeaf: true },
+                    '32': { id: '32', name: '染色机配件', isLeaf: true },
+                    '33': { id: '33', name: '其他设备配件', isLeaf: true }
+                }
+            }
+        };
+
+        const categoryMap = {
+            '1': { name: '试剂类', path: '试剂类', type: 'reagent' },
+            '11': { name: 'HE染色试剂', path: '试剂类 > HE染色试剂', type: 'reagent' },
+            '111': { name: '苏木素染液', path: '试剂类 > HE染色试剂 > 苏木素染液', type: 'reagent' },
+            '112': { name: '伊红染液', path: '试剂类 > HE染色试剂 > 伊红染液', type: 'reagent' },
+            '113': { name: '分化液/返蓝液', path: '试剂类 > HE染色试剂 > 分化液/返蓝液', type: 'reagent' },
+            '114': { name: '验收专用试剂', path: '试剂类 > HE染色试剂 > 验收专用试剂', type: 'reagent' },
+            '12': { name: '免疫组化试剂', path: '试剂类 > 免疫组化试剂', type: 'reagent' },
+            '121': { name: '一抗', path: '试剂类 > 免疫组化试剂 > 一抗', type: 'reagent' },
+            '122': { name: '二抗试剂盒', path: '试剂类 > 免疫组化试剂 > 二抗试剂盒', type: 'reagent' },
+            '123': { name: 'DAB显色液', path: '试剂类 > 免疫组化试剂 > DAB显色液', type: 'reagent' },
+            '13': { name: '特殊染色试剂', path: '试剂类 > 特殊染色试剂', type: 'reagent' },
+            '131': { name: 'PAS染色试剂', path: '试剂类 > 特殊染色试剂 > PAS染色试剂', type: 'reagent' },
+            '132': { name: '抗酸染色试剂', path: '试剂类 > 特殊染色试剂 > 抗酸染色试剂', type: 'reagent' },
+            '14': { name: '分子检测试剂', path: '试剂类 > 分子检测试剂', type: 'reagent' },
+            '141': { name: 'DNA提取试剂', path: '试剂类 > 分子检测试剂 > DNA提取试剂', type: 'reagent' },
+            '142': { name: 'PCR试剂', path: '试剂类 > 分子检测试剂 > PCR试剂', type: 'reagent' },
+            '2': { name: '耗材类', path: '耗材类', type: 'consumable' },
+            '21': { name: '制片耗材', path: '耗材类 > 制片耗材', type: 'consumable' },
+            '22': { name: '染色耗材', path: '耗材类 > 染色耗材', type: 'consumable' },
+            '23': { name: '包装耗材', path: '耗材类 > 包装耗材', type: 'consumable' },
+            '3': { name: '设备配件类', path: '设备配件类', type: 'equipment' },
+            '31': { name: '切片机配件', path: '设备配件类 > 切片机配件', type: 'equipment' },
+            '32': { name: '染色机配件', path: '设备配件类 > 染色机配件', type: 'equipment' },
+            '33': { name: '其他设备配件', path: '设备配件类 > 其他设备配件', type: 'equipment' }
+        };
+
+        const consumableData = [
+            { id: 'CON-2024-001', code: 'CON-2024-001', name: 'PCR试剂盒', categoryId: '121', categoryPath: '试剂类 > 免疫组化试剂 > 一抗', spec: '96孔/盒', unit: '盒', supplier: '赛默飞世尔', price: 1280.00, usage: 10, usageUnit: 'μl', minStock: 5, status: 'active', remark: '用于PCR扩增实验' },
+            { id: 'CON-2024-002', code: 'CON-2024-002', name: '离心管', categoryId: '21', categoryPath: '耗材类 > 制片耗材', spec: '1.5ml', unit: '包', supplier: '艾本德', price: 45.00, usage: 10, usageUnit: '支', minStock: 20, status: 'active', remark: '常用实验耗材' },
+            { id: 'CON-2024-003', code: 'CON-2024-003', name: '移液器吸头', categoryId: '22', categoryPath: '耗材类 > 染色耗材', spec: '200μl', unit: '盒', supplier: '赛多利斯', price: 68.00, usage: 20, usageUnit: '个', minStock: 10, status: 'active', remark: '配合移液器使用' },
+            { id: 'CON-2024-004', code: 'CON-2024-004', name: '培养皿', categoryId: '21', categoryPath: '耗材类 > 制片耗材', spec: '90mm', unit: '包', supplier: '康宁', price: 32.00, usage: 2, usageUnit: '个', minStock: 15, status: 'active', remark: '细胞培养专用' },
+            { id: 'CON-2024-005', code: 'CON-2024-005', name: '显微镜载玻片', categoryId: '22', categoryPath: '耗材类 > 染色耗材', spec: '25x75mm', unit: '盒', supplier: '徕卡', price: 28.00, usage: 5, usageUnit: '片', minStock: 30, status: 'inactive', remark: '已更换供应商' },
+            { id: 'CON-2024-006', code: 'CON-2024-006', name: 'HE染色试剂盒', categoryId: '111', categoryPath: '试剂类 > HE染色试剂 > 苏木素染液', spec: '500ml/套', unit: '套', supplier: '北京病理科技', price: 298.00, usage: 5, usageUnit: 'ml', minStock: 5, status: 'active', remark: '常规病理染色' },
+            { id: 'CON-2024-007', code: 'CON-2024-007', name: '切片刀片', categoryId: '31', categoryPath: '设备配件类 > 切片机配件', spec: 'C型', unit: '把', supplier: '徕卡', price: 180.00, usage: 1, usageUnit: '把', minStock: 3, status: 'active', remark: '切片机专用刀片' },
+            { id: 'CON-2024-008', code: 'CON-2024-008', name: '免疫组化抗体稀释液', categoryId: '121', categoryPath: '试剂类 > 免疫组化试剂 > 一抗', spec: '100ml/瓶', unit: '瓶', supplier: 'DAKO', price: 320.00, usage: 2, usageUnit: 'ml', minStock: 5, status: 'active', remark: '抗体稀释专用' }
+        ];
+
+        // 叶子节点分类列表 - 用于联想输入下拉框
+        const leafCategories = Object.entries(categoryMap)
+            .filter(([id, info]) => {
+                const item = findCategoryById(id);
+                return item && item.isLeaf;
+            })
+            .map(([id, info]) => ({ id, name: info.name, path: info.path, type: info.type }));
+
+        function findCategoryById(id) {
+            function search(node) {
+                if (node.id === id) return node;
+                if (node.children) {
+                    for (const child of Object.values(node.children)) {
+                        const found = search(child);
+                        if (found) return found;
+                    }
+                }
+                return null;
+            }
+            for (const root of Object.values(categoryTree)) {
+                const found = search(root);
+                if (found) return found;
+            }
+            return null;
+        }
+
+        // ==================== 弹窗管理 ====================
+        function showModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            currentOpenModal = modalId;
+            
+            setTimeout(() => {
+                const firstInput = modal.querySelector('input:not([type="hidden"]), button:not(.modal-close), select, textarea');
+                if (firstInput) firstInput.focus();
+            }, 100);
+        }
+
+        function hideModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            currentOpenModal = null;
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (currentOpenModal) hideModal(currentOpenModal);
+                closeAllCategoryDropdowns();
+            }
+        });
+
+        // ==================== 联想输入下拉框 ====================
+        function initCategoryAutocomplete(inputId, hiddenId, dropdownId) {
+            const input = document.getElementById(inputId);
+            const hidden = document.getElementById(hiddenId);
+            const dropdown = document.getElementById(dropdownId);
+            
+            if (!input || !hidden || !dropdown) return;
+
+            input.addEventListener('focus', function() {
+                renderCategoryDropdown(dropdown, input.value, hidden);
+            });
+
+            input.addEventListener('input', function() {
+                hidden.value = '';
+                renderCategoryDropdown(dropdown, input.value, hidden);
+            });
+
+            input.addEventListener('blur', function() {
+                setTimeout(() => {
+                    dropdown.classList.remove('show');
+                }, 200);
+            });
+        }
+
+        function renderCategoryDropdown(dropdown, searchTerm, hiddenInput) {
+            const filtered = leafCategories.filter(cat => {
+                if (!searchTerm) return true;
+                const term = searchTerm.toLowerCase();
+                return cat.name.toLowerCase().includes(term) || 
+                       cat.path.toLowerCase().includes(term);
+            });
+
+            if (filtered.length === 0) {
+                dropdown.innerHTML = '<div class="dropdown-empty">未找到匹配的分类</div>';
+            } else {
+                let html = '';
+                filtered.forEach(cat => {
+                    html += `
+                        <div class="dropdown-item" data-id="${cat.id}" data-path="${cat.path}" data-name="${cat.name}">
+                            <div class="category-name">${cat.name}</div>
+                            <div class="category-path">${cat.path}</div>
+                        </div>
+                    `;
+                });
+                dropdown.innerHTML = html;
+
+                dropdown.querySelectorAll('.dropdown-item').forEach(item => {
+                    item.addEventListener('mousedown', function(e) {
+                        e.preventDefault();
+                        const id = this.dataset.id;
+                        const path = this.dataset.path;
+                        const name = this.dataset.name;
+                        
+                        hiddenInput.value = id;
+                        hiddenInput.parentElement.querySelector('.category-autocomplete-input').value = name;
+                        dropdown.classList.remove('show');
+                    });
+                });
+            }
+
+            dropdown.classList.add('show');
+        }
+
+        function closeAllCategoryDropdowns() {
+            document.querySelectorAll('.category-autocomplete-dropdown').forEach(d => d.classList.remove('show'));
+        }
+
+        function setCategoryAutocompleteValue(inputId, hiddenId, categoryId) {
+            if (!categoryId) return;
+            const input = document.getElementById(inputId);
+            const hidden = document.getElementById(hiddenId);
+            const categoryInfo = categoryMap[categoryId];
+            
+            if (categoryInfo && input && hidden) {
+                input.value = categoryInfo.name;
+                hidden.value = categoryId;
+            }
+        }
+
+        function resetCategoryAutocomplete(inputId, hiddenId) {
+            const input = document.getElementById(inputId);
+            const hidden = document.getElementById(hiddenId);
+            if (input) input.value = '';
+            if (hidden) hidden.value = '';
+        }
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.category-autocomplete')) {
+                closeAllCategoryDropdowns();
+            }
+        });
+
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initCategoryAutocomplete('new-consumable-category-input', 'new-consumable-category', 'new-category-dropdown');
+            initCategoryAutocomplete('edit-consumable-category-input', 'edit-consumable-category', 'edit-category-dropdown');
+            
+            // 搜索功能
+            document.querySelector('.card-header .search-box input').addEventListener('input', function() {
+                const searchText = this.value.toLowerCase().trim();
+                const tableRows = document.querySelectorAll('#consumable-table tbody tr');
+                
+                tableRows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    if (cells.length >= 7) {
+                        const code = cells[1] ? cells[1].textContent.toLowerCase() : '';
+                        const name = cells[2] ? cells[2].textContent.toLowerCase() : '';
+                        const supplier = cells[6] ? cells[6].textContent.toLowerCase() : '';
+                        
+                        if (searchText === '' || code.includes(searchText) || name.includes(searchText) || supplier.includes(searchText)) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+
+        // ==================== 状态切换 ====================
+        function toggleConsumableStatus(id, checkbox) {
+            const item = consumableData.find(c => c.id === id);
+            if (item) {
+                item.status = checkbox.checked ? 'active' : 'inactive';
+                showToast(checkbox.checked ? '已启用该耗材' : '已停用该耗材', checkbox.checked ? 'success' : 'warning');
+            }
+        }
+
+        // ==================== 批量操作 ====================
+        let selectedItems = new Set();
+
+        function updateSelection() {
+            const checkboxes = document.querySelectorAll('.row-checkbox');
+            selectedItems.clear();
+            
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    selectedItems.add(cb.value);
+                    cb.closest('tr').classList.add('selected');
+                } else {
+                    cb.closest('tr').classList.remove('selected');
+                }
+            });
+            
+            updateBatchActionsBar();
+        }
+
+        function toggleSelectAll() {
+            const headerCheckbox = document.getElementById('header-checkbox');
+            const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+            
+            rowCheckboxes.forEach(cb => {
+                cb.checked = headerCheckbox.checked;
+            });
+            
+            updateSelection();
+        }
+
+        function updateBatchActionsBar() {
+            const bar = document.getElementById('batch-actions-bar');
+            const countEl = document.getElementById('selected-count');
+            
+            if (selectedItems.size > 0) {
+                bar.style.display = 'flex';
+                countEl.textContent = selectedItems.size;
+            } else {
+                bar.style.display = 'none';
+                document.getElementById('header-checkbox').checked = false;
+            }
+        }
+
+        function clearSelection() {
+            selectedItems.clear();
+            document.querySelectorAll('.row-checkbox').forEach(cb => {
+                cb.checked = false;
+                cb.closest('tr').classList.remove('selected');
+            });
+            document.getElementById('header-checkbox').checked = false;
+            updateBatchActionsBar();
+        }
+
+        function batchEnable() {
+            if (selectedItems.size === 0) return;
+            selectedItems.forEach(id => {
+                const row = document.querySelector(`tr[data-id="${id}"]`);
+                if (row) {
+                    const toggle = row.querySelector('.table-toggle input');
+                    if (toggle) toggle.checked = true;
+                }
+                const item = consumableData.find(c => c.id === id);
+                if (item) item.status = 'active';
+            });
+            showToast(`已启用 ${selectedItems.size} 个耗材`, 'success');
+            clearSelection();
+        }
+
+        function batchDisable() {
+            if (selectedItems.size === 0) return;
+            selectedItems.forEach(id => {
+                const row = document.querySelector(`tr[data-id="${id}"]`);
+                if (row) {
+                    const toggle = row.querySelector('.table-toggle input');
+                    if (toggle) toggle.checked = false;
+                }
+                const item = consumableData.find(c => c.id === id);
+                if (item) item.status = 'inactive';
+            });
+            showToast(`已停用 ${selectedItems.size} 个耗材`, 'warning');
+            clearSelection();
+        }
+
+        function batchDelete() {
+            if (selectedItems.size === 0) return;
+            if (confirm(`确定要删除选中的 ${selectedItems.size} 个耗材吗？此操作不可恢复。`)) {
+                selectedItems.forEach(id => {
+                    const row = document.querySelector(`tr[data-id="${id}"]`);
+                    if (row) {
+                        row.style.transition = 'all 0.3s ease';
+                        row.style.opacity = '0';
+                        row.style.transform = 'translateX(-20px)';
+                        setTimeout(() => row.remove(), 300);
+                    }
+                    const index = consumableData.findIndex(c => c.id === id);
+                    if (index !== -1) consumableData.splice(index, 1);
+                });
+                showToast(`已删除 ${selectedItems.size} 个耗材`, 'success');
+                clearSelection();
+                checkEmptyState();
+            }
+        }
+
+        function checkEmptyState() {
+            const tbody = document.querySelector('#consumable-table tbody');
+            const rows = tbody.querySelectorAll('tr:not(.empty-row)');
+            
+            if (rows.length === 0) {
+                tbody.innerHTML = `
+                    <tr class="empty-row">
+                        <td colspan="10" style="padding: 60px 20px; text-align: center;">
+                            <div style="margin-bottom: 16px;">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--text-muted);">
+                                    <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                                </svg>
+                            </div>
+                            <div style="font-size: 16px; font-weight: 500; color: var(--text-primary); margin-bottom: 8px;">暂无耗材数据</div>
+                            <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">点击上方"新建耗材"按钮添加</div>
+                            <button class="btn btn-primary" onclick="showModal('create-consumable-modal')">新建耗材</button>
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        // ==================== 编辑耗材 ====================
+        function editConsumable(id) {
+            const item = consumableData.find(c => c.id === id);
+            if (!item) return;
+            
+            document.getElementById('edit-consumable-id').value = item.id;
+            document.getElementById('edit-consumable-code').value = item.code;
+            document.getElementById('edit-consumable-name').value = item.name;
+            setCategoryAutocompleteValue('edit-consumable-category-input', 'edit-consumable-category', item.categoryId);
+            document.getElementById('edit-consumable-spec').value = item.spec || '';
+            document.getElementById('edit-consumable-unit').value = item.unit || '';
+            document.getElementById('edit-consumable-supplier').value = item.supplier || '';
+            document.getElementById('edit-consumable-price').value = item.price || 0;
+            document.getElementById('edit-consumable-usage').value = item.usage || '';
+            document.getElementById('edit-consumable-usage-unit').value = item.usageUnit || '';
+            document.getElementById('edit-consumable-min-stock').value = item.minStock || 0;
+            document.getElementById('edit-consumable-remark').value = item.remark || '';
+            
+            const statusCheckbox = document.getElementById('edit-consumable-status');
+            const statusLabel = document.getElementById('edit-status-label');
+            statusCheckbox.checked = item.status === 'active';
+            statusLabel.textContent = item.status === 'active' ? '启用' : '停用';
+            
+            statusCheckbox.onchange = function() {
+                statusLabel.textContent = this.checked ? '启用' : '停用';
+            };
+            
+            showModal('edit-consumable-modal');
+        }
+
+        // ==================== 查看详情 ====================
+        function viewConsumableDetail(id) {
+            const item = consumableData.find(c => c.id === id);
+            if (!item) return;
+            
+            document.getElementById('detail-consumable-code').textContent = item.code;
+            document.getElementById('detail-consumable-name').textContent = item.name;
+            document.getElementById('detail-consumable-category').textContent = item.categoryPath;
+            document.getElementById('detail-consumable-spec').textContent = item.spec || '-';
+            document.getElementById('detail-consumable-unit').textContent = item.unit || '-';
+            document.getElementById('detail-consumable-supplier').textContent = item.supplier || '-';
+            document.getElementById('detail-consumable-price').textContent = '¥' + (item.price || 0).toFixed(2);
+            document.getElementById('detail-consumable-status').textContent = item.status === 'active' ? '已启用' : '已停用';
+            document.getElementById('detail-consumable-status').className = item.status === 'active' ? 'status-badge status-success' : 'status-badge status-warning';
+            
+            document.getElementById('detail-edit-btn').onclick = function() {
+                hideModal('consumable-detail-modal');
+                setTimeout(() => editConsumable(id), 100);
+            };
+            
+            showModal('consumable-detail-modal');
+        }
+
+        // ==================== 保存操作 ====================
+        function saveNewConsumable() {
+            const name = document.getElementById('new-consumable-name').value;
+            if (!name || name.trim() === '') {
+                showToast('请输入耗材名称', 'error');
+                document.getElementById('new-consumable-name').focus();
+                return;
+            }
+            
+            const categoryId = document.getElementById('new-consumable-category').value;
+            if (!categoryId) {
+                showToast('请选择物料分类', 'error');
+                document.getElementById('new-consumable-category-input').focus();
+                return;
+            }
+            
+            const categoryInfo = categoryMap[categoryId];
+            const newId = `CON-2024-${String(consumableData.length + 1).padStart(3, '0')}`;
+            const statusCheckbox = document.getElementById('new-consumable-status');
+            const newItem = {
+                id: newId,
+                code: newId,
+                name: name.trim(),
+                categoryId: categoryId,
+                categoryPath: categoryInfo ? categoryInfo.path : '',
+                spec: document.getElementById('new-consumable-spec').value || '-',
+                unit: document.getElementById('new-consumable-unit').value || '个',
+                supplier: document.getElementById('new-consumable-supplier').value || '-',
+                price: parseFloat(document.getElementById('new-consumable-price').value) || 0,
+                usage: parseFloat(document.getElementById('new-consumable-usage').value) || 0,
+                usageUnit: document.getElementById('new-consumable-usage-unit').value || '',
+                minStock: parseInt(document.getElementById('new-consumable-min-stock').value) || 0,
+                status: statusCheckbox && statusCheckbox.checked ? 'active' : 'inactive',
+                remark: document.getElementById('new-consumable-remark').value || ''
+            };
+            
+            consumableData.push(newItem);
+            addTableRow(newItem);
+            
+            document.getElementById('create-consumable-form').reset();
+            if (statusCheckbox) statusCheckbox.checked = true;
+            resetCategoryAutocomplete('new-consumable-category-input', 'new-consumable-category');
+            
+            hideModal('create-consumable-modal');
+            showToast('耗材创建成功', 'success');
+        }
+
+        function saveEditConsumable() {
+            const id = document.getElementById('edit-consumable-id').value;
+            const name = document.getElementById('edit-consumable-name').value;
+            
+            if (!name || name.trim() === '') {
+                showToast('请输入耗材名称', 'error');
+                return;
+            }
+            
+            const categoryId = document.getElementById('edit-consumable-category').value;
+            const categoryInfo = categoryMap[categoryId];
+            const statusCheckbox = document.getElementById('edit-consumable-status');
+            
+            const item = consumableData.find(c => c.id === id);
+            if (item) {
+                item.name = name.trim();
+                item.categoryId = categoryId;
+                item.categoryPath = categoryInfo ? categoryInfo.path : '';
+                item.spec = document.getElementById('edit-consumable-spec').value || '-';
+                item.unit = document.getElementById('edit-consumable-unit').value || '-';
+                item.supplier = document.getElementById('edit-consumable-supplier').value || '-';
+                item.price = parseFloat(document.getElementById('edit-consumable-price').value) || 0;
+                item.usage = parseFloat(document.getElementById('edit-consumable-usage').value) || 0;
+                item.usageUnit = document.getElementById('edit-consumable-usage-unit').value || '';
+                item.minStock = parseInt(document.getElementById('edit-consumable-min-stock').value) || 0;
+                item.status = statusCheckbox && statusCheckbox.checked ? 'active' : 'inactive';
+                item.remark = document.getElementById('edit-consumable-remark').value || '';
+                
+                updateTableRow(item);
+            }
+            
+            hideModal('edit-consumable-modal');
+            showToast('耗材更新成功', 'success');
+        }
+
+        function addTableRow(item) {
+            const tbody = document.querySelector('#consumable-table tbody');
+            const emptyRow = tbody.querySelector('.empty-row');
+            if (emptyRow) emptyRow.remove();
+            
+            const categoryInfo = categoryMap[item.categoryId];
+            const badgeClass = categoryInfo && categoryInfo.type === 'reagent' ? 'primary' : categoryInfo && categoryInfo.type === 'equipment' ? 'info' : 'secondary';
+            const categoryShortName = item.categoryPath ? item.categoryPath.split(' > ').pop() : '-';
+            const isChecked = item.status === 'active' ? 'checked' : '';
+            
+            const row = document.createElement('tr');
+            row.className = 'table-row';
+            row.dataset.id = item.id;
+            row.innerHTML = `
+                <td><input type="checkbox" class="checkbox row-checkbox" value="${item.id}" onchange="updateSelection()"></td>
+                <td>
+                    <div class="cell-with-action">
+                        <span class="code-text">${item.code}</span>
+                        <button class="copy-btn" onclick="copyCode('${item.code}')" title="复制编码">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                            </svg>
+                        </button>
+                    </div>
+                </td>
+                <td><strong>${item.name}</strong></td>
+                <td><span class="badge badge-${badgeClass}" title="${item.categoryPath}">${categoryShortName}</span></td>
+                <td>${item.spec || '-'}</td>
+                <td>${item.unit || '-'}</td>
+                <td>${item.supplier || '-'}</td>
+                <td>¥${(item.price || 0).toFixed(2)}</td>
+                <td>${item.usage || '-'}</td>
+                <td>${item.usageUnit || '-'}</td>
+                <td>
+                    <div class="table-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" ${isChecked} onchange="toggleConsumableStatus('${item.id}', this)">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <button class="btn btn-ghost btn-sm" onclick="editConsumable('${item.id}')">编辑</button>
+                    <button class="btn btn-ghost btn-sm" onclick="viewConsumableDetail('${item.id}')">详情</button>
+                </td>
+            `;
+            
+            row.style.opacity = '0';
+            tbody.insertBefore(row, tbody.firstChild);
+            setTimeout(() => {
+                row.style.transition = 'all 0.3s ease';
+                row.style.opacity = '1';
+            }, 10);
+        }
+
+        function updateTableRow(item) {
+            const row = document.querySelector(`tr[data-id="${item.id}"]`);
+            if (!row) return;
+            
+            const categoryInfo = categoryMap[item.categoryId];
+            const badgeClass = categoryInfo && categoryInfo.type === 'reagent' ? 'primary' : categoryInfo && categoryInfo.type === 'equipment' ? 'info' : 'secondary';
+            const categoryShortName = item.categoryPath ? item.categoryPath.split(' > ').pop() : '-';
+            
+            row.querySelector('td:nth-child(3) strong').textContent = item.name;
+            const badge = row.querySelector('td:nth-child(4) .badge');
+            badge.textContent = categoryShortName;
+            badge.className = `badge badge-${badgeClass}`;
+            badge.title = item.categoryPath;
+            row.querySelector('td:nth-child(5)').textContent = item.spec || '-';
+            row.querySelector('td:nth-child(6)').textContent = item.unit || '-';
+            row.querySelector('td:nth-child(7)').textContent = item.supplier || '-';
+            row.querySelector('td:nth-child(8)').textContent = '¥' + (item.price || 0).toFixed(2);
+        }
+
+        // ==================== 工具函数 ====================
+        function copyCode(code) {
+            navigator.clipboard.writeText(code).then(() => {
+                showToast(`已复制: ${code}`, 'success');
+            }).catch(() => {
+                showToast('复制失败，请手动复制', 'error');
+            });
+        }
+
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `<span>${message}</span>`;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 10);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

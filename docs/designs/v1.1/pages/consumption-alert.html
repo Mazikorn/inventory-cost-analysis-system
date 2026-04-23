@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>消耗异常列表 - COREONE v2.2</title>
+    <link rel="stylesheet" href="../shared/styles.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="32" height="32" rx="8" fill="#3b82f6"/>
+                <path d="M8 16L14 10L20 16L14 22L8 16Z" fill="white"/>
+                <path d="M14 16L20 10L26 16L20 22L14 16Z" fill="white" opacity="0.6"/>
+            </svg>
+            <span>COREONE</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="inventory-list.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                </svg>
+                <span>库存列表</span>
+            </a>
+            <a href="inbound.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                <span>入库记录</span>
+            </a>
+            <a href="outbound.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                <span>出库记录</span>
+            </a>
+            <a href="scrap.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 6h18"/>
+                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                </svg>
+                <span>报废管理</span>
+            </a>
+            <a href="stocktaking.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 11l3 3L22 4"/>
+                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                </svg>
+                <span>库存盘点</span>
+            </a>
+            <a href="projects.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                </svg>
+                <span>检测服务</span>
+            </a>
+            <a href="bom.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+                <span>BOM清单</span>
+            </a>
+            <a href="cost-analysis.html" class="nav-item active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="20" x2="12" y2="10"/>
+                    <line x1="18" y1="20" x2="18" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="16"/>
+                </svg>
+                <span>物料成本分析</span>
+            </a>
+            <a href="categories.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="8" y1="6" x2="21" y2="6"/>
+                    <line x1="8" y1="12" x2="21" y2="12"/>
+                    <line x1="8" y1="18" x2="21" y2="18"/>
+                    <line x1="3" y1="6" x2="3.01" y2="6"/>
+                    <line x1="3" y1="12" x2="3.01" y2="12"/>
+                    <line x1="3" y1="18" x2="3.01" y2="18"/>
+                </svg>
+                <span>物料分类</span>
+            </a>
+            <a href="consumable-config.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                </svg>
+                <span>耗材配置</span>
+            </a>
+            <a href="rules.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+                <span>规则配置</span>
+            </a>
+            <a href="alerts.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                </svg>
+                <span>预警中心</span>
+            </a>
+            <div class="nav-divider"></div>
+            <a href="suppliers.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                <span>供应商管理</span>
+            </a>
+            <a href="locations.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <span>库位管理</span>
+            </a>
+            <a href="users.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                <span>用户管理</span>
+            </a>
+            <a href="roles.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                <span>角色管理</span>
+            </a>
+            <a href="logs.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+                <span>操作日志</span>
+            </a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <div>
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 4px;">
+                    <a href="cost-analysis.html" style="color: var(--text-muted); text-decoration: none; font-size: 14px;">物料成本分析</a>
+                    <span style="color: var(--text-muted);">/</span>
+                    <span style="color: var(--text-primary); font-size: 14px;">消耗异常列表</span>
+                </div>
+                <h1 class="page-title">消耗异常列表</h1>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>导出报告</button>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <div class="filter-group">
+                <span class="filter-label">物料搜索</span>
+                <input type="text" class="form-input search-input" placeholder="输入物料名称...">
+            </div>
+            <div class="filter-group">
+                <span class="filter-label">异常类型</span>
+                <select class="form-select filter-select"><option value="all" selected>全部</option><option value="high">消耗偏高</option><option value="low">消耗偏低</option><option value="volatility">波动异常</option></select>
+            </div>
+            <div class="filter-group">
+                <span class="filter-label">严重程度</span>
+                <select class="form-select filter-select"><option value="all" selected>全部</option><option value="danger">严重</option><option value="warning">一般</option></select>
+            </div>
+            <button class="btn btn-secondary btn-sm">查询</button>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-card warning">
+                <div class="stat-header"><span class="stat-label">异常预警总数</span><div class="stat-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div></div>
+                <div class="stat-value">3</div>
+                <div class="stat-change" style="color: rgba(255,255,255,0.8);">项物料消耗异常</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header"><span class="stat-label">消耗偏高</span><div class="stat-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg></div></div>
+                <div class="stat-value" style="color: var(--danger-text);">1</div>
+                <div style="font-size: 12px; color: var(--text-muted);">项物料</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header"><span class="stat-label">消耗偏低</span><div class="stat-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/></svg></div></div>
+                <div class="stat-value" style="color: var(--success);">1</div>
+                <div style="font-size: 12px; color: var(--text-muted);">项物料</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header"><span class="stat-label">波动异常</span><div class="stat-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div></div>
+                <div class="stat-value" style="color: var(--warning-text);">1</div>
+                <div style="font-size: 12px; color: var(--text-muted);">项物料</div>
+            </div>
+        </div>
+
+        <div class="alert-list">
+            <div class="alert-card danger">
+                <div class="alert-header">
+                    <div class="alert-title">
+                        <span class="alert-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+                        分化液 - 消耗量异常偏高
+                    </div>
+                    <span class="alert-time">2024-04-10 生成</span>
+                </div>
+                <div class="alert-body">
+                    <div class="alert-stat">
+                        <div class="alert-stat-label">本季度消耗</div>
+                        <div class="alert-stat-value">85 瓶</div>
+                    </div>
+                    <div class="alert-stat">
+                        <div class="alert-stat-label">历史均值</div>
+                        <div class="alert-stat-value">60 瓶</div>
+                    </div>
+                    <div class="alert-stat">
+                        <div class="alert-stat-label">超出比例</div>
+                        <div class="alert-stat-value" style="color: var(--danger-text);">+42%</div>
+                    </div>
+                    <div class="alert-stat">
+                        <div class="alert-stat-label">物料类型</div>
+                        <div class="alert-stat-value"><span class="type-badge" style="background: var(--primary-light); color: var(--primary);">染色试剂</span></div>
+                    </div>
+                </div>
+                <div class="alert-desc">本季度消耗量较历史均值高出 42%，超过预设阈值（30%），建议检查是否存在浪费或用量异常。</div>
+                <div class="alert-actions">
+                    <button class="btn btn-primary btn-sm">查看详情</button>
+                    <button class="btn btn-secondary btn-sm">标记已处理</button>
+                    <button class="btn btn-ghost btn-sm">忽略</button>
+                </div>
+            </div>
+
+            <div class="alert-card warning">
+                <div class="alert-header">
+                    <div class="alert-title">
+                        <span class="alert-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+                        载玻片 - 消耗量异常偏低
+                    </div>
+                    <span class="alert-time">2024-04-08 生成</span>
+                </div>
+                <div class="alert-body">
+                    <div class="alert-stat">
+                        <div class="alert-stat-label">本季度消耗</div>
+                        <div class="alert-stat-value">120 盒</div>
+                    </div>
+                    <div class="alert-stat">
+                        <div class="alert-stat-label">历史均值</div>
+                        <div class="alert-stat-value">185 盒</div>
+                    </div>
+                    <div class="alert-stat">
+                        <div class="alert-stat-label">低于比例</div>
+                        <div class="alert-stat-value" style="color: var(--success);">-35%</div>
+                    </div>
+                    <div class="alert-stat">
+                        <div class="alert-stat-label">物料类型</div>
+                        <div class="alert-stat-value"><span class="type-badge" style="background: var(--warning-bg); color: var(--warning-text);">耗材</span></div>
+                    </div>
+                </div>
+                <div class="alert-desc">本季度消耗量较历史均值低 35%，超过预设阈值（30%），请核实是否存在漏记或库存盘点差异。</div>
+                <div class="alert-actions">
+                    <button class="btn btn-primary btn-sm">查看详情</button>
+                    <button class="btn btn-secondary btn-sm">标记已处理</button>
+                    <button class="btn btn-ghost btn-sm">忽略</button>
+                </div>
+            </div>
+
+            <div class="alert-card warning">
+                <div class="alert-header">
+                    <div class="alert-title">
+                        <span class="alert-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+                        苏木精染液 - 消耗波动较大
+                    </div>
+                    <span class="alert-time">2024-04-05 生成</span>
+                </div>
+                <div class="alert-body">
+                    <div class="alert-stat">
+                        <div class="alert-stat-label">波动系数</div>
+                        <div class="alert-stat-value">0.38</div>
+                    </div>
+                    <div class="alert-stat">
+                        <div class="alert-stat-label">阈值</div>
+                        <div class="alert-stat-value">0.25</div>
+                    </div>
+                    <div class="alert-stat">
+                        <div class="alert-stat-label">季度消耗</div>
+                        <div class="alert-stat-value">385 瓶</div>
+                    </div>
+                    <div class="alert-stat">
+                        <div class="alert-stat-label">物料类型</div>
+                        <div class="alert-stat-value"><span class="type-badge" style="background: var(--primary-light); color: var(--primary);">染色试剂</span></div>
+                    </div>
+                </div>
+                <div class="alert-desc">近4个季度消耗量波动较大，波动系数 0.38 超过阈值 0.25，建议分析消耗规律并优化采购计划。</div>
+                <div class="alert-actions">
+                    <button class="btn btn-primary btn-sm">查看详情</button>
+                    <button class="btn btn-secondary btn-sm">标记已处理</button>
+                    <button class="btn btn-ghost btn-sm">忽略</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

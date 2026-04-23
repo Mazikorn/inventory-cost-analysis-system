@@ -1,0 +1,2068 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>出库记录 - COREONE v2.2</title>
+    <link rel="stylesheet" href="../shared/styles.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="32" height="32" rx="8" fill="#3b82f6"/>
+                <path d="M8 16L14 10L20 16L14 22L8 16Z" fill="white"/>
+                <path d="M14 16L20 10L26 16L20 22L14 16Z" fill="white" opacity="0.6"/>
+            </svg>
+            <span>COREONE</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="inventory-list.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                </svg>
+                <span>库存列表</span>
+            </a>
+            <a href="inbound.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                <span>入库记录</span>
+            </a>
+            <a href="outbound.html" class="nav-item active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                <span>出库记录</span>
+            </a>
+            <a href="scrap.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 6h18"/>
+                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                </svg>
+                <span>报废管理</span>
+            </a>
+            <a href="stocktaking.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 11l3 3L22 4"/>
+                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                </svg>
+                <span>库存盘点</span>
+            </a>
+            <a href="projects.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                </svg>
+                <span>检测服务</span>
+            </a>
+            <a href="bom.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+                <span>BOM清单</span>
+            </a>
+            <a href="cost-analysis.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="20" x2="12" y2="10"/>
+                    <line x1="18" y1="20" x2="18" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="16"/>
+                </svg>
+                <span>物料成本分析</span>
+            </a>
+            <a href="categories.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="8" y1="6" x2="21" y2="6"/>
+                    <line x1="8" y1="12" x2="21" y2="12"/>
+                    <line x1="8" y1="18" x2="21" y2="18"/>
+                    <line x1="3" y1="6" x2="3.01" y2="6"/>
+                    <line x1="3" y1="12" x2="3.01" y2="12"/>
+                    <line x1="3" y1="18" x2="3.01" y2="18"/>
+                </svg>
+                <span>物料分类</span>
+            </a>
+            <a href="consumable-config.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                </svg>
+                <span>耗材配置</span>
+            </a>
+            <a href="rules.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+                <span>规则配置</span>
+            </a>
+            <a href="alerts.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                </svg>
+                <span>预警中心</span>
+            </a>
+            <div class="nav-divider"></div>
+            <a href="suppliers.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                <span>供应商管理</span>
+            </a>
+            <a href="locations.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <span>库位管理</span>
+            </a>
+            <a href="users.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                <span>用户管理</span>
+            </a>
+            <a href="roles.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                <span>角色管理</span>
+            </a>
+            <a href="logs.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10 9 9 9 8 9"/>
+                </svg>
+                <span>操作日志</span>
+            </a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">出库记录</h1>
+                <p class="page-subtitle">查看和管理所有出库操作记录</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary" onclick="showModal('print-modal')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 6 2 18 2 18 9"/>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                        <rect x="6" y="14" width="12" height="8"/>
+                    </svg>
+                    打印记录
+                </button>
+                <button class="btn btn-primary" onclick="showModal('multi-outbound-modal')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                    出库登记
+                </button>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card stat-card-primary" onclick="filterByStatus('all')" data-status="all">
+                <div class="stat-value">156</div>
+                <div class="stat-label">本月出库</div>
+            </div>
+            <div class="stat-card stat-card-success" onclick="filterByStatus('completed')" data-status="completed">
+                <div class="stat-value">148</div>
+                <div class="stat-label">已完成</div>
+            </div>
+            <div class="stat-card stat-card-warning" onclick="filterByStatus('pending')" data-status="pending">
+                <div class="stat-value">5</div>
+                <div class="stat-label">待出库</div>
+            </div>
+            <div class="stat-card stat-card-muted" onclick="filterByStatus('cancelled')" data-status="cancelled">
+                <div class="stat-value">3</div>
+                <div class="stat-label">已取消</div>
+            </div>
+        </div>
+
+        <div class="quick-filters">
+            <span class="quick-filter-tag active" onclick="quickFilter('all')">
+                全部
+                <span class="count">156</span>
+            </span>
+            <span class="quick-filter-tag" onclick="quickFilter('today')">
+                今日
+                <span class="count">12</span>
+            </span>
+            <span class="quick-filter-tag" onclick="quickFilter('week')">
+                本周
+                <span class="count">45</span>
+            </span>
+            <span class="quick-filter-tag" onclick="quickFilter('month')">
+                本月
+                <span class="count">156</span>
+            </span>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">出库记录</span>
+                <div class="filter-bar">
+                    <div class="search-box">
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                        <input type="text" placeholder="搜索出库单号/耗材名称/批号...">
+                    </div>
+                    <select class="filter-select">
+                        <option value="">全部项目</option>
+                        <option value="project1">新生儿遗传代谢病筛查</option>
+                        <option value="project2">产前筛查</option>
+                        <option value="project3">新生儿听力筛查</option>
+                    </select>
+                    <select class="filter-select">
+                        <option value="">全部状态</option>
+                        <option value="completed">已完成</option>
+                        <option value="pending">待出库</option>
+                        <option value="cancelled">已取消</option>
+                    </select>
+                    <input type="date" class="filter-select" style="width: 130px;">
+                    <span style="color: var(--text-muted);">至</span>
+                    <input type="date" class="filter-select" style="width: 130px;">
+                    <button class="btn btn-secondary btn-sm">查询</button>
+                    <button class="btn btn-ghost btn-sm">重置</button>
+                </div>
+            </div>
+            <div class="batch-actions-bar" id="batch-actions-bar" style="display: none;">
+                <div class="batch-actions-info">
+                    <span>已选择 <strong id="selected-count">0</strong> 项</span>
+                </div>
+                <div class="batch-actions-buttons">
+                    <button class="btn btn-sm btn-ghost" onclick="batchExport()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7 10 12 15 17 10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        导出
+                    </button>
+                    <button class="btn btn-sm btn-ghost" onclick="batchPrint()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 6 2 18 2 18 9"/>
+                            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                            <rect x="6" y="14" width="12" height="8"/>
+                        </svg>
+                        打印
+                    </button>
+                    <button class="btn btn-sm btn-ghost" onclick="clearSelection()">取消选择</button>
+                </div>
+            </div>
+            <div class="card-body" style="padding: 0;">
+                <table class="data-table" id="outbound-table">
+                    <thead>
+                        <tr>
+                            <th width="40">
+                                <input type="checkbox" class="checkbox" id="header-checkbox" onchange="toggleSelectAll()">
+                            </th>
+                            <th>出库单号</th>
+                            <th>耗材名称</th>
+                            <th>批号</th>
+                            <th>出库数量</th>
+                            <th>关联项目</th>
+                            <th>领用人</th>
+                            <th>出库时间</th>
+                            <th>状态</th>
+                            <th width="140">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-row" data-id="OUT-2024-0156" data-status="completed">
+                            <td><input type="checkbox" class="checkbox row-checkbox" value="OUT-2024-0156" onchange="updateSelection()"></td>
+                            <td class="mono-text">OUT-2024-0156</td>
+                            <td><strong>PCR试剂盒</strong></td>
+                            <td class="mono-text">LOT-2024-001</td>
+                            <td>2 盒</td>
+                            <td>新生儿遗传代谢病筛查</td>
+                            <td>张三</td>
+                            <td>2024-01-15 10:30</td>
+                            <td><span class="outbound-status outbound-status-completed">已完成</span></td>
+                            <td style="white-space: nowrap;">
+                                <button class="btn btn-ghost btn-sm" onclick="showModal('outbound-detail-modal')">详情</button>
+                                <button class="btn btn-ghost btn-sm" onclick="printOutbound('OUT-2024-0156')">打印</button>
+                            </td>
+                        </tr>
+                        <tr class="table-row" data-id="OUT-2024-0155" data-status="completed">
+                            <td><input type="checkbox" class="checkbox row-checkbox" value="OUT-2024-0155" onchange="updateSelection()"></td>
+                            <td class="mono-text">OUT-2024-0155</td>
+                            <td><strong>离心管 1.5ml</strong></td>
+                            <td class="mono-text">LOT-2024-089</td>
+                            <td>50 个</td>
+                            <td>-</td>
+                            <td>李四</td>
+                            <td>2024-01-15 09:15</td>
+                            <td><span class="outbound-status outbound-status-completed">已完成</span></td>
+                            <td style="white-space: nowrap;">
+                                <button class="btn btn-ghost btn-sm" onclick="showModal('outbound-detail-modal')">详情</button>
+                                <button class="btn btn-ghost btn-sm" onclick="printOutbound('OUT-2024-0155')">打印</button>
+                            </td>
+                        </tr>
+                        <tr class="table-row" data-id="OUT-2024-0154" data-status="pending">
+                            <td><input type="checkbox" class="checkbox row-checkbox" value="OUT-2024-0154" onchange="updateSelection()"></td>
+                            <td class="mono-text">OUT-2024-0154</td>
+                            <td><strong>移液器吸头 200μl</strong></td>
+                            <td class="mono-text">LOT-2024-156</td>
+                            <td>1 盒</td>
+                            <td>新生儿听力筛查</td>
+                            <td>王五</td>
+                            <td>2024-01-14 16:45</td>
+                            <td><span class="outbound-status outbound-status-pending">待出库</span></td>
+                            <td style="white-space: nowrap;">
+                                <button class="btn btn-ghost btn-sm" onclick="showModal('outbound-detail-modal')">详情</button>
+                                <button class="btn btn-primary btn-sm" onclick="showModal('confirm-outbound-modal')">确认出库</button>
+                            </td>
+                        </tr>
+                        <tr class="table-row" data-id="OUT-2024-0153" data-status="completed">
+                            <td><input type="checkbox" class="checkbox row-checkbox" value="OUT-2024-0153" onchange="updateSelection()"></td>
+                            <td class="mono-text">OUT-2024-0153</td>
+                            <td><strong>滤纸片</strong></td>
+                            <td class="mono-text">LOT-2024-201</td>
+                            <td>100 张</td>
+                            <td>新生儿遗传代谢病筛查</td>
+                            <td>张三</td>
+                            <td>2024-01-14 14:20</td>
+                            <td><span class="outbound-status outbound-status-completed">已完成</span></td>
+                            <td style="white-space: nowrap;">
+                                <button class="btn btn-ghost btn-sm" onclick="showModal('outbound-detail-modal')">详情</button>
+                                <button class="btn btn-ghost btn-sm" onclick="printOutbound('OUT-2024-0153')">打印</button>
+                            </td>
+                        </tr>
+                        <tr class="table-row" data-id="OUT-2024-0152" data-status="cancelled">
+                            <td><input type="checkbox" class="checkbox row-checkbox" value="OUT-2024-0152" onchange="updateSelection()"></td>
+                            <td class="mono-text">OUT-2024-0152</td>
+                            <td><strong>样本采集卡</strong></td>
+                            <td class="mono-text">LOT-2024-302</td>
+                            <td>50 张</td>
+                            <td>-</td>
+                            <td>李四</td>
+                            <td>2024-01-14 11:00</td>
+                            <td><span class="outbound-status outbound-status-cancelled">已取消</span></td>
+                            <td style="white-space: nowrap;">
+                                <button class="btn btn-ghost btn-sm" onclick="showModal('outbound-detail-modal')">详情</button>
+                                <button class="btn btn-ghost btn-sm" onclick="showModal('restore-outbound-modal')">恢复</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <span class="pagination-info">共 156 条记录，第 1/16 页</span>
+                    <div class="pagination-controls">
+                        <button class="btn btn-sm btn-secondary" disabled>上一页</button>
+                        <button class="btn btn-sm btn-primary">1</button>
+                        <button class="btn btn-sm btn-ghost">2</button>
+                        <button class="btn btn-sm btn-ghost">3</button>
+                        <span>...</span>
+                        <button class="btn btn-sm btn-ghost">16</button>
+                        <button class="btn btn-sm btn-secondary">下一页</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 多物料出库登记弹窗 -->
+    <div id="multi-outbound-modal" class="modal">
+        <div class="modal-overlay" onclick="hideModal('multi-outbound-modal')"></div>
+        <div class="modal-container modal-xl">
+            <div class="modal-header">
+                <h3 class="modal-title">出库登记</h3>
+                <button class="modal-close" onclick="hideModal('multi-outbound-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-section">
+                    <div class="section-header">
+                        <h4 class="section-title">出库明细</h4>
+                        <button type="button" class="btn btn-sm btn-primary" onclick="showModal('add-material-modal')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px;">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                            添加物料
+                        </button>
+                    </div>
+                    <table class="data-table" style="font-size: 13px;">
+                        <thead>
+                            <tr>
+                                <th>物料名称</th>
+                                <th>关联项目</th>
+                                <th>批次号</th>
+                                <th>库存</th>
+                                <th style="width: 90px;">出库数量</th>
+                                <th style="width: 120px;">领用人</th>
+                                <th style="width: 50px;">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="outbound-materials-list">
+                        </tbody>
+                    </table>
+                    <div id="empty-materials-tip" style="text-align: center; padding: 32px; color: var(--text-muted);">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 8px; opacity: 0.5;">
+                            <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                        </svg>
+                        <div style="font-size: 14px;">请选择物料或点击"添加物料"按钮</div>
+                    </div>
+                    <div id="stock-shortage-warning" style="display: none; margin-top: 12px; padding: 12px; background: var(--warning-bg); border: 1px solid var(--warning); border-radius: var(--radius-md);">
+                        <div style="display: flex; align-items: flex-start; gap: 8px;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warning-text)" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                <line x1="12" y1="9" x2="12" y2="13"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                            <div>
+                                <div style="font-size: 13px; font-weight: 500; color: var(--warning-text); margin-bottom: 4px;">库存不足预警</div>
+                                <div style="font-size: 12px; color: var(--text-secondary);">以下物料库存不足：<span id="shortage-items"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top: 16px;">
+                    <label class="form-label">备注</label>
+                    <textarea class="form-textarea" id="outbound-remark" rows="2" placeholder="请输入出库备注信息（可选）"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideModal('multi-outbound-modal')">取消</button>
+                <button class="btn btn-primary" onclick="confirmMultiOutbound()">确认出库</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加物料弹窗 -->
+    <div id="add-material-modal" class="modal">
+        <div class="modal-overlay" onclick="hideModal('add-material-modal')"></div>
+        <div class="modal-container modal-picker">
+            <div class="modal-header">
+                <h3 class="modal-title">添加物料</h3>
+                <button class="modal-close" onclick="hideModal('add-material-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="material-picker-layout">
+                    <!-- 左侧：物料选择区 -->
+                    <div class="material-picker-left">
+                        <div class="material-picker-tabs">
+                            <button type="button" class="material-tab active" onclick="switchMaterialTab('list')">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="8" y1="6" x2="21" y2="6"/>
+                                    <line x1="8" y1="12" x2="21" y2="12"/>
+                                    <line x1="8" y1="18" x2="21" y2="18"/>
+                                    <line x1="3" y1="6" x2="3.01" y2="6"/>
+                                    <line x1="3" y1="12" x2="3.01" y2="12"/>
+                                    <line x1="3" y1="18" x2="3.01" y2="18"/>
+                                </svg>
+                                物料列表
+                            </button>
+                            <button type="button" class="material-tab" onclick="switchMaterialTab('bom')">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                                </svg>
+                                按检测项目添加
+                            </button>
+                        </div>
+                        
+                        <!-- 物料列表Tab内容 -->
+                        <div id="tab-list-content" class="material-tab-content">
+                            <div class="material-search-box">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="11" cy="11" r="8"/>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                                </svg>
+                                <input type="text" id="material-search-input" placeholder="搜索物料名称或编号..." oninput="filterMaterialsList()">
+                            </div>
+                            <div class="material-list-container">
+                                <table class="material-pick-table">
+                                    <thead>
+                                        <tr>
+                                            <th width="40">
+                                                <input type="checkbox" class="checkbox" id="select-all-list" onchange="toggleSelectAllList(this)">
+                                            </th>
+                                            <th>物料名称</th>
+                                            <th>规格</th>
+                                            <th>库存</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="material-list-tbody">
+                                        <tr class="material-row" data-id="m1" data-name="DNA提取试剂盒" data-spec="50次/盒" data-stock="50" data-projects='["新生儿遗传代谢病筛查"]'>
+                                            <td><input type="checkbox" class="checkbox material-list-cb" onchange="onMaterialCheck(this)"></td>
+                                            <td>
+                                                <strong>DNA提取试剂盒</strong>
+                                                <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">📁 新生儿遗传代谢病筛查</div>
+                                            </td>
+                                            <td>50次/盒</td>
+                                            <td><span class="stock-num">50</span></td>
+                                        </tr>
+                                        <tr class="material-row" data-id="m2" data-name="PCR Master Mix" data-spec="100次/盒" data-stock="25" data-projects='["新生儿遗传代谢病筛查", "产前筛查"]'>
+                                            <td><input type="checkbox" class="checkbox material-list-cb" onchange="onMaterialCheck(this)"></td>
+                                            <td>
+                                                <strong>PCR Master Mix</strong>
+                                                <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">📁 新生儿遗传代谢病筛查 · 产前筛查</div>
+                                            </td>
+                                            <td>100次/盒</td>
+                                            <td><span class="stock-num">25</span></td>
+                                        </tr>
+                                        <tr class="material-row" data-id="m3" data-name="离心管 1.5ml" data-spec="500个/包" data-stock="5000" data-projects='["新生儿遗传代谢病筛查", "产前筛查", "新生儿听力筛查"]'>
+                                            <td><input type="checkbox" class="checkbox material-list-cb" onchange="onMaterialCheck(this)"></td>
+                                            <td>
+                                                <strong>离心管 1.5ml</strong>
+                                                <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">📁 新生儿遗传代谢病筛查 · 产前筛查 · 新生儿听力筛查</div>
+                                            </td>
+                                            <td>500个/包</td>
+                                            <td><span class="stock-num">5000</span></td>
+                                        </tr>
+                                        <tr class="material-row" data-id="m4" data-name="移液器吸头 200μl" data-spec="1000个/盒" data-stock="2000" data-projects='["新生儿遗传代谢病筛查", "产前筛查"]'>
+                                            <td><input type="checkbox" class="checkbox material-list-cb" onchange="onMaterialCheck(this)"></td>
+                                            <td>
+                                                <strong>移液器吸头 200μl</strong>
+                                                <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">📁 新生儿遗传代谢病筛查 · 产前筛查</div>
+                                            </td>
+                                            <td>1000个/盒</td>
+                                            <td><span class="stock-num">2000</span></td>
+                                        </tr>
+                                        <tr class="material-row" data-id="m5" data-name="测序引物套装" data-spec="20次/套" data-stock="12" data-projects='["新生儿听力筛查"]'>
+                                            <td><input type="checkbox" class="checkbox material-list-cb" onchange="onMaterialCheck(this)"></td>
+                                            <td>
+                                                <strong>测序引物套装</strong>
+                                                <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">📁 新生儿听力筛查</div>
+                                            </td>
+                                            <td>20次/套</td>
+                                            <td><span class="stock-num">12</span></td>
+                                        </tr>
+                                        <tr class="material-row" data-id="m6" data-name="一次性手套" data-spec="100双/盒" data-stock="100" data-projects='[]'>
+                                            <td><input type="checkbox" class="checkbox material-list-cb" onchange="onMaterialCheck(this)"></td>
+                                            <td>
+                                                <strong>一次性手套</strong>
+                                                <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">─ 公共物料</div>
+                                            </td>
+                                            <td>100双/盒</td>
+                                            <td><span class="stock-num">100</span></td>
+                                        </tr>
+                                        <tr class="material-row" data-id="m7" data-name="口罩" data-spec="50个/盒" data-stock="200" data-projects='[]'>
+                                            <td><input type="checkbox" class="checkbox material-list-cb" onchange="onMaterialCheck(this)"></td>
+                                            <td>
+                                                <strong>口罩</strong>
+                                                <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">─ 公共物料</div>
+                                            </td>
+                                            <td>50个/盒</td>
+                                            <td><span class="stock-num">200</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="material-tab-footer">
+                                <div class="tab-footer-info">
+                                    <span id="list-selected-count">已勾选 0 项</span>
+                                </div>
+                                <button type="button" class="btn btn-primary btn-sm" onclick="addListToSelected()">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px;">
+                                        <line x1="12" y1="5" x2="12" y2="19"/>
+                                        <line x1="5" y1="12" x2="19" y2="12"/>
+                                    </svg>
+                                    添加到已选
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- BOM Tab内容 -->
+                        <div id="tab-bom-content" class="material-tab-content" style="display: none;">
+                            <div class="bom-filter-row">
+                                <div class="bom-filter-item" style="flex: 1;">
+                                    <label class="form-label">检测项目</label>
+                                    <div class="searchable-select" id="project-search-wrapper">
+                                        <input type="text" class="form-input" id="project-search-input" placeholder="输入关键词搜索检测项目..." autocomplete="off" oninput="filterProjectList()" onfocus="showProjectDropdown()">
+                                        <input type="hidden" id="bom-project-filter" value="1">
+                                        <div class="searchable-dropdown" id="project-dropdown">
+                                            <div class="dropdown-search">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <circle cx="11" cy="11" r="8"/>
+                                                    <path d="m21 21-4.35-4.35"/>
+                                                </svg>
+                                                <input type="text" placeholder="搜索检测项目..." oninput="filterProjectDropdown(this.value)">
+                                            </div>
+                                            <div class="dropdown-list" id="project-dropdown-list">
+                                                <div class="dropdown-item selected" data-value="1" data-name="新生儿遗传代谢病筛查" onclick="selectProject(this)">
+                                                    <div class="item-name">新生儿遗传代谢病筛查</div>
+                                                    <div class="item-desc">新生儿疾病筛查</div>
+                                                </div>
+                                                <div class="dropdown-item" data-value="2" data-name="产前筛查" onclick="selectProject(this)">
+                                                    <div class="item-name">产前筛查</div>
+                                                    <div class="item-desc">产前诊断</div>
+                                                </div>
+                                                <div class="dropdown-item" data-value="3" data-name="新生儿听力筛查" onclick="selectProject(this)">
+                                                    <div class="item-name">新生儿听力筛查</div>
+                                                    <div class="item-desc">听力检测</div>
+                                                </div>
+                                                <div class="dropdown-item" data-value="4" data-name="HE制片" onclick="selectProject(this)">
+                                                    <div class="item-name">HE制片</div>
+                                                    <div class="item-desc">病理技术</div>
+                                                </div>
+                                                <div class="dropdown-item" data-value="5" data-name="免疫组化-IHC" onclick="selectProject(this)">
+                                                    <div class="item-name">免疫组化-IHC</div>
+                                                    <div class="item-desc">病理技术</div>
+                                                </div>
+                                                <div class="dropdown-item" data-value="6" data-name="特殊染色" onclick="selectProject(this)">
+                                                    <div class="item-name">特殊染色</div>
+                                                    <div class="item-desc">病理技术</div>
+                                                </div>
+                                                <div class="dropdown-item" data-value="7" data-name="分子病理检测" onclick="selectProject(this)">
+                                                    <div class="item-name">分子病理检测</div>
+                                                    <div class="item-desc">分子诊断</div>
+                                                </div>
+                                                <div class="dropdown-item" data-value="8" data-name="细胞学检查" onclick="selectProject(this)">
+                                                    <div class="item-name">细胞学检查</div>
+                                                    <div class="item-desc">病理诊断</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bom-filter-item">
+                                    <label class="form-label">数量</label>
+                                    <input type="number" class="form-input" id="bom-sample-count" value="10" min="1" style="width: 100px;" onchange="updateBomQuantities()">
+                                </div>
+                            </div>
+                            <div class="bom-hint">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 16v-4"/>
+                                    <path d="M12 8h.01"/>
+                                </svg>
+                                选择检测项目后，物料将自动关联该项目，用于成本归集
+                            </div>
+                            <div class="material-list-container">
+                                <table class="material-pick-table">
+                                    <thead>
+                                        <tr>
+                                            <th width="40">
+                                                <input type="checkbox" class="checkbox" id="select-all-bom" checked onchange="toggleSelectAllBom(this)">
+                                            </th>
+                                            <th>物料名称</th>
+                                            <th>规格</th>
+                                            <th>单位用量</th>
+                                            <th>计算数量</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bom-list-tbody">
+                                        <tr class="material-row bom-row" data-id="m1" data-name="DNA提取试剂盒" data-spec="50次/盒" data-unit="1盒/样本">
+                                            <td><input type="checkbox" class="checkbox material-bom-cb" checked onchange="onBomCheck(this)"></td>
+                                            <td><strong>DNA提取试剂盒</strong></td>
+                                            <td>50次/盒</td>
+                                            <td>1盒/样本</td>
+                                            <td><span class="bom-calc-qty">10</span></td>
+                                        </tr>
+                                        <tr class="material-row bom-row" data-id="m2" data-name="PCR Master Mix" data-spec="100次/盒" data-unit="1盒/样本">
+                                            <td><input type="checkbox" class="checkbox material-bom-cb" checked onchange="onBomCheck(this)"></td>
+                                            <td><strong>PCR Master Mix</strong></td>
+                                            <td>100次/盒</td>
+                                            <td>1盒/样本</td>
+                                            <td><span class="bom-calc-qty">10</span></td>
+                                        </tr>
+                                        <tr class="material-row bom-row" data-id="m3" data-name="离心管 1.5ml" data-spec="500个/包" data-unit="5个/样本">
+                                            <td><input type="checkbox" class="checkbox material-bom-cb" checked onchange="onBomCheck(this)"></td>
+                                            <td><strong>离心管 1.5ml</strong></td>
+                                            <td>500个/包</td>
+                                            <td>5个/样本</td>
+                                            <td><span class="bom-calc-qty">50</span></td>
+                                        </tr>
+                                        <tr class="material-row bom-row" data-id="m4" data-name="移液器吸头 200μl" data-spec="1000个/盒" data-unit="10个/样本">
+                                            <td><input type="checkbox" class="checkbox material-bom-cb" checked onchange="onBomCheck(this)"></td>
+                                            <td><strong>移液器吸头 200μl</strong></td>
+                                            <td>1000个/盒</td>
+                                            <td>10个/样本</td>
+                                            <td><span class="bom-calc-qty">100</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="material-tab-footer">
+                                <div class="tab-footer-info">
+                                    <span id="bom-selected-count">已勾选 4 项</span>
+                                </div>
+                                <button type="button" class="btn btn-primary btn-sm" onclick="addBomToSelected()">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px;">
+                                        <line x1="12" y1="5" x2="12" y2="19"/>
+                                        <line x1="5" y1="12" x2="19" y2="12"/>
+                                    </svg>
+                                    添加到已选
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 右侧：已选物料区 -->
+                    <div class="material-picker-right">
+                        <div class="selected-header">
+                            <span class="selected-title">已选物料</span>
+                            <span class="selected-count" id="selected-count-badge">0 项</span>
+                        </div>
+                        <div class="selected-list-container" id="selected-list-container">
+                            <div class="selected-empty" id="selected-empty-tip">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                                </svg>
+                                <p>从左侧勾选物料添加</p>
+                                <p class="selected-empty-hint">支持同时使用"物料列表"和"BOM"两种方式</p>
+                            </div>
+                            <div class="selected-list" id="selected-materials-list"></div>
+                        </div>
+                        <div class="selected-summary" id="selected-summary" style="display: none;">
+                            <div class="summary-row">
+                                <span>物料种类</span>
+                                <span class="summary-value" id="summary-types">0</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>预计出库数量</span>
+                                <span class="summary-value primary" id="summary-total">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideModal('add-material-modal')">取消</button>
+                <button class="btn btn-primary" onclick="confirmAddMaterials()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px;">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    确认添加
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 出库详情弹窗 -->
+    <div id="outbound-detail-modal" class="modal">
+        <div class="modal-overlay" onclick="hideModal('outbound-detail-modal')"></div>
+        <div class="modal-container modal-lg">
+            <div class="modal-header">
+                <h3 class="modal-title">出库详情</h3>
+                <button class="modal-close" onclick="hideModal('outbound-detail-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="detail-header">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div class="detail-title">OUT-2024-0156</div>
+                        <span class="status-badge status-success">已完成</span>
+                    </div>
+                    <div class="detail-subtitle">出库时间: 2024-01-15 10:30:25</div>
+                </div>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <div class="detail-label">关联项目</div>
+                        <div class="detail-value">新生儿遗传代谢病筛查</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">领用人</div>
+                        <div class="detail-value">张三</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">操作人</div>
+                        <div class="detail-value">李四</div>
+                    </div>
+                </div>
+                <table class="data-table" style="margin-top: 24px;">
+                    <thead>
+                        <tr>
+                            <th>物料名称</th>
+                            <th>规格型号</th>
+                            <th>批次号</th>
+                            <th>出库数量</th>
+                            <th>单位</th>
+                            <th>单价</th>
+                            <th>金额</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>PCR试剂盒</td>
+                            <td>96孔/盒</td>
+                            <td class="mono-text">LOT-2024-0156</td>
+                            <td>2</td>
+                            <td>盒</td>
+                            <td>¥850.00</td>
+                            <td>¥1,700.00</td>
+                        </tr>
+                        <tr>
+                            <td>离心管</td>
+                            <td>1.5ml</td>
+                            <td class="mono-text">LOT-2024-0089</td>
+                            <td>50</td>
+                            <td>个</td>
+                            <td>¥0.50</td>
+                            <td>¥25.00</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr style="background: var(--bg-page); font-weight: 600;">
+                            <td colspan="6" style="text-align: right;">合计:</td>
+                            <td>¥1,725.00</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div style="margin-top: 16px; padding: 12px; background: var(--bg-page); border-radius: 6px;">
+                    <div class="detail-label" style="margin-bottom: 4px;">备注</div>
+                    <div style="font-size: 14px; color: var(--text-primary);">用于新生儿遗传代谢病筛查项目第一批次检测</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideModal('outbound-detail-modal')">关闭</button>
+                <button class="btn btn-secondary" onclick="printOutbound('OUT-2024-0156')">打印</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 确认出库弹窗 -->
+    <div id="confirm-outbound-modal" class="modal">
+        <div class="modal-overlay" onclick="hideModal('confirm-outbound-modal')"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title">确认出库</h3>
+                <button class="modal-close" onclick="hideModal('confirm-outbound-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom: 16px; color: var(--text-secondary);">确认执行出库操作后，库存将相应减少。</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">出库单号</label>
+                        <input type="text" class="form-input mono-text" value="OUT-2024-0154" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">领用人</label>
+                        <input type="text" class="form-input" value="王五" readonly>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group form-group-lg">
+                        <label class="form-label">备注</label>
+                        <textarea class="form-textarea" rows="2" placeholder="可选填"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideModal('confirm-outbound-modal')">取消</button>
+                <button class="btn btn-primary" onclick="confirmOutbound()">确认出库</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 取消出库弹窗 -->
+    <div id="cancel-outbound-modal" class="modal">
+        <div class="modal-overlay" onclick="hideModal('cancel-outbound-modal')"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title">取消出库</h3>
+                <button class="modal-close" onclick="hideModal('cancel-outbound-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom: 16px; color: var(--text-secondary);">取消后，该出库单将标记为"已取消"状态。</p>
+                <div class="form-row">
+                    <div class="form-group form-group-lg">
+                        <label class="form-label">取消原因 <span class="required">*</span></label>
+                        <select class="form-select">
+                            <option value="">请选择原因</option>
+                            <option value="request">申请人取消需求</option>
+                            <option value="stock">库存不足</option>
+                            <option value="error">录入错误</option>
+                            <option value="other">其他原因</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group form-group-lg">
+                        <label class="form-label">备注</label>
+                        <textarea class="form-textarea" rows="2" placeholder="可选填"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideModal('cancel-outbound-modal')">取消</button>
+                <button class="btn btn-danger" onclick="cancelOutbound()">确认取消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 恢复出库弹窗 -->
+    <div id="restore-outbound-modal" class="modal">
+        <div class="modal-overlay" onclick="hideModal('restore-outbound-modal')"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title">恢复出库</h3>
+                <button class="modal-close" onclick="hideModal('restore-outbound-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom: 16px; color: var(--text-secondary);">恢复后，该出库单将重新变为"待出库"状态。</p>
+                <div class="form-row">
+                    <div class="form-group form-group-lg">
+                        <label class="form-label">备注</label>
+                        <textarea class="form-textarea" rows="2" placeholder="可选填"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideModal('restore-outbound-modal')">取消</button>
+                <button class="btn btn-primary" onclick="restoreOutbound()">确认恢复</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 打印记录弹窗 -->
+    <div id="print-modal" class="modal">
+        <div class="modal-overlay" onclick="hideModal('print-modal')"></div>
+        <div class="modal-container modal-xl">
+            <div class="modal-header">
+                <h3 class="modal-title">打印出库记录</h3>
+                <button class="modal-close" onclick="hideModal('print-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="margin-bottom: 20px;">
+                    <div style="font-weight: 500; margin-bottom: 12px; color: var(--text-primary);">筛选条件（可选，可组合筛选）</div>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                        <div class="form-group">
+                            <label class="form-label">时间范围</label>
+                            <div style="display: flex; gap: 8px; align-items: center;">
+                                <input type="date" class="form-control" id="print-start-date" placeholder="开始日期">
+                                <span style="color: var(--text-muted);">至</span>
+                                <input type="date" class="form-control" id="print-end-date" placeholder="结束日期">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">记录状态</label>
+                            <select class="form-control" id="print-status">
+                                <option value="">全部状态</option>
+                                <option value="completed">已完成</option>
+                                <option value="pending">待出库</option>
+                                <option value="cancelled">已取消</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <div style="font-weight: 500; margin-bottom: 12px; color: var(--text-primary);">检测项目（可多选，不选则查全部）</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; padding: 12px; background: var(--bg-page); border-radius: var(--radius-md); border: 1px solid var(--border-default);">
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--bg-default); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px; border: 1px solid var(--border-default); transition: all var(--transition-fast);">
+                            <input type="checkbox" class="project-checkbox" value="1" onchange="updateProjectSelection()">
+                            <span>新生儿遗传代谢病筛查</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--bg-default); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px; border: 1px solid var(--border-default); transition: all var(--transition-fast);">
+                            <input type="checkbox" class="project-checkbox" value="2" onchange="updateProjectSelection()">
+                            <span>产前筛查</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--bg-default); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px; border: 1px solid var(--border-default); transition: all var(--transition-fast);">
+                            <input type="checkbox" class="project-checkbox" value="3" onchange="updateProjectSelection()">
+                            <span>新生儿听力筛查</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--bg-default); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px; border: 1px solid var(--border-default); transition: all var(--transition-fast);">
+                            <input type="checkbox" class="project-checkbox" value="4" onchange="updateProjectSelection()">
+                            <span>HE制片</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--bg-default); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px; border: 1px solid var(--border-default); transition: all var(--transition-fast);">
+                            <input type="checkbox" class="project-checkbox" value="5" onchange="updateProjectSelection()">
+                            <span>免疫组化</span>
+                        </label>
+                    </div>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <div style="font-weight: 500; margin-bottom: 12px; color: var(--text-primary);">领用人（可多选，不选则查全部）</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; padding: 12px; background: var(--bg-page); border-radius: var(--radius-md); border: 1px solid var(--border-default);">
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--bg-default); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px; border: 1px solid var(--border-default); transition: all var(--transition-fast);">
+                            <input type="checkbox" class="user-checkbox" value="1" onchange="updateUserSelection()">
+                            <span>张三</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--bg-default); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px; border: 1px solid var(--border-default); transition: all var(--transition-fast);">
+                            <input type="checkbox" class="user-checkbox" value="2" onchange="updateUserSelection()">
+                            <span>李四</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--bg-default); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px; border: 1px solid var(--border-default); transition: all var(--transition-fast);">
+                            <input type="checkbox" class="user-checkbox" value="3" onchange="updateUserSelection()">
+                            <span>王五</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--bg-default); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px; border: 1px solid var(--border-default); transition: all var(--transition-fast);">
+                            <input type="checkbox" class="user-checkbox" value="4" onchange="updateUserSelection()">
+                            <span>赵六</span>
+                        </label>
+                    </div>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <div style="font-weight: 500; margin-bottom: 12px; color: var(--text-primary);">物料分类（可多选，不选则查全部）</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; padding: 12px; background: var(--bg-page); border-radius: var(--radius-md); border: 1px solid var(--border-default);">
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--bg-default); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px; border: 1px solid var(--border-default); transition: all var(--transition-fast);">
+                            <input type="checkbox" class="category-checkbox" value="1" onchange="updateCategorySelection()">
+                            <span>试剂</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--bg-default); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px; border: 1px solid var(--border-default); transition: all var(--transition-fast);">
+                            <input type="checkbox" class="category-checkbox" value="2" onchange="updateCategorySelection()">
+                            <span>耗材</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--bg-default); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px; border: 1px solid var(--border-default); transition: all var(--transition-fast);">
+                            <input type="checkbox" class="category-checkbox" value="3" onchange="updateCategorySelection()">
+                            <span>设备配件</span>
+                        </label>
+                    </div>
+                </div>
+                <div style="padding: 12px 16px; background: #eff6ff; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: space-between;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4"/>
+                            <path d="M12 8h.01"/>
+                        </svg>
+                        <span style="font-size: 13px; color: #3b82f6;">已选择筛选条件，预计匹配 <strong id="print-count">156</strong> 条出库记录</span>
+                    </div>
+                    <button class="btn btn-ghost btn-sm" style="color: #3b82f6;" onclick="previewPrintData()">预览数据</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideModal('print-modal')">取消</button>
+                <button class="btn btn-primary" onclick="doPrint()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 6 2 18 2 18 9"/>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                        <rect x="6" y="14" width="12" height="8"/>
+                    </svg>
+                    确认打印
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../shared/scripts.js"></script>
+    <script src="../shared/data-store.js"></script>
+    <script>
+        let currentOpenModal = null;
+
+        function showModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            currentOpenModal = modalId;
+            
+            setTimeout(() => {
+                const firstInput = modal.querySelector('input:not([type="hidden"]), button:not(.modal-close), select, textarea');
+                if (firstInput) {
+                    firstInput.focus();
+                }
+            }, 100);
+        }
+
+        function hideModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            currentOpenModal = null;
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && currentOpenModal) {
+                hideModal(currentOpenModal);
+            }
+        });
+        
+        function toggleAddMethod(method) {
+            const manualContent = document.getElementById('manual-select-content');
+            const bomContent = document.getElementById('bom-select-content');
+            
+            if (method === 'manual') {
+                manualContent.style.display = 'block';
+                bomContent.style.display = 'none';
+            } else {
+                manualContent.style.display = 'none';
+                bomContent.style.display = 'block';
+            }
+        }
+
+        function toggleSelectAllBom(headerCheckbox) {
+            const checkboxes = document.querySelectorAll('.bom-checkbox');
+            checkboxes.forEach(cb => cb.checked = headerCheckbox.checked);
+        }
+
+        function toggleSelectAllManual(headerCheckbox) {
+            const checkboxes = document.querySelectorAll('.manual-checkbox');
+            checkboxes.forEach(cb => cb.checked = headerCheckbox.checked);
+        }
+
+        function toggleSelectAll() {
+            const headerCheckbox = document.getElementById('header-checkbox');
+            const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+            const isChecked = headerCheckbox.checked;
+
+            rowCheckboxes.forEach(checkbox => {
+                checkbox.checked = isChecked;
+                const row = checkbox.closest('.table-row');
+                if (isChecked) {
+                    row.classList.add('selected');
+                } else {
+                    row.classList.remove('selected');
+                }
+            });
+
+            updateBatchActionsBar();
+        }
+
+        function updateSelection() {
+            const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+            const headerCheckbox = document.getElementById('header-checkbox');
+            let checkedCount = 0;
+
+            rowCheckboxes.forEach(checkbox => {
+                const row = checkbox.closest('.table-row');
+                if (checkbox.checked) {
+                    checkedCount++;
+                    row.classList.add('selected');
+                } else {
+                    row.classList.remove('selected');
+                }
+            });
+
+            headerCheckbox.checked = checkedCount === rowCheckboxes.length;
+            updateBatchActionsBar();
+        }
+
+        function updateBatchActionsBar() {
+            const checkedCount = document.querySelectorAll('.row-checkbox:checked').length;
+            const batchBar = document.getElementById('batch-actions-bar');
+            const selectedCountEl = document.getElementById('selected-count');
+
+            selectedCountEl.textContent = checkedCount;
+
+            if (checkedCount > 0) {
+                batchBar.style.display = 'flex';
+            } else {
+                batchBar.style.display = 'none';
+            }
+        }
+
+        function clearSelection() {
+            const headerCheckbox = document.getElementById('header-checkbox');
+            const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+
+            headerCheckbox.checked = false;
+            rowCheckboxes.forEach(checkbox => {
+                checkbox.checked = false;
+                checkbox.closest('.table-row').classList.remove('selected');
+            });
+
+            updateBatchActionsBar();
+        }
+
+        function batchExport() {
+            const selectedCount = document.querySelectorAll('.row-checkbox:checked').length;
+            showToast(`正在导出 ${selectedCount} 条出库记录...`, 'success');
+        }
+
+        function batchPrint() {
+            showModal('print-modal');
+        }
+
+        function printOutbound(id) {
+            showModal('print-modal');
+        }
+
+        function doPrint() {
+            hideModal('print-modal');
+            showToast('正在生成打印预览...', 'info');
+            setTimeout(() => {
+                window.print();
+            }, 500);
+        }
+
+        function selectDimension(dimension) {
+            document.querySelectorAll('.dimension-option').forEach(opt => {
+                opt.style.borderColor = 'var(--border-default)';
+                opt.style.background = 'transparent';
+            });
+            event.currentTarget.style.borderColor = 'var(--primary)';
+            event.currentTarget.style.background = 'var(--primary-light)';
+            event.currentTarget.querySelector('input[type="radio"]').checked = true;
+
+            document.querySelectorAll('.dimension-panel').forEach(panel => {
+                panel.style.display = 'none';
+            });
+            document.getElementById('dimension-' + dimension).style.display = 'block';
+        }
+
+        function confirmOutbound() {
+            showToast('出库成功', 'success');
+        }
+
+        function cancelOutbound() {
+            hideModal('cancel-outbound-modal');
+            showToast('出库已取消', 'success');
+        }
+
+        function restoreOutbound() {
+            hideModal('restore-outbound-modal');
+            showToast('出库已恢复', 'success');
+        }
+
+        function doPrint() {
+            hideModal('print-modal');
+            showToast('正在生成打印预览...', 'info');
+        }
+
+        function resetPrintFilters() {
+            document.querySelectorAll('.project-checkbox, .user-checkbox, .category-checkbox').forEach(cb => {
+                cb.checked = false;
+            });
+            document.querySelector('.project-checkbox[value=""]').checked = true;
+            document.querySelector('.user-checkbox[value=""]').checked = true;
+            document.querySelector('.category-checkbox[value=""]').checked = true;
+            document.getElementById('print-start-date').value = '';
+            document.getElementById('print-end-date').value = '';
+            document.getElementById('print-status').value = '';
+            document.getElementById('print-count').textContent = '0';
+            showToast('筛选条件已重置', 'info');
+        }
+
+        function updateProjectSelection() {
+            const allCheckbox = document.querySelector('.project-checkbox[value=""]');
+            const otherCheckboxes = document.querySelectorAll('.project-checkbox:not([value=""])');
+            const checkedOthers = Array.from(otherCheckboxes).filter(cb => cb.checked);
+            
+            if (checkedOthers.length > 0) {
+                allCheckbox.checked = false;
+            } else {
+                allCheckbox.checked = true;
+            }
+            updatePrintCount();
+        }
+
+        function updateUserSelection() {
+            const allCheckbox = document.querySelector('.user-checkbox[value=""]');
+            const otherCheckboxes = document.querySelectorAll('.user-checkbox:not([value=""])');
+            const checkedOthers = Array.from(otherCheckboxes).filter(cb => cb.checked);
+            
+            if (checkedOthers.length > 0) {
+                allCheckbox.checked = false;
+            } else {
+                allCheckbox.checked = true;
+            }
+            updatePrintCount();
+        }
+
+        function updateCategorySelection() {
+            const allCheckbox = document.querySelector('.category-checkbox[value=""]');
+            const otherCheckboxes = document.querySelectorAll('.category-checkbox:not([value=""])');
+            const checkedOthers = Array.from(otherCheckboxes).filter(cb => cb.checked);
+            
+            if (checkedOthers.length > 0) {
+                allCheckbox.checked = false;
+            } else {
+                allCheckbox.checked = true;
+            }
+            updatePrintCount();
+        }
+
+        function updatePrintCount() {
+            const count = Math.floor(Math.random() * 200) + 50;
+            document.getElementById('print-count').textContent = count;
+        }
+
+        function previewPrintData() {
+            showToast('正在加载预览数据...', 'info');
+        }
+
+        function filterByStatus(status) {
+            document.querySelectorAll('.stat-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            document.querySelector(`.stat-card[data-status="${status}"]`).classList.add('active');
+            
+            document.querySelectorAll('.quick-filter-tag').forEach(tag => {
+                tag.classList.remove('active');
+            });
+            
+            showToast(`已筛选状态：${status === 'all' ? '全部' : status}`, 'info');
+        }
+
+        function quickFilter(filter) {
+            document.querySelectorAll('.quick-filter-tag').forEach(tag => {
+                tag.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            const filterNames = {
+                'all': '全部',
+                'today': '今日',
+                'week': '本周',
+                'month': '本月'
+            };
+            showToast(`快捷筛选：${filterNames[filter]}`, 'info');
+        }
+
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    ${type === 'success' ? '<polyline points="20 6 9 17 4 12"/>' : type === 'error' ? '<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>' : '<circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>'}
+                </svg>
+                <span>${message}</span>
+            `;
+            document.body.appendChild(toast);
+
+            setTimeout(() => toast.classList.add('show'), 10);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        let selectedMaterialData = null;
+        let outboundMaterialList = [];
+        let materialRowId = 0;
+        let tempSelectedMaterials = {};
+
+        function switchMaterialTab(tab) {
+            const tabs = document.querySelectorAll('.material-tab');
+            const listContent = document.getElementById('tab-list-content');
+            const bomContent = document.getElementById('tab-bom-content');
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            
+            if (tab === 'list') {
+                tabs[0].classList.add('active');
+                listContent.style.display = 'flex';
+                bomContent.style.display = 'none';
+            } else {
+                tabs[1].classList.add('active');
+                listContent.style.display = 'none';
+                bomContent.style.display = 'flex';
+            }
+        }
+
+        function toggleSelectAllList(headerCheckbox) {
+            const checkboxes = document.querySelectorAll('.material-list-cb');
+            checkboxes.forEach(cb => {
+                cb.checked = headerCheckbox.checked;
+                const row = cb.closest('.material-row');
+                if (headerCheckbox.checked) {
+                    row.classList.add('checked');
+                } else {
+                    row.classList.remove('checked');
+                }
+            });
+            updateListSelectedCount();
+        }
+
+        function toggleSelectAllBom(headerCheckbox) {
+            const checkboxes = document.querySelectorAll('.material-bom-cb');
+            checkboxes.forEach(cb => {
+                cb.checked = headerCheckbox.checked;
+                const row = cb.closest('.material-row');
+                if (headerCheckbox.checked) {
+                    row.classList.add('checked');
+                } else {
+                    row.classList.remove('checked');
+                }
+            });
+            updateBomSelectedCount();
+        }
+
+        function onMaterialCheck(checkbox) {
+            const row = checkbox.closest('.material-row');
+            const id = row.dataset.id;
+            
+            if (checkbox.checked) {
+                row.classList.add('checked');
+            } else {
+                row.classList.remove('checked');
+            }
+            
+            updateListSelectedCount();
+        }
+
+        function onBomCheck(checkbox) {
+            const row = checkbox.closest('.material-row');
+            const id = row.dataset.id;
+            
+            if (checkbox.checked) {
+                row.classList.add('checked');
+            } else {
+                row.classList.remove('checked');
+            }
+            
+            updateBomSelectedCount();
+        }
+
+        function updateListSelectedCount() {
+            const checkedCount = document.querySelectorAll('.material-list-cb:checked').length;
+            document.getElementById('list-selected-count').innerHTML = `已勾选 <strong>${checkedCount}</strong> 项`;
+        }
+
+        function updateBomSelectedCount() {
+            const checkedCount = document.querySelectorAll('.material-bom-cb:checked').length;
+            document.getElementById('bom-selected-count').innerHTML = `已勾选 <strong>${checkedCount}</strong> 项`;
+        }
+
+        function addListToSelected() {
+            const checkedBoxes = document.querySelectorAll('.material-list-cb:checked');
+            
+            if (checkedBoxes.length === 0) {
+                showToast('请先勾选物料', 'warning');
+                return;
+            }
+            
+            let addedCount = 0;
+            let noStockCount = 0;
+            let noStockItems = [];
+            let noProjectCount = 0;
+            let noProjectItems = [];
+            
+            checkedBoxes.forEach(cb => {
+                const row = cb.closest('.material-row');
+                const id = row.dataset.id;
+                const name = row.dataset.name;
+                const spec = row.dataset.spec;
+                const stock = parseInt(row.dataset.stock);
+                const projectsJson = row.dataset.projects || '[]';
+                const projects = JSON.parse(projectsJson);
+                
+                // 库存判断
+                if (stock <= 0) {
+                    noStockCount++;
+                    noStockItems.push(name);
+                    cb.checked = false;
+                    return;
+                }
+                
+                // 项目关联判断
+                if (!projects || projects.length === 0) {
+                    noProjectCount++;
+                    noProjectItems.push(name);
+                    cb.checked = false;
+                    return;
+                }
+                
+                if (!tempSelectedMaterials[id]) {
+                    tempSelectedMaterials[id] = {
+                        id: id,
+                        name: name,
+                        spec: spec,
+                        stock: stock,
+                        quantity: 1,
+                        projects: projects,
+                        project: projects.length === 1 ? projects[0] : null
+                    };
+                    addedCount++;
+                }
+            });
+            
+            renderSelectedList();
+            
+            if (noStockCount > 0) {
+                showToast(`${noStockItems.join('、')} 库存不足，无法出库`, 'error');
+            }
+            if (noProjectCount > 0) {
+                showToast(`${noProjectItems.join('、')} 未关联检测项目，无法出库`, 'error');
+            }
+            if (addedCount > 0) {
+                showToast(`已添加 ${addedCount} 种物料到已选列表`, 'success');
+            }
+            
+            // 更新勾选计数
+            updateListSelectedCount();
+        }
+
+        // 联想检索相关函数
+        function showProjectDropdown() {
+            const dropdown = document.getElementById('project-dropdown');
+            dropdown.classList.add('show');
+            const searchInput = dropdown.querySelector('.dropdown-search input');
+            if (searchInput) {
+                searchInput.focus();
+            }
+        }
+
+        function hideProjectDropdown() {
+            const dropdown = document.getElementById('project-dropdown');
+            dropdown.classList.remove('show');
+        }
+
+        function filterProjectList() {
+            const input = document.getElementById('project-search-input');
+            const filter = input.value.toLowerCase();
+            const items = document.querySelectorAll('#project-dropdown-list .dropdown-item');
+            
+            items.forEach(item => {
+                const name = item.querySelector('.item-name').textContent.toLowerCase();
+                const desc = item.querySelector('.item-desc').textContent.toLowerCase();
+                if (name.includes(filter) || desc.includes(filter)) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        function filterProjectDropdown(value) {
+            const filter = value.toLowerCase();
+            const items = document.querySelectorAll('#project-dropdown-list .dropdown-item');
+            
+            items.forEach(item => {
+                const name = item.querySelector('.item-name').textContent.toLowerCase();
+                const desc = item.querySelector('.item-desc').textContent.toLowerCase();
+                if (name.includes(filter) || desc.includes(filter)) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        function selectProject(element) {
+            const value = element.dataset.value;
+            const name = element.dataset.name;
+            
+            document.getElementById('bom-project-filter').value = value;
+            document.getElementById('project-search-input').value = name;
+            
+            document.querySelectorAll('#project-dropdown-list .dropdown-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            
+            hideProjectDropdown();
+            
+            // 触发加载BOM列表
+            loadBomListByName(name);
+        }
+
+        function loadBomListByName(projectName) {
+            // 根据项目名称加载对应的BOM物料列表
+            // 这里可以添加实际的加载逻辑
+        }
+
+        // 点击外部关闭下拉框
+        document.addEventListener('click', function(e) {
+            const wrapper = document.getElementById('project-search-wrapper');
+            if (wrapper && !wrapper.contains(e.target)) {
+                hideProjectDropdown();
+            }
+        });
+
+        function addBomToSelected() {
+            const checkedBoxes = document.querySelectorAll('.material-bom-cb:checked');
+            if (checkedBoxes.length === 0) {
+                showToast('请先勾选物料', 'warning');
+                return;
+            }
+            
+            const projectName = document.getElementById('project-search-input').value || '';
+            
+            let addedCount = 0;
+            checkedBoxes.forEach(cb => {
+                const row = cb.closest('.material-row');
+                const id = row.dataset.id;
+                const name = row.dataset.name;
+                const spec = row.dataset.spec;
+                const calcQty = parseInt(row.querySelector('.bom-calc-qty').textContent);
+                
+                if (!tempSelectedMaterials[id]) {
+                    tempSelectedMaterials[id] = {
+                        id: id,
+                        name: name,
+                        spec: spec,
+                        stock: 9999,
+                        quantity: calcQty,
+                        projects: [projectName],
+                        project: projectName
+                    };
+                    addedCount++;
+                }
+            });
+            
+            renderSelectedList();
+            showToast(`已添加 ${addedCount} 种物料到已选列表`, 'success');
+        }
+
+        function renderSelectedList() {
+            const container = document.getElementById('selected-materials-list');
+            const emptyTip = document.getElementById('selected-empty-tip');
+            const summary = document.getElementById('selected-summary');
+            const countBadge = document.getElementById('selected-count-badge');
+            const summaryTypes = document.getElementById('summary-types');
+            const summaryTotal = document.getElementById('summary-total');
+            
+            const materials = Object.values(tempSelectedMaterials);
+            const count = materials.length;
+            
+            countBadge.textContent = count + ' 项';
+            
+            if (count === 0) {
+                emptyTip.style.display = 'flex';
+                container.innerHTML = '';
+                summary.style.display = 'none';
+                return;
+            }
+            
+            emptyTip.style.display = 'none';
+            summary.style.display = 'block';
+            summaryTypes.textContent = count;
+            
+            let totalQty = 0;
+            container.innerHTML = materials.map(m => {
+                totalQty += m.quantity;
+                const projects = m.projects || [];
+                let projectOptions = '';
+                
+                if (projects.length === 0) {
+                    projectOptions = '<option value="" selected>公共成本</option>';
+                } else if (projects.length === 1) {
+                    projectOptions = `<option value="${projects[0]}" selected>${projects[0]}</option>`;
+                } else {
+                    projectOptions = '<option value="">请选择</option>';
+                    projects.forEach(p => {
+                        projectOptions += `<option value="${p}" ${m.project === p ? 'selected' : ''}>${p}</option>`;
+                    });
+                    projectOptions += '<option value="__public__">公共成本</option>';
+                }
+                
+                return `
+                    <div class="selected-item" data-id="${m.id}">
+                        <div class="selected-item-header">
+                            <div class="selected-item-info">
+                                <div class="selected-item-name">${m.name}</div>
+                                <div class="selected-item-spec">${m.spec}</div>
+                            </div>
+                            <button type="button" class="selected-item-remove" onclick="removeSelectedItem('${m.id}')">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"/>
+                                    <line x1="6" y1="6" x2="18" y2="18"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="selected-item-footer">
+                            <div class="selected-item-qty">
+                                <label>数量:</label>
+                                <input type="number" class="form-input" value="${m.quantity}" min="1" max="${m.stock}" onchange="updateSelectedQty('${m.id}', this.value)">
+                            </div>
+                            <div class="selected-item-project">
+                                <label>关联:</label>
+                                <select class="form-select" onchange="updateSelectedProject('${m.id}', this.value)">
+                                    ${projectOptions}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            summaryTotal.textContent = totalQty;
+        }
+
+        function updateSelectedQty(id, value) {
+            if (tempSelectedMaterials[id]) {
+                tempSelectedMaterials[id].quantity = parseInt(value) || 1;
+                renderSelectedList();
+            }
+        }
+
+        function updateSelectedProject(id, value) {
+            if (tempSelectedMaterials[id]) {
+                if (value === '__public__') {
+                    tempSelectedMaterials[id].project = '';
+                } else {
+                    tempSelectedMaterials[id].project = value;
+                }
+            }
+        }
+
+        function removeSelectedItem(id) {
+            delete tempSelectedMaterials[id];
+            renderSelectedList();
+        }
+
+        function filterMaterialsList() {
+            const searchText = document.getElementById('material-search-input').value.toLowerCase();
+            document.querySelectorAll('#material-list-tbody .material-row').forEach(row => {
+                const name = row.dataset.name.toLowerCase();
+                if (name.includes(searchText)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function updateBomQuantities() {
+            const sampleCount = parseInt(document.getElementById('bom-sample-count').value) || 10;
+            document.querySelectorAll('.bom-row').forEach(row => {
+                const unit = row.dataset.unit;
+                let qty = sampleCount;
+                if (unit.includes('5个')) qty = sampleCount * 5;
+                else if (unit.includes('10个')) qty = sampleCount * 10;
+                row.querySelector('.bom-calc-qty').textContent = qty;
+            });
+        }
+
+        function confirmAddMaterials() {
+            const materials = Object.values(tempSelectedMaterials);
+            if (materials.length === 0) {
+                showToast('请选择物料', 'error');
+                return;
+            }
+            
+            let addedCount = 0;
+            materials.forEach(m => {
+                const existingIndex = outboundMaterialList.findIndex(item => item.id === m.id);
+                if (existingIndex < 0) {
+                    materialRowId++;
+                    outboundMaterialList.push({
+                        rowId: materialRowId,
+                        id: m.id,
+                        name: m.name,
+                        spec: m.spec,
+                        stock: m.stock,
+                        quantity: m.quantity,
+                        projects: m.projects || [],
+                        project: m.project || ''
+                    });
+                    addedCount++;
+                }
+            });
+            
+            renderOutboundMaterialList();
+            
+            tempSelectedMaterials = {};
+            document.querySelectorAll('.material-list-cb, .material-bom-cb').forEach(cb => {
+                cb.checked = false;
+                cb.closest('.material-row').classList.remove('checked');
+            });
+            updateListSelectedCount();
+            updateBomSelectedCount();
+            renderSelectedList();
+            
+            hideModal('add-material-modal');
+            showToast(`已添加 ${addedCount} 种物料`, 'success');
+        }
+
+        function onMaterialSelect() {
+            const materialSelect = document.getElementById('multi-outbound-material');
+            const bomAutoAdd = document.getElementById('bom-auto-add');
+            const selectedOption = materialSelect.options[materialSelect.selectedIndex];
+            
+            if (!materialSelect.value) return;
+            
+            const materialId = materialSelect.value;
+            const existingIndex = outboundMaterialList.findIndex(m => m.id === materialId);
+            if (existingIndex >= 0) {
+                showToast('该物料已添加', 'error');
+                return;
+            }
+            
+            const materialData = {
+                id: materialId,
+                name: selectedOption.dataset.name,
+                spec: selectedOption.dataset.spec,
+                stock: parseInt(selectedOption.dataset.stock),
+                projectId: selectedOption.dataset.projectId
+            };
+            
+            addMaterialToTable(materialData);
+            
+            if (bomAutoAdd.checked) {
+                loadBomMaterials(materialData.projectId, materialId);
+            }
+            
+            materialSelect.value = '';
+        }
+
+        function loadBomMaterials(projectId, excludeId) {
+            const bomData = {
+                '1': [
+                    { id: '1', name: 'DNA提取试剂盒', spec: '50次/盒', stock: 50 },
+                    { id: '2', name: 'PCR Master Mix', spec: '100次/盒', stock: 25 },
+                    { id: '3', name: '离心管 1.5ml', spec: '500个/包', stock: 5000 },
+                    { id: '4', name: '移液器吸头 200ul', spec: '1000个/盒', stock: 2000 }
+                ],
+                '2': [
+                    { id: '3', name: '离心管 1.5ml', spec: '500个/包', stock: 5000 },
+                    { id: '4', name: '移液器吸头 200ul', spec: '1000个/盒', stock: 2000 },
+                    { id: '2', name: 'PCR Master Mix', spec: '100次/盒', stock: 25 },
+                    { id: '6', name: '酶标仪洗涤液', spec: '500ml/瓶', stock: 8 }
+                ],
+                '3': [
+                    { id: '5', name: '测序引物套装', spec: '20次/套', stock: 12 },
+                    { id: '3', name: '离心管 1.5ml', spec: '500个/包', stock: 5000 },
+                    { id: '4', name: '移液器吸头 200ul', spec: '1000个/盒', stock: 2000 }
+                ]
+            };
+            
+            const materials = bomData[projectId] || [];
+            let addedCount = 0;
+            
+            materials.forEach(m => {
+                if (m.id !== excludeId && !outboundMaterialList.find(item => item.id === m.id)) {
+                    addMaterialToTable(m);
+                    addedCount++;
+                }
+            });
+            
+            if (addedCount > 0) {
+                showToast(`已自动添加 ${addedCount} 个BOM关联物料`, 'success');
+            }
+        }
+
+        function addMaterialToTable(materialData) {
+            materialRowId++;
+            const row = {
+                rowId: materialRowId,
+                ...materialData,
+                quantity: 1,
+                user: '',
+                remark: ''
+            };
+            outboundMaterialList.push(row);
+            renderOutboundMaterialList();
+        }
+
+        function renderOutboundMaterialList() {
+            const tbody = document.getElementById('outbound-materials-list');
+            const emptyTip = document.getElementById('empty-materials-tip');
+            
+            if (outboundMaterialList.length === 0) {
+                tbody.innerHTML = '';
+                emptyTip.style.display = 'block';
+                return;
+            }
+            
+            emptyTip.style.display = 'none';
+            tbody.innerHTML = outboundMaterialList.map(m => {
+                const projects = m.projects || [];
+                let projectOptions = '';
+                
+                if (projects.length === 0) {
+                    projectOptions = '<option value="" selected>公共成本</option>';
+                } else if (projects.length === 1) {
+                    projectOptions = `<option value="${projects[0]}" selected>${projects[0]}</option>`;
+                } else {
+                    projectOptions = '<option value="">请选择</option>';
+                    projects.forEach(p => {
+                        projectOptions += `<option value="${p}" ${m.project === p ? 'selected' : ''}>${p}</option>`;
+                    });
+                    projectOptions += '<option value="__public__">公共成本</option>';
+                }
+                
+                return `
+                <tr>
+                    <td><strong>${m.name}</strong></td>
+                    <td>
+                        <select class="form-select outbound-project" style="height: 28px; font-size: 12px;" data-row-id="${m.rowId}" onchange="updateOutboundProject(${m.rowId}, this.value)">
+                            ${projectOptions}
+                        </select>
+                    </td>
+                    <td>${m.spec}</td>
+                    <td>${m.stock}</td>
+                    <td><input type="number" class="form-input outbound-quantity" style="width: 70px; height: 28px;" value="${m.quantity}" min="1" max="${m.stock}" data-row-id="${m.rowId}"></td>
+                    <td>
+                        <select class="form-select outbound-user" style="height: 28px; font-size: 12px;" data-row-id="${m.rowId}">
+                            <option value="">选择</option>
+                            <option value="1" selected>张三</option>
+                            <option value="2">李四</option>
+                            <option value="3">王五</option>
+                        </select>
+                    </td>
+                    <td style="text-align: center;">
+                        <button type="button" class="btn btn-sm btn-ghost" style="color: var(--error); padding: 4px;" onclick="removeMaterialRow(${m.rowId})">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 6h18"/>
+                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+            `}).join('');
+        }
+
+        function updateOutboundProject(rowId, value) {
+            const item = outboundMaterialList.find(m => m.rowId === rowId);
+            if (item) {
+                if (value === '__public__') {
+                    item.project = '';
+                } else {
+                    item.project = value;
+                }
+            }
+        }
+
+        function addMaterialRow() {
+            selectedMaterialData = null;
+            document.querySelectorAll('.material-select-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+            document.getElementById('material-search-input').value = '';
+            filterMaterials();
+            showModal('add-material-modal');
+        }
+
+        function selectMaterial(element) {
+            document.querySelectorAll('.material-select-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            selectedMaterialData = {
+                id: element.dataset.id,
+                name: element.dataset.name,
+                spec: element.dataset.spec,
+                stock: parseInt(element.dataset.stock)
+            };
+        }
+
+        function filterMaterials() {
+            const searchText = document.getElementById('material-search-input').value.toLowerCase();
+            document.querySelectorAll('.material-select-item').forEach(item => {
+                const name = item.dataset.name.toLowerCase();
+                if (name.includes(searchText)) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        function confirmAddMaterial() {
+            if (!selectedMaterialData) {
+                showToast('请选择物料', 'error');
+                return;
+            }
+            
+            const existingIndex = outboundMaterialList.findIndex(m => m.id === selectedMaterialData.id);
+            if (existingIndex >= 0) {
+                showToast('该物料已添加', 'error');
+                return;
+            }
+            
+            addMaterialToTable(selectedMaterialData);
+            hideModal('add-material-modal');
+            showToast(`已添加物料：${selectedMaterialData.name}`, 'success');
+        }
+
+        function removeMaterialRow(rowId) {
+            outboundMaterialList = outboundMaterialList.filter(m => m.rowId !== rowId);
+            renderOutboundMaterialList();
+            showToast('已移除物料', 'success');
+        }
+
+        function confirmMultiOutbound() {
+            if (outboundMaterialList.length === 0) {
+                showToast('请添加出库物料', 'error');
+                return;
+            }
+            
+            let hasError = false;
+            let stockErrors = [];
+            let validationErrors = [];
+            
+            outboundMaterialList.forEach(m => {
+                const quantityInput = document.querySelector(`.outbound-quantity[data-row-id="${m.rowId}"]`);
+                const userSelect = document.querySelector(`.outbound-user[data-row-id="${m.rowId}"]`);
+                
+                if (quantityInput) m.quantity = parseInt(quantityInput.value) || 0;
+                if (userSelect) m.user = userSelect.value;
+                
+                if (m.quantity <= 0) {
+                    validationErrors.push(`${m.name} 出库数量无效`);
+                    hasError = true;
+                }
+                if (m.quantity > m.stock) {
+                    stockErrors.push(`${m.name} 库存不足（当前库存: ${m.stock}，申请数量: ${m.quantity}）`);
+                    hasError = true;
+                }
+                if (!m.user) {
+                    validationErrors.push(`${m.name} 请选择领用人`);
+                    hasError = true;
+                }
+                if (!m.project) {
+                    validationErrors.push(`${m.name} 请选择关联项目`);
+                    hasError = true;
+                }
+            });
+            
+            if (stockErrors.length > 0) {
+                showToast(stockErrors[0], 'error');
+                return;
+            }
+            
+            if (validationErrors.length > 0) {
+                showToast(validationErrors[0], 'error');
+                return;
+            }
+            
+            if (hasError) return;
+            
+            const remark = document.getElementById('outbound-remark').value;
+            
+            if (window.CoreDataStore) {
+                outboundMaterialList.forEach(m => {
+                    CoreDataStore.addOutboundRecord({
+                        materialId: m.id,
+                        materialName: m.name,
+                        quantity: m.quantity,
+                        unit: m.unit || '个',
+                        projectId: m.project,
+                        projectName: m.projectName || '',
+                        operator: m.user
+                    });
+                });
+            }
+            
+            hideModal('multi-outbound-modal');
+            showToast(`出库成功，共 ${outboundMaterialList.length} 种物料`, 'success');
+            outboundMaterialList = [];
+            materialRowId = 0;
+            document.getElementById('outbound-remark').value = '';
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.card-header .search-box input').addEventListener('input', function() {
+                const searchText = this.value.toLowerCase().trim();
+                const tableRows = document.querySelectorAll('#outbound-table tbody tr');
+                
+                tableRows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    if (cells.length >= 4) {
+                        const outboundNo = cells[1] ? cells[1].textContent.toLowerCase() : '';
+                        const materialName = cells[2] ? cells[2].textContent.toLowerCase() : '';
+                        const batchNo = cells[3] ? cells[3].textContent.toLowerCase() : '';
+                        
+                        if (searchText === '' || outboundNo.includes(searchText) || materialName.includes(searchText) || batchNo.includes(searchText)) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

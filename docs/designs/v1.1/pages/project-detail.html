@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>检测服务详情 - COREONE v2.2</title>
+    <link rel="stylesheet" href="../shared/styles.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="32" height="32" rx="8" fill="#3b82f6"/>
+                <path d="M8 16L14 10L20 16L14 22L8 16Z" fill="white"/>
+                <path d="M14 16L20 10L26 16L20 22L14 16Z" fill="white" opacity="0.6"/>
+            </svg>
+            <span>COREONE</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="inventory-list.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                </svg>
+                <span>库存列表</span>
+            </a>
+            <a href="inbound.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                <span>入库记录</span>
+            </a>
+            <a href="outbound.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                <span>出库记录</span>
+            </a>
+            <a href="scrap.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 6h18"/>
+                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                </svg>
+                <span>报废管理</span>
+            </a>
+            <a href="stocktaking.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 11l3 3L22 4"/>
+                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                </svg>
+                <span>库存盘点</span>
+            </a>
+            <a href="projects.html" class="nav-item active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                </svg>
+                <span>检测服务</span>
+            </a>
+            <a href="bom.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+                <span>BOM清单</span>
+            </a>
+            <a href="cost-analysis.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="20" x2="12" y2="10"/>
+                    <line x1="18" y1="20" x2="18" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="16"/>
+                </svg>
+                <span>物料成本分析</span>
+            </a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <div class="detail-title-section">
+                <a href="projects.html" class="btn btn-ghost btn-sm">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"/>
+                        <polyline points="12 19 5 12 12 5"/>
+                    </svg>
+                </a>
+                <div>
+                    <h1 class="detail-title" id="project-name">HE常规制片</h1>
+                    <p class="detail-subtitle"><span class="mono-text" id="project-code">HE-001</span> | <span id="project-type">病理技术</span></p>
+                </div>
+            </div>
+            <div class="detail-actions">
+                <button class="btn btn-secondary" onclick="showModal('edit-project-modal')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                    </svg>
+                    编辑
+                </button>
+                <button class="btn btn-primary" onclick="window.location.href='outbound.html?action=add&projectId=HE-001'">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"/>
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                    出库
+                </button>
+            </div>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card highlight">
+                <div class="info-label">可支撑样本数</div>
+                <div class="info-value" id="supportable-samples">150</div>
+                <div class="info-meta">
+                    <span class="status-indicator sufficient" id="support-status">🟢 物料充足</span>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="info-label">检测周期</div>
+                <div class="info-value" id="cycle-time">1-2个工作日</div>
+                <div class="info-meta">标准周期</div>
+            </div>
+            <div class="info-card">
+                <div class="info-label">单样本成本</div>
+                <div class="info-value" id="unit-cost">¥12.50</div>
+                <div class="info-meta">基于BOM计算</div>
+            </div>
+            <div class="info-card">
+                <div class="info-label">关联BOM</div>
+                <div class="info-value"><a href="bom.html?id=BOM-001" class="bom-link" id="bom-name">HE制片标准套装</a></div>
+                <div class="info-meta" id="bom-version">版本: v2.3</div>
+            </div>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-header">
+                <h3 class="section-title">基本信息</h3>
+            </div>
+            <div class="section-body">
+                <div class="info-row">
+                    <div class="info-item">
+                        <div class="label">服务编号</div>
+                        <div class="value mono-text" id="info-code">HE-001</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">服务名称</div>
+                        <div class="value" id="info-name">HE常规制片</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">服务类型</div>
+                        <div class="value" id="info-type">病理技术</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">服务状态</div>
+                        <div class="value"><span class="status-badge status-success" id="info-status">已启用</span></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">负责人</div>
+                        <div class="value" id="info-manager">张医生</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">检测周期</div>
+                        <div class="value" id="info-cycle">1-2个工作日</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">物料数量</div>
+                        <div class="value" id="info-material-count">8项</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">单样本成本</div>
+                        <div class="value" id="info-unit-cost">¥12.50</div>
+                    </div>
+                </div>
+                <div class="info-item" style="margin-top: 16px;">
+                    <div class="label">服务描述</div>
+                    <div class="value" id="info-description">常规HE染色制片，包括取材、包埋、切片、染色、封片全流程。</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-section">
+            <div class="tab-group">
+                <button class="tab active" data-tab="materials">物料清单</button>
+                <button class="tab" data-tab="usage">使用记录</button>
+            </div>
+            <div class="tab-content active" id="tab-materials">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>物料名称</th>
+                            <th>规格型号</th>
+                            <th>用量/样本</th>
+                            <th>单位</th>
+                            <th>当前库存</th>
+                            <th>库存状态</th>
+                        </tr>
+                    </thead>
+                    <tbody id="materials-list">
+                        <tr>
+                            <td>1</td>
+                            <td><strong>苏木精染液</strong></td>
+                            <td>500ml/瓶</td>
+                            <td>0.5</td>
+                            <td>ml</td>
+                            <td>120瓶</td>
+                            <td><span class="material-status-badge material-status-sufficient">🟢 充足</span></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>伊红染液</strong></td>
+                            <td>500ml/瓶</td>
+                            <td>0.3</td>
+                            <td>ml</td>
+                            <td>85瓶</td>
+                            <td><span class="material-status-badge material-status-sufficient">🟢 充足</span></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>分化液</strong></td>
+                            <td>500ml/瓶</td>
+                            <td>0.2</td>
+                            <td>ml</td>
+                            <td>30瓶</td>
+                            <td><span class="material-status-badge material-status-low">🟡 偏低</span></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><strong>蓝化液</strong></td>
+                            <td>500ml/瓶</td>
+                            <td>0.2</td>
+                            <td>ml</td>
+                            <td>60瓶</td>
+                            <td><span class="material-status-badge material-status-sufficient">🟢 充足</span></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><strong>封片剂</strong></td>
+                            <td>100ml/瓶</td>
+                            <td>0.1</td>
+                            <td>ml</td>
+                            <td>45瓶</td>
+                            <td><span class="material-status-badge material-status-sufficient">🟢 充足</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-content" id="tab-usage">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>出库单号</th>
+                            <th>出库数量</th>
+                            <th>关联检测</th>
+                            <th>操作人</th>
+                            <th>出库时间</th>
+                            <th>状态</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usage-records">
+                        <tr>
+                            <td class="mono-text">OB-2024-001</td>
+                            <td>50份</td>
+                            <td>HE常规制片</td>
+                            <td>张三</td>
+                            <td>2024-01-18 11:00</td>
+                            <td><span class="status-badge status-success">已完成</span></td>
+                        </tr>
+                        <tr>
+                            <td class="mono-text">OB-2024-003</td>
+                            <td>30份</td>
+                            <td>HE常规制片</td>
+                            <td>李四</td>
+                            <td>2024-01-15 15:30</td>
+                            <td><span class="status-badge status-success">已完成</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal" id="edit-project-modal">
+        <div class="modal-overlay" onclick="hideModal('edit-project-modal')"></div>
+        <div class="modal-container modal-lg">
+            <div class="modal-header">
+                <h3 class="modal-title">编辑检测服务</h3>
+                <button class="modal-close" onclick="hideModal('edit-project-modal')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">服务名称 <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="edit-name" value="HE常规制片">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">服务类型</label>
+                        <select class="form-select" id="edit-type">
+                            <option value="he" selected>病理技术-HE制片</option>
+                            <option value="ihc">病理技术-免疫组化</option>
+                            <option value="ss">病理技术-特殊染色</option>
+                            <option value="mp">分子诊断</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">检测周期</label>
+                        <input type="text" class="form-input" id="edit-cycle" value="1-2个工作日">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">负责人</label>
+                        <input type="text" class="form-input" id="edit-manager" value="张医生">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">服务描述</label>
+                    <textarea class="form-textarea" rows="2" id="edit-description">常规HE染色制片，包括取材、包埋、切片、染色、封片全流程。</textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideModal('edit-project-modal')">取消</button>
+                <button class="btn btn-primary" onclick="saveProject()">保存修改</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../shared/scripts.js"></script>
+    <script>
+        let currentOpenModal = null;
+        
+        const projectData = {
+            id: 'HE-001',
+            code: 'HE-001',
+            name: 'HE常规制片',
+            type: 'he',
+            typeName: '病理技术',
+            cycle: '1-2个工作日',
+            bomId: 'BOM-001',
+            bomName: 'HE制片标准套装',
+            bomVersion: 'v2.3',
+            supportable: 150,
+            unitCost: 12.50,
+            manager: '张医生',
+            status: 'active',
+            description: '常规HE染色制片，包括取材、包埋、切片、染色、封片全流程。'
+        };
+        
+        const materialsData = [
+            { id: 1, name: '苏木精染液', spec: '500ml/瓶', usagePerSample: 0.5, unit: 'ml', stock: 120, stockStatus: 'sufficient' },
+            { id: 2, name: '伊红染液', spec: '500ml/瓶', usagePerSample: 0.3, unit: 'ml', stock: 85, stockStatus: 'sufficient' },
+            { id: 3, name: '分化液', spec: '500ml/瓶', usagePerSample: 0.2, unit: 'ml', stock: 30, stockStatus: 'low' },
+            { id: 4, name: '蓝化液', spec: '500ml/瓶', usagePerSample: 0.2, unit: 'ml', stock: 60, stockStatus: 'sufficient' },
+            { id: 5, name: '封片剂', spec: '100ml/瓶', usagePerSample: 0.1, unit: 'ml', stock: 45, stockStatus: 'sufficient' }
+        ];
+        
+        const usageRecords = [
+            { id: 'OB-2024-001', quantity: 50, unit: '份', project: 'HE常规制片', operator: '张三', time: '2024-01-18 11:00', status: 'completed' },
+            { id: 'OB-2024-003', quantity: 30, unit: '份', project: 'HE常规制片', operator: '李四', time: '2024-01-15 15:30', status: 'completed' }
+        ];
+        
+        function showToast(message, type = 'info') {
+            let container = document.querySelector('.toast-container');
+            if (!container) {
+                container = document.createElement('div');
+                container.className = 'toast-container';
+                document.body.appendChild(container);
+            }
+            
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `
+                <svg class="toast-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    ${type === 'success' ? '<polyline points="20 6 9 17 4 12"/>' : type === 'error' ? '<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>' : '<circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>'}
+                </svg>
+                <span>${message}</span>
+                <button class="toast-close" onclick="this.parentElement.remove()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+        
+        function showModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            currentOpenModal = modalId;
+            
+            setTimeout(() => {
+                const firstInput = modal.querySelector('input:not([type="hidden"]):not([type="checkbox"]):not([readonly]), select:not([disabled]), textarea');
+                if (firstInput) firstInput.focus();
+            }, 100);
+        }
+        
+        function hideModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            currentOpenModal = null;
+        }
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && currentOpenModal) {
+                hideModal(currentOpenModal);
+            }
+        });
+        
+        function switchTab(evt, tabId) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            evt.target.classList.add('active');
+            document.getElementById('tab-' + tabId).classList.add('active');
+        }
+        
+        function saveProject() {
+            showToast('检测服务信息已更新', 'success');
+            hideModal('edit-project-modal');
+        }
+        
+        function loadProjectData() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectId = urlParams.get('id') || 'HE-001';
+            
+            document.getElementById('project-name').textContent = projectData.name;
+            document.getElementById('project-code').textContent = projectData.code;
+            document.getElementById('project-type').textContent = projectData.typeName;
+            document.getElementById('supportable-samples').textContent = projectData.supportable;
+            document.getElementById('cycle-time').textContent = projectData.cycle;
+            document.getElementById('unit-cost').textContent = '¥' + projectData.unitCost.toFixed(2);
+            document.getElementById('bom-name').textContent = projectData.bomName;
+            document.getElementById('bom-version').textContent = '版本: ' + projectData.bomVersion;
+            
+            const supportStatus = document.getElementById('support-status');
+            if (projectData.supportable > 100) {
+                supportStatus.className = 'status-indicator sufficient';
+                supportStatus.textContent = '🟢 物料充足';
+            } else if (projectData.supportable > 30) {
+                supportStatus.className = 'status-indicator low';
+                supportStatus.textContent = '🟡 物料偏低';
+            } else {
+                supportStatus.className = 'status-indicator insufficient';
+                supportStatus.textContent = '🔴 物料不足';
+            }
+            
+            document.getElementById('info-code').textContent = projectData.code;
+            document.getElementById('info-name').textContent = projectData.name;
+            document.getElementById('info-type').textContent = projectData.typeName;
+            document.getElementById('info-manager').textContent = projectData.manager;
+            document.getElementById('info-cycle').textContent = projectData.cycle;
+            document.getElementById('info-material-count').textContent = materialsData.length + '项';
+            document.getElementById('info-unit-cost').textContent = '¥' + projectData.unitCost.toFixed(2);
+            document.getElementById('info-description').textContent = projectData.description;
+        }
+        
+        function loadMaterialsData() {
+            const tbody = document.getElementById('materials-list');
+            const statusMap = {
+                'sufficient': { class: 'material-status-sufficient', text: '🟢 充足' },
+                'low': { class: 'material-status-low', text: '🟡 偏低' },
+                'insufficient': { class: 'material-status-insufficient', text: '🔴 不足' }
+            };
+            
+            tbody.innerHTML = materialsData.map((m, i) => {
+                const status = statusMap[m.stockStatus] || statusMap['sufficient'];
+                return `
+                    <tr>
+                        <td>${i + 1}</td>
+                        <td><strong>${m.name}</strong></td>
+                        <td>${m.spec}</td>
+                        <td>${m.usagePerSample}</td>
+                        <td>${m.unit}</td>
+                        <td>${m.stock}瓶</td>
+                        <td><span class="material-status-badge ${status.class}">${status.text}</span></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+        
+        function loadUsageRecords() {
+            const tbody = document.getElementById('usage-records');
+            tbody.innerHTML = usageRecords.map(r => `
+                <tr>
+                    <td class="mono-text">${r.id}</td>
+                    <td>${r.quantity}${r.unit}</td>
+                    <td>${r.project}</td>
+                    <td>${r.operator}</td>
+                    <td>${r.time}</td>
+                    <td><span class="status-badge status-success">已完成</span></td>
+                </tr>
+            `).join('');
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProjectData();
+            loadMaterialsData();
+            loadUsageRecords();
+            
+            document.querySelectorAll('.tab').forEach(function(tab) {
+                tab.addEventListener('click', function(evt) {
+                    switchTab(evt, this.dataset.tab);
+                });
+            });
+        });
+        
+        window.showModal = showModal;
+        window.hideModal = hideModal;
+        window.saveProject = saveProject;
+    </script>
+</body>
+</html>
